@@ -7,11 +7,6 @@ import CurrentUserContext from './CurrentUserContext';
 const CurrentUserProvider = ({ children }: { children: React.ReactNode }) => {
   const {
     user,
-    mainCompanyId,
-    isUserBuyer,
-    isAdmin,
-    isGuest,
-    isRegisteredUser,
     loading,
     error,
     refetch,
@@ -21,11 +16,6 @@ const CurrentUserProvider = ({ children }: { children: React.ReactNode }) => {
   const context: ReturnType<typeof useCurrentUserHook> = useMemo(
     () => ({
       user,
-      mainCompanyId,
-      isUserBuyer,
-      isAdmin,
-      isGuest,
-      isRegisteredUser,
       loading,
       error,
       refetch,
@@ -33,11 +23,6 @@ const CurrentUserProvider = ({ children }: { children: React.ReactNode }) => {
     }),
     [
       user,
-      mainCompanyId,
-      isUserBuyer,
-      isAdmin,
-      isGuest,
-      isRegisteredUser,
       loading,
       error,
       refetch,

@@ -2,9 +2,8 @@ import React from 'react';
 import omit from 'lodash/omit';
 import Router from 'next/router';
 
-import { AUTH } from 'config/routes';
+import { SIGNIN } from 'config/routes';
 
-import { isRegisteredUser } from 'config/constants/systemRoles';
 import { getCurrentUser } from 'lib/apollo/cache/getCurrentUser';
 import { TNextPage } from 'lib/apollo/types';
 
@@ -18,8 +17,8 @@ const withAuthSecurity = (Page: TNextPage): TNextPage => {
     const ctx = omit(context, ['req', 'res']);
     const user = getCurrentUser({ apolloClient });
 
-    if (!isRegisteredUser(user?.systemRole)) {
-      !!req && !!res ? res.redirect(302, AUTH) : Router.push(AUTH);
+    if (!user) {
+      !!req && !!res ? res.redirect(302, SIGNIN) : Router.push(SIGNIN);
     }
 
     return Page.getInitialProps ? Page.getInitialProps(context) : ctx;

@@ -1,60 +1,49 @@
-import React from 'react';
-import Rollbar from 'rollbar';
 import { NextPage } from 'next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { HOME } from 'config/routes';
+import { ErrorPageContext } from 'types/pageContextInterfaces';
 
-import Footer from 'components/shared/organisms/Footer';
-import ActionLink from 'components/shared/atoms/ActionLink';
-import LayoutTemplate from 'components/shared/templates/LayoutTemplate';
+import { TitleWrapper, Description, StyledLink } from './styled';
 
-import { TErrorPage, TInitialProps, TStatusCode } from './types';
-import { PageContainer, TitleWrapper, NotFoundHeader, Header, Description, Image } from './styled';
+interface Props {
+  statusCode: number;
+}
 
-const ErrorPage: NextPage<TErrorPage> = ({ statusCode }) => {
+const ErrorPage: NextPage<Props> = ({ statusCode }) => {
   const is404 = statusCode === 404;
+  const router = useRouter();
+
+  const links = (
+    <>
+      <StyledLink onClick={() => router.back()}>Back to previous page</StyledLink> or{' '}
+      <Link passHref href={HOME}>
+        <StyledLink>contact us</StyledLink>
+      </Link>{' '}
+      for help.
+    </>
+  );
+
+  let title = 'Something went wrong.';
+  let description = links;
+
+  if (is404) {
+    title = "The page you're looking for can't be found.";
+    description = <>You didn&apos;t do anything wrong, we may have moved the page. {links}</>;
+  }
 
   return (
-    <LayoutTemplate testId="error-page">
-      <PageContainer>
-        <TitleWrapper data-testid="error-page-text">
-          {is404 && <NotFoundHeader>404</NotFoundHeader>}
-          <Header>Запрашиваемая страница не найдена!</Header>
-          <Description>
-            <ActionLink size={16} label="Вернуться на главную" href={HOME} $color="blue2F" />
-          </Description>
-          <Image />
-        </TitleWrapper>
-        <Footer />
-      </PageContainer>
-    </LayoutTemplate>
+    <TitleWrapper data-testid="error-page-text">
+      <h1>{title}</h1>
+      <Description>{description}</Description>
+    </TitleWrapper>
   );
 };
 
-const getStatusCode = ({ res, err }: TStatusCode) => {
-  if (res) {
-    return res.statusCode;
-  }
-
-  return err ? err.statusCode : 404;
-};
-
-ErrorPage.getInitialProps = ({ res, err, req, statusCode }: TInitialProps) => {
-  if (typeof window === 'undefined' && process.env.CLIENT_ROLLBAR_KEY) {
-    if (err) {
-      const rollbar = new Rollbar({
-        accessToken: process.env.CLIENT_ROLLBAR_KEY,
-        environment: 'server-side',
-      });
-      rollbar.error(err, req, res, rollbarError => {
-        if (rollbarError) {
-          console.error('Rollbar error reporting failed:', rollbarError);
-        }
-      });
-    }
-  }
+ErrorPage.getInitialProps = ({ res, err, statusCode }: ErrorPageContext) => {
   return {
-    statusCode: statusCode || getStatusCode({ res, err }),
+    statusCode: statusCode || res?.statusCode || err?.statusCode || 404,
   };
 };
 

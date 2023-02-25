@@ -2,19 +2,13 @@ import React from 'react';
 
 import { HOME } from 'config/routes';
 
-import { TLogo } from './types';
-import { LogoWrapper, TextLogo, TextLogoWrapper, MainLogo } from './styled';
+import LogoIcon from 'public/images/logo.svg';
 
-const Logo: React.FunctionComponent<TLogo> = ({ isLight = false }) => (
+import { LogoWrapper } from './styled';
+
+const Logo: React.FunctionComponent = () => (
   <LogoWrapper href={HOME} passHref>
-    <MainLogo
-      src={`${process.env.ASSET_HOST}/images/main-Logo.png`}
-      alt="mainLogo"
-      isLight={isLight}
-    />
-    <TextLogoWrapper isLight={isLight}>
-      <TextLogo />
-    </TextLogoWrapper>
+    <LogoIcon />
   </LogoWrapper>
 );
 

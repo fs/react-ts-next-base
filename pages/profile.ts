@@ -1,1 +1,1 @@
-export { default } from 'components/pages/editProfile';
+export { default } from 'components/pages/profile';
