@@ -1,0 +1,29 @@
+#import "../fragments/transferInfo.graphql"
+
+query Transfers(
+  $transferTypes: [TransferTypeEnum!]
+  $operationStatuses: [AccountOperationStatusEnum!]
+  $searchQuery: String
+  $ids: [ID!]
+  $first: Int
+  $after: String
+) {
+  transfers(
+    transferTypes: $transferTypes
+    operationStatuses: $operationStatuses
+    searchQuery: $searchQuery
+    ids: $ids
+    first: $first
+    after: $after
+  ) {
+    edges {
+      node {
+        ...TransferInfo
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

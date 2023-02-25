@@ -1,0 +1,5 @@
+mutation BanCompany($input: BanCompanyInput!) {
+  banCompany(input: $input) {
+    message
+  }
+}

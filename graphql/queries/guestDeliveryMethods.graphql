@@ -1,0 +1,45 @@
+query GuestDeliveryMethods($variantId: ID!, $quantity: Int!, $cityId: ID!) {
+  guestDeliveryMethods(variantId: $variantId, quantity: $quantity, cityId: $cityId) {
+    courier {
+      available
+      endDate
+      error {
+        details
+        message
+      }
+      price
+      service
+      startDate
+    }
+    deliveryPoint {
+      available
+      deliveryPoints {
+        address
+        id
+        openingHours {
+          endTime {
+            hour
+            minute
+          }
+          startTime {
+            hour
+            minute
+          }
+          weekday
+        }
+        phones
+      }
+      endDate
+      error {
+        details
+        message
+      }
+      price
+      service
+      startDate
+    }
+    pickup {
+      available
+    }
+  }
+}

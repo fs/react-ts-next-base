@@ -1,0 +1,15 @@
+#import "../fragments/companyInfo.graphql"
+
+mutation AcceptTransfer($input: AcceptTransferInput!) {
+  acceptTransfer(input: $input) {
+    amount
+    createdAt
+    id
+    transferType
+    vat
+    vatType
+    company {
+      ...CompanyInfo
+    }
+  }
+}

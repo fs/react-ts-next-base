@@ -1,0 +1,32 @@
+fragment UserInfo on User {
+  id
+  avatarUrl
+  blockedAt
+  companyMembers {
+    id
+    user {
+      id
+    }
+    role {
+      id
+      name
+    }
+    company {
+      id
+      unofficialName
+      officialName
+    }
+  }
+  createdAt
+  email
+  firstName
+  fullName
+  lastName
+  middleName
+  phoneNumber
+  role {
+    id
+    name
+  }
+  systemRole
+}

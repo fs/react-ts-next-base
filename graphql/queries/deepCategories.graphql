@@ -1,0 +1,16 @@
+#import "../fragments/categoryInfo.graphql"
+
+query DeepCategories($parentId: ID, $ids: [ID!]) {
+  categories(parentId: $parentId, ids: $ids) {
+    ...CategoryInfo
+    parent {
+      ...CategoryInfo
+      parent {
+        ...CategoryInfo
+        parent {
+          ...CategoryInfo
+        }
+      }
+    }
+  }
+}

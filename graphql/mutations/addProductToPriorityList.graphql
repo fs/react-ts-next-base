@@ -1,0 +1,10 @@
+mutation AddProductToPriorityList($input: AddProductToPriorityListInput!) {
+  addProductToPriorityList(input: $input) {
+    product {
+      id
+      canAddToPriorityList
+      canRemoveFromPriorityList
+      prioritized
+    }
+  }
+}

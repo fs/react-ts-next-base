@@ -1,0 +1,5 @@
+mutation CreateDictionaryProperty($input: CreateDictionaryPropertyInput!) {
+  createDictionaryProperty(input: $input) {
+    name
+  }
+}

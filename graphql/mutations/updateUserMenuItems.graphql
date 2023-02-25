@@ -1,0 +1,7 @@
+#import "../fragments/currentUserInfo.graphql"
+
+mutation updateUserMenuItems($input: UpdateUserMenuItemsInput!) {
+  updateUserMenuItems(input: $input) {
+    ...CurrentUserInfo
+  }
+}

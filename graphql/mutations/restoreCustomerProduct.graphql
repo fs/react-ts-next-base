@@ -1,0 +1,5 @@
+mutation restoreCustomerProduct($input: RestoreProductInput!) {
+  restoreCustomerProduct(input: $input) {
+    id
+  }
+}

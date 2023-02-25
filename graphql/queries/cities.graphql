@@ -1,0 +1,16 @@
+#import "../fragments/cityInfo.graphql"
+
+query Cities($after: String, $name: String, $strict: Boolean) {
+  cities(after: $after, name: $name, strict: $strict) {
+    edges {
+      cursor
+      node {
+        ...City
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

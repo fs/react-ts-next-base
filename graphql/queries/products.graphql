@@ -1,0 +1,59 @@
+#import "../fragments/productInfo.graphql"
+
+query Products(
+  $orderBy: ProductOrderEnum
+  $productIds: [ID!]
+  $companyIds: [ID!]
+  $categoryIds: [ID!]
+  $manufacturer: String
+  $searchQuery: String
+  $minPrice: Int
+  $maxPrice: Int
+  $dictionaryProperties: [DictionaryPropertyFilterInput!]
+  $integerProperties: [IntegerPropertyFilterInput!]
+  $condition: ConditionEnum
+  $discounted: Boolean
+  $first: Int
+  $after: String
+  $rating: Int
+  $companyRating: Int
+  $freeDeliveryCompanyId: ID
+  $newest: Boolean
+  $vatPresence: Boolean
+) {
+  products(
+    orderBy: $orderBy
+    productIds: $productIds
+    companyIds: $companyIds
+    categoryIds: $categoryIds
+    manufacturer: $manufacturer
+    searchQuery: $searchQuery
+    minPrice: $minPrice
+    maxPrice: $maxPrice
+    dictionaryProperties: $dictionaryProperties
+    integerProperties: $integerProperties
+    condition: $condition
+    discounted: $discounted
+    first: $first
+    after: $after
+    rating: $rating
+    companyRating: $companyRating
+    freeDeliveryCompanyId: $freeDeliveryCompanyId
+    newest: $newest
+    vatPresence: $vatPresence
+  ) {
+    edges {
+      cursor
+      node {
+        ...ProductInfo
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+  productsSummary(companyIds: $companyIds, categoryIds: $categoryIds, searchQuery: $searchQuery) {
+    totalCount
+  }
+}

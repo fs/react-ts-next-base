@@ -1,0 +1,6 @@
+query CompanyRatingHistory($companyId: ID!) {
+  companyRatingHistory(companyId: $companyId) {
+    date
+    rating
+  }
+}

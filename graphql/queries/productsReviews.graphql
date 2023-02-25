@@ -1,0 +1,20 @@
+#import "../fragments/productReviewsInfo.graphql"
+
+query ProductsReviews(
+  $searchQuery: String
+  $after: String
+  $first: Int
+  $orderBy: ProductReviewOrderEnum
+) {
+  productsReviews(searchQuery: $searchQuery, after: $after, first: $first, orderBy: $orderBy) {
+    edges {
+      node {
+        ...ProductReviewsInfo
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

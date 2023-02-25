@@ -1,0 +1,27 @@
+#import "../fragments/companyLocationInfo.graphql"
+
+query CustomerCompanyLocations(
+  $statuses: [CompanyLocationStatusEnum!]
+  $companyName: SquishedString
+  $after: String
+  $first: Int
+  $ids: [ID!]
+) {
+  customerCompanyLocations(
+    statuses: $statuses
+    companyName: $companyName
+    after: $after
+    first: $first
+    ids: $ids
+  ) {
+    edges {
+      node {
+        ...CompanyLocation
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

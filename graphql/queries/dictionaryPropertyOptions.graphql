@@ -1,0 +1,6 @@
+query DictionaryPropertyOptions($propertyId: ID!) {
+  dictionaryPropertyOptions(propertyId: $propertyId) {
+    id
+    name
+  }
+}

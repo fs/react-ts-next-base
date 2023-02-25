@@ -1,0 +1,68 @@
+#import "../fragments/legalFormInfo.graphql"
+
+fragment CompanyInfo on Company {
+  id
+  legalForm {
+    ...CompanyLegalForm
+  }
+  inn
+  kpp
+  officialName
+  unofficialName
+  deliveredOrdersCount
+  directorFullName
+  legalAddress
+  postcode
+  ogrn
+  oktmo
+  bankName
+  checkingAccount
+  correspondentAccount
+  companyConfirmationRecords {
+    id
+    attachmentUrl
+    originalFilename
+  }
+  bic
+  email
+  phoneNumber
+  direction
+  logoUrl
+  main
+  companyMembers {
+    id
+    user {
+      id
+    }
+    role {
+      id
+      name
+    }
+  }
+  myRole {
+    id
+    name
+  }
+  rejectedFields {
+    comment
+    name
+  }
+  rejectsCount
+  sellableProductsCount
+  status
+  taxationSystem
+  rating
+  receivedReviewsCount
+  createdAt
+  verificationDeadlineAt
+  lastEmployeeMembers {
+    id
+    user {
+      id
+      email
+    }
+  }
+  deletedAt
+  deletionReason
+  blacklistedAt
+}

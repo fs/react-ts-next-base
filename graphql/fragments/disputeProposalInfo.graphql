@@ -1,0 +1,12 @@
+fragment DisputeProposal on DisputeProposal {
+  comment
+  createdAt
+  deliveryReturnAmount
+  id
+  originator
+  productReturnAmount
+  returnPayer
+  returnQuantity
+  returnRequired
+  status
+}

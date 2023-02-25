@@ -1,0 +1,6 @@
+mutation CancelReservedOrder($input: CancelReservedOrderInput!) {
+  cancelReservedOrder(input: $input) {
+    id
+    reservationStatus
+  }
+}

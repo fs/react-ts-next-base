@@ -1,0 +1,5 @@
+mutation DestroyOrder($input: DestroyOrderInput!) {
+  destroyOrder(input: $input) {
+    message
+  }
+}

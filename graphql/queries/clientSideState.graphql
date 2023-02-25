@@ -1,0 +1,4 @@
+query clientSideState {
+  companySidebar @client
+  city @client
+}

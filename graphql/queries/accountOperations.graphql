@@ -1,0 +1,50 @@
+#import "../fragments/orderInfo.graphql"
+#import "../fragments/transferInfo.graphql"
+
+query AccountOperations(
+  $companyId: ID!
+  $subjects: [AccountOperationSubjectEnum!]
+  $orderIds: [ID!]
+  $statuses: [AccountOperationStatusEnum!]
+  $first: Int
+  $last: Int
+  $after: String
+  $acceptedDate: DateRangeFilterInput
+) {
+  accountOperations(
+    companyId: $companyId
+    acceptedDate: $acceptedDate
+    subjects: $subjects
+    statuses: $statuses
+    orderIds: $orderIds
+    first: $first
+    last: $last
+    after: $after
+  ) {
+    edges {
+      cursor
+      node {
+        id
+        acceptedAt
+        amount
+        operationType
+        originId
+        originType
+        status
+        subject
+        origin {
+          ... on Order {
+            ...OrderInfo
+          }
+          ... on Transfer {
+            ...TransferInfo
+          }
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

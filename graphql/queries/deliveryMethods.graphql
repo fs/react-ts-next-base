@@ -1,0 +1,45 @@
+query DeliveryMethods($variantId: ID!, $quantity: Int!, $companyLocationId: ID!) {
+  deliveryMethods(variantId: $variantId, quantity: $quantity, companyLocationId: $companyLocationId) {
+    courier {
+      available
+      endDate
+      error {
+        details
+        message
+      }
+      price
+      service
+      startDate
+    }
+    deliveryPoint {
+      available
+      deliveryPoints {
+        address
+        id
+        openingHours {
+          endTime {
+            hour
+            minute
+          }
+          startTime {
+            hour
+            minute
+          }
+          weekday
+        }
+        phones
+      }
+      endDate
+      error {
+        details
+        message
+      }
+      price
+      service
+      startDate
+    }
+    pickup {
+      available
+    }
+  }
+}

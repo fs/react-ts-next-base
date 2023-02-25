@@ -1,0 +1,5 @@
+mutation DestroyProperty($input: DestroyPropertyInput!) {
+  destroyProperty(input: $input) {
+    message
+  }
+}

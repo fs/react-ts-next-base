@@ -1,0 +1,17 @@
+query DadataOrganization($inn: String!) {
+  dadataOrganization(inn: $inn) {
+    address
+    directorFullName
+    email
+    inn
+    kpp
+    name
+    ogrn
+    oktmo
+    phone
+    postcode
+    shortName
+    legalFormName
+    legalFormShortName
+  }
+}

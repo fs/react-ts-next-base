@@ -1,0 +1,5 @@
+mutation rejectProduct($input: RejectProductInput!) {
+  rejectProduct(input: $input) {
+    id
+  }
+}

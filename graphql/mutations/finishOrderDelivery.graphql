@@ -1,0 +1,16 @@
+#import "../fragments/orderInfo.graphql"
+
+mutation FinishOrderDelivery($input: FinishOrderDeliveryInput!) {
+  finishOrderDelivery(input: $input) {
+    id
+    executionStatus
+    canLeaveReview {
+      message
+      reasons {
+        details
+        fullMessages
+      }
+      value
+    }
+  }
+}

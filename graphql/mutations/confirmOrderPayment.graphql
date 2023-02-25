@@ -1,0 +1,8 @@
+#import "../fragments/orderInfo.graphql"
+
+mutation ConfirmOrderPayment($input: ConfirmOrderPaymentInput!) {
+  confirmOrderPayment(input: $input) {
+    id
+    executionStatus
+  }
+}

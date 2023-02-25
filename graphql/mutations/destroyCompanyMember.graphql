@@ -1,0 +1,6 @@
+mutation DestroyCompanyMember($input: DestroyCompanyMemberInput!) {
+  destroyCompanyMember(input: $input) {
+    id
+    email
+  }
+}

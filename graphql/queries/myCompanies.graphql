@@ -1,0 +1,30 @@
+#import "../fragments/companyInfo.graphql"
+
+query MyCompanies(
+  $roleIds: [ID!]
+  $directions: [CompanyDirectionEnum!]
+  $companyIds: [ID!]
+  $statuses: [CompanyStatusEnum!]
+  $first: Int
+  $after: String
+) {
+  myCompanies(
+    roleIds: $roleIds
+    directions: $directions
+    companyIds: $companyIds
+    statuses: $statuses
+    first: $first
+    after: $after
+  ) {
+    edges {
+      cursor
+      node {
+        ...CompanyInfo
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

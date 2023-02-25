@@ -1,0 +1,5 @@
+mutation ResolveDispute($input: ResolveDisputeInput!) {
+  resolveDispute(input: $input) {
+    id
+  }
+}

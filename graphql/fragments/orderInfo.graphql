@@ -1,0 +1,187 @@
+#import "../fragments/companyLocationInfo.graphql"
+#import "../fragments/companyInfo.graphql"
+#import "../fragments/categoryInfo.graphql"
+#import "../fragments/disputeInfo.graphql"
+#import "../fragments/variantInfo.graphql"
+
+fragment OrderInfo on Order {
+  canLeaveReview {
+    message
+    reasons {
+      details
+      fullMessages
+    }
+    value
+  }
+  canRequestSupport {
+    message
+    reasons {
+      details
+      fullMessages
+    }
+    value
+  }
+  checkoutStatus
+  companyLocation {
+    ...CompanyLocation
+  }
+  companyReview {
+    companyBody
+    companyRating
+    createdAt
+    id
+  }
+  contract {
+    url
+  }
+  deliveryAddress
+  deliveryMaxDate
+  deliveryMethod
+  deliveryMinDate
+  deliveryPointId
+  deliveryPrice
+  deliveryService
+  deletionReason
+  expiredAt
+  id
+  itemPrice
+  invoices {
+    invoiceType
+    url
+  }
+  pickupDate
+  placedAt
+  product {
+    category {
+      ...CategoryInfo
+      parent {
+        ...CategoryInfo
+        parent {
+          ...CategoryInfo
+          parent {
+            ...CategoryInfo
+          }
+        }
+      }
+    }
+    company {
+      ...CompanyInfo
+    }
+    companyLocation {
+      ...CompanyLocation
+    }
+    condition
+    country {
+      id
+      name
+    }
+    deliveryCondition {
+      comment
+      hazardClass
+      id
+      insuranceRequired
+    }
+    dellinCourierAllowed
+    dellinDeliveryPointId
+    dellinFreightTypeId
+    description
+    disablePickup
+    discountMethod
+    draft
+    draftStep
+    id
+    manufacturer
+    name
+    periodDiscounts {
+      amount
+      endDate
+      id
+      startDate
+    }
+    productConfirmationRecords {
+      attachmentUrl
+      originalFilename
+      id
+    }
+    productFreeDeliveries {
+      city {
+        cityType
+        fiasId
+        id
+        kladrId
+        name
+        region
+      }
+      id
+      minCost
+      minDays
+      maxDays
+    }
+    productPaidDeliveries {
+      city {
+        cityType
+        fiasId
+        id
+        kladrId
+        name
+        region
+      }
+      id
+      maxWeight
+      minWeight
+      price
+      minDays
+      maxDays
+    }
+    sdekCourierAllowed
+    sdekDeliveryPointId
+    shipmentMethod
+    status
+    template
+    deleted
+    vat
+    weeklyDiscounts {
+      amount
+      id
+      weekday
+    }
+    wholesaleLot
+    favorite
+    favoritesCount
+    rating
+    receivedReviewsCount
+  }
+  productReview {
+    createdAt
+    id
+    productBody
+    productRating
+  }
+  quantity
+  seller {
+    ...CompanyInfo
+  }
+  buyer {
+    ...CompanyInfo
+  }
+  variant {
+    ...Variant
+  }
+  executionStatus
+  reservationStatus
+  discount
+  periodDiscount {
+    amount
+    endDate
+    id
+    startDate
+  }
+  weeklyDiscount {
+    amount
+    id
+    weekday
+  }
+  dispute {
+    ...Dispute
+  }
+}

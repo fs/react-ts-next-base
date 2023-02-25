@@ -1,0 +1,7 @@
+#import "../fragments/returnedShipmentInfo.graphql"
+
+mutation ConfirmReturnedShipment($input: ConfirmReturnedShipmentInput!) {
+  confirmReturnedShipment(input: $input) {
+    ...ReturnedShipment
+  }
+}

@@ -1,0 +1,14 @@
+#import "../fragments/companyInfo.graphql"
+
+fragment CompanyReviewsInfo on CompanyReview {
+  buyer {
+    ...CompanyInfo
+  }
+  companyBody
+  companyRating
+  id
+  createdAt
+  seller {
+    ...CompanyInfo
+  }
+}

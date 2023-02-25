@@ -1,0 +1,6 @@
+mutation UpdateCustomerCompanyReview($input: UpdateCustomerCompanyReviewInput!) {
+  updateCustomerCompanyReview(input: $input) {
+    id
+    companyBody
+  }
+}

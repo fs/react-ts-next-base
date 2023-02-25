@@ -1,0 +1,10 @@
+#import "../fragments/currentUserInfo.graphql"
+
+mutation SignUpFromCart($input: SignUpInput!) {
+  signUpFromCart(input: $input) {
+    me {
+      ...CurrentUserInfo
+    }
+    message
+  }
+}

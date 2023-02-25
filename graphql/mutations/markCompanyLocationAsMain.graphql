@@ -1,0 +1,5 @@
+mutation MarkCompanyLocationAsMain($input: MarkCompanyLocationAsMainInput!) {
+  markCompanyLocationAsMain(input: $input) {
+    id
+  }
+}

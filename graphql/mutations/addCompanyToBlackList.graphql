@@ -1,0 +1,5 @@
+mutation AddCompanyToBlackList($input: AddCompanyToBlacklistInput!) {
+  addCompanyToBlacklist(input: $input) {
+    id
+  }
+}

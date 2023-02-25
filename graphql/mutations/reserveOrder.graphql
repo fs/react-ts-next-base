@@ -1,0 +1,10 @@
+#import "../fragments/orderInfo.graphql"
+
+mutation ReserveOrder($input: ReserveOrderInput!) {
+  reserveOrder(input: $input) {
+    message
+    order {
+      id
+    }
+  }
+}

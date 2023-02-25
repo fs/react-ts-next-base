@@ -1,0 +1,5 @@
+mutation DestroyProduct($input: DestroyProductInput!) {
+  destroyProduct(input: $input) {
+    message
+  }
+}

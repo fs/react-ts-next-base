@@ -1,0 +1,64 @@
+version: v1.0
+name: Medagregator
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+execution_time_limit:
+  minutes: 15
+auto_cancel:
+  running:
+    when: 'true'
+global_job_config:
+  env_vars:
+    - name: API_URL
+      value: 'https://e2e-api.medagregator.ru'
+    - name: PORT
+      value: '8080'
+  prologue:
+    commands:
+      - checkout
+      - cache restore
+      - nvm use
+blocks:
+  - name: Setup
+    task:
+      jobs:
+        - name: Deps and cache
+          commands:
+            - yarn install --frozen-lockfile
+            - cache store
+            - yarn print-env SEMAPHORE
+  - name: Tests
+    task:
+      jobs:
+        - name: Lint JS
+          commands:
+            - 'yarn run ci:lint-js'
+        - name: Lint CSS
+          commands:
+            - 'yarn run lint:css'
+        - name: Unit test
+          commands:
+            - 'yarn run ci:jest'
+        - name: E2E playwright
+          commands:
+            - 'npx playwright install --with-deps chromium'
+            - 'yarn run ci:pw-run'
+      epilogue:
+        always:
+          commands:
+            - artifact push job test-results
+promotions:
+  - name: Deploy to dev server
+    pipeline_file: dev-deploy.yml
+    auto_promote:
+      when: branch = 'master' AND result = 'passed'
+  - name: Deploy to staging server
+    pipeline_file: staging-deploy.yml
+    auto_promote:
+      when: branch = 'staging' AND result = 'passed'
+  - name: Deploy to production server
+    pipeline_file: production-deploy.yml
+    auto_promote:
+      when: branch = 'production' AND result = 'passed'

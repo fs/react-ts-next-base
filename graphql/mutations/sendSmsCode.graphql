@@ -1,0 +1,7 @@
+mutation sendSmsCode($input: SendSmsInput!) {
+  sendSmsCode(input: $input) {
+    id
+    resendingAvailableAfter
+    validUntil
+  }
+}

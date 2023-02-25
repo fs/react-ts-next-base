@@ -1,0 +1,16 @@
+query DellinFreightTypes($name: String, $active: Boolean) {
+  dellinFreightTypes(name: $name, active: $active) {
+    edges {
+      cursor
+      node {
+        active
+        id
+        name
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

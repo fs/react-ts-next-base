@@ -1,0 +1,6 @@
+mutation UnblockUser($input: UnblockUserInput!) {
+  unblockUser(input: $input) {
+    id
+    fullName
+  }
+}

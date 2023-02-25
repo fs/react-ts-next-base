@@ -1,0 +1,10 @@
+query ProductManufacturers($name: String) {
+  productManufacturers(name: $name) {
+    edges {
+      cursor
+      node {
+        name
+      }
+    }
+  }
+}

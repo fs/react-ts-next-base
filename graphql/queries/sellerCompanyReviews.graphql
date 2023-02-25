@@ -1,0 +1,30 @@
+#import "../fragments/companyReviewsInfo.graphql"
+
+query SellerCompanyReviews(
+  $sellerCompanyId: ID!
+  $after: String
+  $before: String
+  $first: Int
+  $last: Int
+) {
+  sellerCompanyReviews(
+    sellerCompanyId: $sellerCompanyId
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+  ) {
+    edges {
+      cursor
+      node {
+        ...CompanyReviewsInfo
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
+  }
+}

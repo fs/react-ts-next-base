@@ -1,0 +1,20 @@
+#import "../fragments/companyInfo.graphql"
+
+fragment TransferInfo on Transfer {
+  amount
+  applicationUrl
+  accountOperation {
+    status
+  }
+  createdAt
+  id
+  transferType
+  vat
+  vatType
+  company {
+    ...CompanyInfo
+  }
+  invoice {
+    url
+  }
+}

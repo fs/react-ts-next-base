@@ -1,0 +1,5 @@
+mutation UpdateCompanyMember($input: UpdateCompanyMemberInput!) {
+  updateCompanyMember(input: $input) {
+    id
+  }
+}

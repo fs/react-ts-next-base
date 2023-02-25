@@ -1,0 +1,10 @@
+mutation RemoveProductFromPriorityList($input: RemoveProductFromPriorityListInput!) {
+  removeProductFromPriorityList(input: $input) {
+    product {
+      id
+      canAddToPriorityList
+      canRemoveFromPriorityList
+      prioritized
+    }
+  }
+}

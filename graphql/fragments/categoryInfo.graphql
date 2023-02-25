@@ -1,0 +1,10 @@
+fragment CategoryInfo on Category {
+  depth
+  id
+  name
+  position
+  canDestroy {
+    value
+    message
+  }
+}

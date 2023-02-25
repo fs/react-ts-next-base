@@ -1,0 +1,86 @@
+#import "../fragments/disputeProposalInfo.graphql"
+#import "../fragments/returnedShipmentInfo.graphql"
+
+fragment Dispute on Dispute {
+  acceptedProposal {
+    ...DisputeProposal
+  }
+  attachments {
+    attachmentUrl
+    originalFilename
+    id
+  }
+  canCancel {
+    message
+    reasons {
+      details
+      fullMessages
+    }
+    value
+  }
+  canCreateProposal {
+    message
+    reasons {
+      details
+      fullMessages
+    }
+    value
+  }
+  canAcceptProposal {
+    message
+    reasons {
+      details
+      fullMessages
+    }
+    value
+  }
+  canCreateReturnedShipment {
+    message
+    reasons {
+      details
+      fullMessages
+    }
+    value
+  }
+  canReceiveReturnedShipment {
+    message
+    reasons {
+      details
+      fullMessages
+    }
+    value
+  }
+  canRequestSupport {
+    message
+    reasons {
+      details
+      fullMessages
+    }
+    value
+  }
+  canViewProposals {
+    message
+    reasons {
+      details
+      fullMessages
+    }
+    value
+  }
+  comment
+  createdAt
+  id
+  lastBuyerProposal {
+    ...DisputeProposal
+  }
+  lastSellerProposal {
+    ...DisputeProposal
+  }
+  productDelivered
+  reason
+  returnShipmentDeadlineAt
+  returnedShipment {
+    ...ReturnedShipment
+  }
+  status
+  medagregatorResponseDeadlineAt
+}

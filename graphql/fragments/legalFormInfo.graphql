@@ -1,0 +1,5 @@
+fragment CompanyLegalForm on CompanyLegalForm {
+    id
+    name
+    shortName
+}

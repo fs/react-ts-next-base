@@ -1,0 +1,18 @@
+query DeliveryPoints($service: PointServiceEnum!, $cityId: ID!, $direction: DeliveryPointDirectionEnum) {
+  deliveryPoints(service: $service, cityId: $cityId, direction: $direction) {
+    address
+    id
+    openingHours {
+      endTime {
+        hour
+        minute
+      }
+      startTime {
+        hour
+        minute
+      }
+      weekday
+    }
+    phones
+  }
+}

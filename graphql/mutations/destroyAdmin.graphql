@@ -1,0 +1,5 @@
+mutation DestroyAdmin($input: DestroyAdminInput!) {
+  destroyAdmin(input: $input) {
+    message
+  }
+}

@@ -1,0 +1,6 @@
+mutation BlockUser($input: BlockUserInput!) {
+  blockUser(input: $input) {
+    id
+    fullName
+  }
+}

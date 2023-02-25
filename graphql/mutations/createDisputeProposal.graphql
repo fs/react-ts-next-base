@@ -1,0 +1,5 @@
+mutation CreateDisputeProposal($input: NewDisputeProposalInput!) {
+  createDisputeProposal(input: $input) {
+    id
+  }
+}

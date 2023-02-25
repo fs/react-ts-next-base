@@ -1,0 +1,36 @@
+fragment ReturnedShipment on ReturnedShipment {
+  attachments {
+    attachmentUrl
+    originalFilename
+    id
+  }
+  endDate
+  id
+  rejectComment
+  startDate
+  status
+  canConfirm {
+    message
+    reasons {
+      fullMessages
+      details
+    }
+    value
+  }
+  canReject {
+    message
+    reasons {
+      details
+      fullMessages
+    }
+    value
+  }
+  canUpdate {
+    message
+    reasons {
+      details
+      fullMessages
+    }
+    value
+  }
+}

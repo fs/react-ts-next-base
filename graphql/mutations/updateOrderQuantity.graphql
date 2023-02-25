@@ -1,0 +1,8 @@
+mutation UpdateOrderQuantity($input: UpdateOrderQuantityInput!) {
+  updateOrderQuantity(input: $input) {
+    id
+    itemPrice
+    quantity
+    deliveryPrice
+  }
+}

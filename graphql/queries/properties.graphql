@@ -1,0 +1,26 @@
+query Properties($categoryIds: [ID!], $ids: [ID!], $name: String, $after: String, $first: Int) {
+  properties(categoryIds: $categoryIds, name: $name, after: $after, first: $first, ids: $ids) {
+    edges {
+      cursor
+      node {
+        id
+        name
+        displayName
+        categoryPath {
+          id
+          name
+        }
+        canDestroy {
+          value
+        }
+        ... on IntegerProperty {
+          unit
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

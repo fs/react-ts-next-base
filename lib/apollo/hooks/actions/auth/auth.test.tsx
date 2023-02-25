@@ -1,0 +1,359 @@
+import React from 'react';
+import { renderHook, waitFor } from '@testing-library/react';
+import { MockedProvider } from '@apollo/client/testing';
+
+import mockCurrentUser from '__tests__/mocks/mockCurrentUser';
+import { mockUseRouterData } from '__tests__/mocks/mockUseRouterData';
+
+import useNotifier from 'hooks/useNotifier';
+import useRouter from 'hooks/useRouter';
+
+import { SignInDocument } from 'graphql/mutations/__generated__/signIn.generated';
+import { SignUpDocument } from 'graphql/mutations/__generated__/signUp.generated';
+import { SignOutDocument } from 'graphql/mutations/__generated__/signOut.generated';
+import { SendSmsCodeDocument } from 'graphql/mutations/__generated__/sendSmsCode.generated';
+import { SignUpFromCartDocument } from 'graphql/mutations/__generated__/signUpFromCart.generated';
+import { UpdatePasswordDocument } from 'graphql/mutations/__generated__/updatePassword.generated';
+import { RequestPasswordRecoveryDocument } from 'graphql/mutations/__generated__/requestPasswordRecovery.generated';
+
+import {
+  useSignIn,
+  useSignUp,
+  useSignOut,
+  usePasswordRecovery,
+  useUpdatePassword,
+  useSendSmsCode,
+  useSignUpFromCart,
+} from './auth';
+
+jest.mock('hooks/useNotifier');
+jest.mock('hooks/useRouter');
+
+const mockedUseRouter = useRouter as jest.MockedFunction<typeof useRouter>;
+
+describe('Auth actions', () => {
+  const mockUseRouter = jest.fn(() => mockUseRouterData);
+  mockedUseRouter.mockImplementation(mockUseRouter);
+
+  const mockedUseNotifier = useNotifier as jest.Mock;
+  const mockSetError = jest.fn();
+  mockedUseNotifier.mockImplementation(
+    jest.fn(() => ({ setSuccess: jest.fn(), setError: mockSetError })),
+  );
+
+  describe('useSignIn', () => {
+    test('should mutate state & call localStorage.setItem & call pushRoute', async () => {
+      // Arrange
+      const data = { login: 'test', password: 'password' };
+
+      const mocks = [
+        {
+          request: {
+            query: SignInDocument,
+            variables: {
+              input: data,
+            },
+          },
+          result: {
+            data: { signIn: { me: { ...mockCurrentUser } } },
+          },
+        },
+      ];
+
+      // Act
+      const { result } = renderHook(() => useSignIn(), {
+        wrapper: ({ children }) => <MockedProvider mocks={mocks}>{children}</MockedProvider>,
+      });
+
+      const execute = result.current[0];
+      setTimeout(() => execute(data));
+
+      // Assert
+      await waitFor(() => {
+        expect(result?.current[1]?.data?.signIn).toEqual({ me: { ...mockCurrentUser } });
+      });
+      expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('useSignUp', () => {
+    test('should mutate state & call localStorage.setItem & call pushRoute', async () => {
+      // Arrange
+      const data = {
+        email: 'test@test.test',
+        password: 'password',
+        firstName: 'test',
+        lastName: 'test',
+        middleName: 'test',
+        phoneNumber: '123456789',
+        smsCode: '1234',
+      };
+
+      const mockResponse = { me: { ...mockCurrentUser } };
+      const mocks = [
+        {
+          request: {
+            query: SignUpDocument,
+            variables: {
+              input: data,
+            },
+          },
+          result: {
+            data: { signUp: mockResponse },
+          },
+        },
+      ];
+
+      // Act
+      const { result } = renderHook(() => useSignUp(), {
+        wrapper: ({ children }) => <MockedProvider mocks={mocks}>{children}</MockedProvider>,
+      });
+
+      const execute = result.current[0];
+      setTimeout(() => execute(data));
+
+      // Assert
+      await waitFor(() => {
+        expect(result?.current[1]?.data?.signUp).toEqual(mockResponse);
+      });
+      expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('useSignOut', () => {
+    test('should mutate state & call localStorage.setItem & call pushRoute', async () => {
+      // Arrange
+      const mockResponse = { message: 'success' };
+      const data = {
+        everywhere: false,
+      };
+
+      const mocks = [
+        {
+          request: {
+            query: SignOutDocument,
+            variables: {
+              input: data,
+            },
+          },
+          result: {
+            data: { signout: mockResponse },
+          },
+        },
+      ];
+
+      // Act
+      const { result } = renderHook(() => useSignOut(), {
+        wrapper: ({ children }) => <MockedProvider mocks={mocks}>{children}</MockedProvider>,
+      });
+
+      const execute = result.current[0];
+      setTimeout(() => execute(data));
+
+      // Assert
+      await waitFor(() => {
+        expect(result?.current[1]?.data?.signout).toEqual(mockResponse);
+      });
+
+      expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('usePasswordRecovery', () => {
+    test('should mutate state & return detail with correct email', async () => {
+      // Arrange
+      const data = {
+        email: 'test@test.test',
+      };
+
+      const mockResponse = { detail: 'test', message: 'message' };
+      const mocks = [
+        {
+          request: {
+            query: RequestPasswordRecoveryDocument,
+            variables: {
+              input: data,
+            },
+          },
+          result: {
+            data: { requestPasswordRecovery: mockResponse },
+          },
+        },
+      ];
+      const expectedErrorMassage = undefined;
+
+      // Act
+      const { result } = renderHook(() => usePasswordRecovery(), {
+        wrapper: ({ children }) => <MockedProvider mocks={mocks}>{children}</MockedProvider>,
+      });
+
+      const execute = result.current[0];
+      setTimeout(() => execute(data));
+
+      // Assert
+      await waitFor(() => {
+        expect(result.current[1]).toEqual(mockResponse.detail);
+        expect(result.current[2]).toEqual(expectedErrorMassage);
+      });
+    });
+
+    test('should mutate state & return error with incorrect email', async () => {
+      // Arrange
+      const data = {
+        email: 'email',
+      };
+
+      const errorMessage = 'An error occurred';
+      const error = new Error(errorMessage);
+
+      const mocks = [
+        {
+          request: {
+            query: RequestPasswordRecoveryDocument,
+            variables: {
+              input: data,
+            },
+          },
+          error,
+        },
+      ];
+
+      // Act
+      const { result } = renderHook(() => usePasswordRecovery(), {
+        wrapper: ({ children }) => <MockedProvider mocks={mocks}>{children}</MockedProvider>,
+      });
+
+      const execute = result.current[0];
+      setTimeout(() => execute(data));
+
+      // Assert
+      await waitFor(() => {
+        expect(result.current[1]).toEqual('');
+        expect(result?.current[2]?.message).toEqual(errorMessage);
+      });
+    });
+  });
+
+  describe('useUpdatePassword', () => {
+    test('should mutate state', async () => {
+      // Arrange
+      const data = {
+        password: 'password',
+        resetToken: 'test',
+      };
+
+      const mocks = [
+        {
+          request: {
+            query: UpdatePasswordDocument,
+            variables: {
+              input: data,
+            },
+          },
+          result: {
+            data: { updatePassword: { accessToken: 'token' } },
+          },
+        },
+      ];
+
+      // Act
+      const { result } = renderHook(() => useUpdatePassword(), {
+        wrapper: ({ children }) => <MockedProvider mocks={mocks}>{children}</MockedProvider>,
+      });
+
+      const execute = result.current[0];
+      setTimeout(() => execute(data));
+
+      // Assert
+      await waitFor(() => {
+        expect(result?.current[1]?.data?.updatePassword).toEqual({ accessToken: 'token' });
+      });
+    });
+  });
+
+  describe('useSendSmsCode', () => {
+    test('should mutate state', async () => {
+      // Arrange
+      const phoneNumber = '12345672456';
+      const data = {
+        phoneNumber,
+      };
+
+      const mockResponse = { id: '1', resendingAvailableAfter: 'test', validUntil: 'test' };
+      const mocks = [
+        {
+          request: {
+            query: SendSmsCodeDocument,
+            variables: {
+              input: data,
+            },
+          },
+          result: {
+            data: { sendSmsCode: mockResponse },
+          },
+        },
+      ];
+
+      // Act
+      const { result } = renderHook(() => useSendSmsCode(), {
+        wrapper: ({ children }) => <MockedProvider mocks={mocks}>{children}</MockedProvider>,
+      });
+
+      const execute = result.current[0];
+      setTimeout(() => execute(phoneNumber));
+
+      // Assert
+      await waitFor(() => {
+        expect(result?.current[1]?.data?.sendSmsCode).toEqual(mockResponse);
+      });
+    });
+  });
+
+  describe('useSignUpFromCart', () => {
+    test('should mutate state & call localStorage.setItem & call onSubmit', async () => {
+      // Arrange
+      const mockOnSubmit = jest.fn();
+      const mockMessage = 'test message';
+      const data = {
+        email: 'test@test.test',
+        password: 'password',
+        firstName: 'test',
+        lastName: 'test',
+        middleName: 'test',
+        phoneNumber: '123456789',
+        smsCode: '1234',
+      };
+
+      const mockResponse = { me: { ...mockCurrentUser }, message: mockMessage };
+      const mocks = [
+        {
+          request: {
+            query: SignUpFromCartDocument,
+            variables: {
+              input: data,
+            },
+          },
+          result: {
+            data: { signUpFromCart: mockResponse },
+          },
+        },
+      ];
+
+      // Act
+      const { result } = renderHook(() => useSignUpFromCart({ onSubmit: mockOnSubmit }), {
+        wrapper: ({ children }) => <MockedProvider mocks={mocks}>{children}</MockedProvider>,
+      });
+
+      const execute = result.current[0];
+      setTimeout(() => execute(data));
+
+      // Assert
+      await waitFor(() => {
+        expect(result?.current[1]?.data?.signUpFromCart).toEqual(mockResponse);
+      });
+      expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+      expect(mockOnSubmit).toHaveBeenCalled();
+      expect(mockSetError).toHaveBeenCalledWith(mockMessage);
+    });
+  });
+});

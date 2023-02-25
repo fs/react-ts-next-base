@@ -1,0 +1,5 @@
+mutation RejectCompanyLocation($input: RejectCompanyLocationInput!) {
+  rejectCompanyLocation(input: $input) {
+    id
+  }
+}

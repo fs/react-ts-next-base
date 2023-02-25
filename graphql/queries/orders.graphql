@@ -1,0 +1,44 @@
+#import "../fragments/orderInfo.graphql"
+
+query Orders(
+  $companyId: ID!
+  $checkoutStatus: OrderCheckoutStatusEnum
+  $executionStatuses: [OrderExecutionStatusEnum!]
+  $disputeStatuses: [DisputeStatusEnum!]
+  $sellerIds: [ID!]
+  $deleted: Boolean
+  $ids: [ID!]
+  $productSearchQuery: String
+  $after: String
+  $before: String
+  $first: Int
+  $last: Int
+  $placedDate: DateRangeFilterInput
+) {
+  orders(
+    companyId: $companyId
+    checkoutStatus: $checkoutStatus
+    executionStatuses: $executionStatuses
+    disputeStatuses: $disputeStatuses
+    sellerIds: $sellerIds
+    deleted: $deleted
+    ids: $ids
+    productSearchQuery: $productSearchQuery
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    placedDate: $placedDate
+  ) {
+    edges {
+      cursor
+      node {
+        ...OrderInfo
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

@@ -1,0 +1,7 @@
+#import "../fragments/productInfo.graphql"
+
+mutation SubmitProductPricesStep($input: SubmitProductPricesStepInput!) {
+  submitProductPricesStep(input: $input) {
+    ...ProductInfo
+  }
+}

@@ -1,0 +1,39 @@
+#import "../fragments/legalFormInfo.graphql"
+
+fragment CompanyLocation on CompanyLocation {
+  status
+  city {
+    cityType
+    fiasId
+    id
+    kladrId
+    name
+    region
+  }
+  address
+  comment
+  id
+  canBeDestroyed
+  canBeUpdated
+  main
+  phoneNumber
+  postcode
+  rejectionReason
+  companyLicenses {
+    id
+    number
+    companyLicensePhotos {
+      id
+      imageUrl
+    }
+  }
+  company {
+    id
+    officialName
+    unofficialName
+    legalForm {
+      ...CompanyLegalForm
+    }
+  }
+  verificationDeadlineAt
+}

@@ -1,0 +1,5 @@
+mutation CreateIntegerProperty($input: CreateIntegerPropertyInput!) {
+  createIntegerProperty(input: $input) {
+    name
+  }
+}

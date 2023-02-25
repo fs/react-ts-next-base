@@ -1,0 +1,7 @@
+#import "../fragments/currentUserInfo.graphql"
+
+mutation joinUser($input: JoinUserInput!) {
+  joinUser(input: $input) {
+    ...CurrentUserInfo
+  }
+}

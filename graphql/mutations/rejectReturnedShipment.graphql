@@ -1,0 +1,7 @@
+#import "../fragments/returnedShipmentInfo.graphql"
+
+mutation RejectReturnedShipment($input: RejectReturnedShipmentInput!) {
+  rejectReturnedShipment(input: $input) {
+    ...ReturnedShipment
+  }
+}

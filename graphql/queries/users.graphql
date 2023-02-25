@@ -1,0 +1,34 @@
+#import "../fragments/userInfo.graphql"
+
+query Users(
+  $ids: [ID!]
+  $orderBy: UserOrderEnum
+  $searchQuery: String
+  $blocked: Boolean
+  $after: String
+  $before: String
+  $first: Int
+  $last: Int
+) {
+  users(
+    ids: $ids
+    searchQuery: $searchQuery
+    blocked: $blocked
+    after: $after
+    before: $before
+    orderBy: $orderBy
+    first: $first
+    last: $last
+  ) {
+    edges {
+      cursor
+      node {
+        ...UserInfo
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

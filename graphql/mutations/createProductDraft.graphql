@@ -1,0 +1,7 @@
+#import "../fragments/productInfo.graphql"
+
+mutation CreateProductDraft($input: CreateProductDraftInput!) {
+  createProductDraft(input: $input) {
+    ...ProductInfo
+  }
+}

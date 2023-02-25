@@ -1,0 +1,42 @@
+#import "../fragments/companyInfo.graphql"
+#import "../fragments/cityInfo.graphql"
+#import "../fragments/userInfo.graphql"
+#import "../fragments/orderInfo.graphql"
+
+fragment CurrentUserInfo on CurrentUser {
+  id
+  email
+  phoneNumber
+  firstName
+  lastName
+  menuItems {
+    id
+    itemType
+  }
+  mainCompany {
+    ...CompanyInfo
+  }
+  middleName
+  avatarUrl
+  emailMailingEnabled
+  emailNotificationsDisabled
+  phoneMailingEnabled
+  phoneNotificationsDisabled
+  guestUserOrders{
+    city {
+      ...City
+    }
+    id
+    user {
+      ...UserInfo
+    }
+    order {
+      ...OrderInfo
+    }
+  }
+  role {
+    id
+    name
+  }
+  systemRole
+}
