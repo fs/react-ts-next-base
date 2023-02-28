@@ -1,5 +1,0 @@
-mutation DestroyCustomerProduct($input: DestroyProductInput!) {
-  destroyCustomerProduct(input: $input) {
-    id
-  }
-}

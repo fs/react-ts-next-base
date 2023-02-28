@@ -1,7 +1,0 @@
-#import "../fragments/companyInfo.graphql"
-
-mutation UpdateRejectedCompany($input: UpdateRejectedCompanyInput!) {
-  updateRejectedCompany(input: $input) {
-    ...CompanyInfo
-  }
-}

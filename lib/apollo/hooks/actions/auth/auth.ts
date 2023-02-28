@@ -3,13 +3,11 @@ import globalEvents from 'config/globalEvents.json';
 import CurrentUser from 'graphql/queries/currentUser.graphql';
 import useNotifier from 'hooks/useNotifier';
 
-import { HOME, DASHBOARD, AUTH, ADMIN_ACCOUNT } from 'config/routes';
+import { HOME, SIGNIN } from 'config/routes';
 
-import { isUserAdmin } from 'config/constants/systemRoles';
 import { useSignInMutation } from 'graphql/mutations/__generated__/signIn.generated';
 import { useSignUpMutation } from 'graphql/mutations/__generated__/signUp.generated';
 import { useSignOutMutation } from 'graphql/mutations/__generated__/signOut.generated';
-import { useSendSmsCodeMutation } from 'graphql/mutations/__generated__/sendSmsCode.generated';
 import { useUpdatePasswordMutation } from 'graphql/mutations/__generated__/updatePassword.generated';
 import { useRequestPasswordRecoveryMutation } from 'graphql/mutations/__generated__/requestPasswordRecovery.generated';
 
@@ -20,8 +18,6 @@ import {
   SignUpInput,
   UpdatePasswordInput,
 } from 'graphql/types';
-import { useSignUpFromCartMutation } from 'graphql/mutations/__generated__/signUpFromCart.generated';
-import { TUseSignUpFromCart } from './types';
 
 const { SIGN_IN_EVENT, SIGN_OUT_EVENT } = globalEvents;
 
@@ -40,10 +36,10 @@ export const useSignIn = () => {
         },
       });
     },
-    onCompleted: ({ signIn }) => {
+    onCompleted: () => {
       window.localStorage.setItem(SIGN_IN_EVENT, Date.now().toString());
       pushRoute({
-        pathname: isUserAdmin(signIn?.me?.systemRole) ? ADMIN_ACCOUNT : DASHBOARD,
+        pathname: HOME,
       });
     },
   });
@@ -104,7 +100,7 @@ export const useSignUp = () => {
 
       window.localStorage.setItem(SIGN_IN_EVENT, Date.now().toString());
 
-      pushRoute(DASHBOARD);
+      pushRoute(HOME);
     } catch (error) {
       setError(error);
     }
@@ -172,7 +168,7 @@ export const useUpdatePassword = () => {
 
   const onCompleted = () => {
     setSuccess('Пароль успешно изменен');
-    setTimeout(() => pushRoute(AUTH), 1000);
+    setTimeout(() => pushRoute(SIGNIN), 1000);
   };
 
   const [mutation, mutationState] = useUpdatePasswordMutation({
@@ -184,76 +180,6 @@ export const useUpdatePassword = () => {
 
     try {
       await mutation({ variables: { input: updatePasswordInput } });
-    } catch (error) {
-      setError(error);
-    }
-  };
-
-  return [mutate, mutationState] as const;
-};
-
-export const useSendSmsCode = () => {
-  const { setError } = useNotifier();
-
-  const [mutation, mutationState] = useSendSmsCodeMutation();
-
-  const mutate = (phoneNumber: string) => {
-    const sendSmsCodeInput = { phoneNumber };
-    try {
-      mutation({ variables: { input: sendSmsCodeInput } });
-    } catch (error) {
-      setError(error);
-    }
-  };
-
-  return [mutate, mutationState] as const;
-};
-
-export const useSignUpFromCart = ({ onSubmit }: TUseSignUpFromCart) => {
-  const { setError } = useNotifier();
-  const { pushRoute } = useRouter();
-
-  const [mutation, mutationState] = useSignUpFromCartMutation({
-    update: (store, { data }) => {
-      store.writeQuery({
-        query: CurrentUser,
-        data: {
-          me: {
-            ...data?.signUpFromCart?.me,
-          },
-        },
-      });
-    },
-    onCompleted: onSubmit,
-  });
-
-  const mutate = async ({
-    email,
-    password,
-    firstName,
-    lastName,
-    middleName,
-    phoneNumber,
-    smsCode,
-  }: SignUpInput) => {
-    const signUpInput = {
-      email,
-      password,
-      firstName,
-      lastName,
-      middleName,
-      phoneNumber,
-      smsCode,
-    };
-
-    try {
-      const { data } = await mutation({ variables: { input: signUpInput } });
-      const message = data?.signUpFromCart?.message;
-
-      window.localStorage.setItem(SIGN_IN_EVENT, Date.now().toString());
-
-      pushRoute(DASHBOARD);
-      if (message) setError(message);
     } catch (error) {
       setError(error);
     }

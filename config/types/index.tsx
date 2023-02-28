@@ -1,1 +1,0 @@
-export * from './fileUpload.types';

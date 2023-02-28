@@ -1,7 +1,0 @@
-#import "../fragments/categoryInfo.graphql"
-
-query Category($id: ID!) {
-  category(id: $id) {
-    ...CategoryInfo
-  }
-}

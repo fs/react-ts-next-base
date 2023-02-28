@@ -1,5 +1,0 @@
-mutation MarkCompanyAsMain($input: MarkCompanyAsMainInput!) {
-  markCompanyAsMain(input: $input) {
-    id
-  }
-}

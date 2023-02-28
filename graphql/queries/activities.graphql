@@ -1,0 +1,32 @@
+#import "../../fragments/currentUserInfo.graphql"
+
+query Activities($events: [ActivityEvent!], $last: Int, $before: String, $first: Int, $after: String) {
+  me {
+    ...CurrentUserInfo
+  }
+  activities(events: $events, last: $last, before: $before, first: $first, after: $after) {
+    edges {
+      cursor
+      node {
+        body
+        createdAt
+        event
+        id
+        title
+        user {
+          avatarUrl
+          email
+          firstName
+          id
+          lastName
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
+  }
+}

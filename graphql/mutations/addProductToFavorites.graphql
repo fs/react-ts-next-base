@@ -1,7 +1,0 @@
-#import "../fragments/productInfo.graphql"
-
-mutation AddProductToFavorites($input: AddProductToFavoritesInput!) {
-  addProductToFavorites(input: $input) {
-    ...ProductInfo
-  }
-}

@@ -1,5 +1,0 @@
-mutation UnbanCompany($input: UnbanCompanyInput!) {
-  unbanCompany(input: $input) {
-    id
-  }
-}

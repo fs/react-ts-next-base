@@ -1,5 +1,0 @@
-query OrdersSummary($companyId: ID!, $checkoutStatus: OrderCheckoutStatusEnum, $sellerIds: [ID!], $deleted: Boolean) {
-  ordersSummary(companyId: $companyId, checkoutStatus: $checkoutStatus, sellerIds: $sellerIds, deleted: $deleted) {
-    totalCount
-  }
-}

@@ -1,5 +1,0 @@
-mutation UpdateIntegerProperty($input: UpdatePropertyInput!) {
-  updateIntegerProperty(input: $input) {
-    name
-  }
-}

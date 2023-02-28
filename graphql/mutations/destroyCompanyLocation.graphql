@@ -1,5 +1,0 @@
-mutation DestroyCompanyLocation($input: DestroyCompanyLocationInput!) {
-  destroyCompanyLocation(input: $input) {
-    id
-  }
-}

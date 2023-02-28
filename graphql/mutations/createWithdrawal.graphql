@@ -1,9 +1,0 @@
-mutation CreateWithdrawal($input: CreateWithdrawalInput!) {
-  createWithdrawal(input: $input) {
-    amount
-    id
-    transferType
-    vat
-    vatType
-  }
-}

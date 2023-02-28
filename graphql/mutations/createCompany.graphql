@@ -1,7 +1,0 @@
-#import "../fragments/companyInfo.graphql"
-
-mutation createCompany($input: CompanyInput!) {
-  createCompany(input: $input) {
-    ...CompanyInfo
-  }
-}

@@ -21,12 +21,12 @@ Ask for token and key from admin
 ### Development server
 
 - Run `yarn server` for a dev server.
-- Open `lvh.me:3000`.
+- Open `lvh.me:8080`.
 - The app will automatically reload if you change any of the source files.
 
 ### Yarn tasks
 
-- `server` - local server on 3000 port by default
+- `server` - local server on 8080 port by default
 - `build` - build Next.js
 - `test` - run Jest tests with autowatch for changes
 - `ci:jest` - run Jest in CI without watch

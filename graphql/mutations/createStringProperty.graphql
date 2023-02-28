@@ -1,5 +1,0 @@
-mutation CreateStringProperty($input: CreateStringPropertyInput!) {
-  createStringProperty(input: $input) {
-    name
-  }
-}

@@ -1,9 +1,0 @@
-mutation CreateCompanyMember($input: CompanyMemberInput!) {
-  createCompanyMember(input: $input) {
-    lastName
-    id
-    firstName
-    email
-    avatarUrl
-  }
-}

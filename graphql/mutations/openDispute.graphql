@@ -1,5 +1,0 @@
-mutation OpenDispute($input: OpenDisputeInput!) {
-  openDispute(input: $input) {
-    id
-  }
-}

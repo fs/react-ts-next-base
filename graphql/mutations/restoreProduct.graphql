@@ -1,6 +1,0 @@
-mutation RestoreProduct($input: RestoreProductInput!) {
-  restoreProduct(input: $input) {
-    id
-    name
-  }
-}

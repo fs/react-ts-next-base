@@ -1,7 +1,0 @@
-#import "../fragments/companyLocationInfo.graphql"
-
-query CompanyLocations($companyId: ID!, $statuses: [CompanyLocationStatusEnum!]) {
-  companyLocations(companyId: $companyId, statuses: $statuses) {
-    ...CompanyLocation
-  }
-}

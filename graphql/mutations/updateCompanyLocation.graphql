@@ -1,7 +1,0 @@
-#import "../fragments/companyLocationInfo.graphql"
-
-mutation updateCompanyLocation($input: UpdateCompanyLocationInput!) {
-  updateCompanyLocation(input: $input) {
-    ...CompanyLocation
-  }
-}

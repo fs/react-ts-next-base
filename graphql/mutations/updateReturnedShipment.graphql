@@ -1,7 +1,0 @@
-#import "../fragments/returnedShipmentInfo.graphql"
-
-mutation UpdateReturnedShipment($input: UpdateReturnedShipmentInput!) {
-  updateReturnedShipment(input: $input) {
-    ...ReturnedShipment
-  }
-}

@@ -1,7 +1,0 @@
-query StartPageCategories {
-  startPageCategories {
-    id
-    name
-    displayOnStartPage
-  }
-}

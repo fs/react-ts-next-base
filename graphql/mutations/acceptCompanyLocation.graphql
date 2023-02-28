@@ -1,5 +1,0 @@
-mutation AcceptCompanyLocation($input: AcceptCompanyLocationInput!) {
-  acceptCompanyLocation(input: $input) {
-    id
-  }
-}

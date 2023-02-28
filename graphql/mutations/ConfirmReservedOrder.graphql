@@ -1,6 +1,0 @@
-mutation ConfirmReservedOrder($input: ConfirmReservedOrderInput!) {
-  confirmReservedOrder(input: $input) {
-    id
-    reservationStatus
-  }
-}

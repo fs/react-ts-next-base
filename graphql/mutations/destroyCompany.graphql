@@ -1,5 +1,0 @@
-mutation DestroyCompany($input: DestroyCompanyInput!) {
-  destroyCompany(input: $input) {
-    message
-  }
-}

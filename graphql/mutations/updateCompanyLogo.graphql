@@ -1,7 +1,0 @@
-#import "../fragments/companyInfo.graphql"
-
-mutation UpdateCompanyLogo($input: UpdateCompanyLogoInput!) {
-  updateCompanyLogo(input: $input) {
-    ...CompanyInfo
-  }
-}

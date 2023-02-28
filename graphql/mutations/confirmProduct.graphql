@@ -1,5 +1,0 @@
-mutation confirmProduct($input: ConfirmProductInput!) {
-  confirmProduct(input: $input) {
-    id
-  }
-}

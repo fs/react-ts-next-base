@@ -1,6 +1,0 @@
-query Account($companyId: ID!) {
-  account(companyId: $companyId) {
-    balance
-    pendingAmount
-  }
-}

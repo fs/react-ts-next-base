@@ -12,11 +12,11 @@ import { PageContentWrapper } from './styled';
 
 const SignInPage = () => {
   return (
-      <DefaultTemplate testId="signin-page">
-        <PageContentWrapper>
-          <SignInForm />
-        </PageContentWrapper>
-      </DefaultTemplate>
+    <DefaultTemplate testId="signin-page">
+      <PageContentWrapper>
+        <SignInForm />
+      </PageContentWrapper>
+    </DefaultTemplate>
   );
 };
 

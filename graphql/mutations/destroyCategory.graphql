@@ -1,8 +1,0 @@
-mutation destroyCategory($input: DestroyCategoryInput!) {
-  destroyCategory(input: $input) {
-    message
-    category {
-      name
-    }
-  }
-}

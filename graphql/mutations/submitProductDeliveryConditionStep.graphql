@@ -1,7 +1,0 @@
-#import "../fragments/productInfo.graphql"
-
-mutation SubmitProductDeliveryConditionStep($input: SubmitProductDeliveryConditionsStepInput!) {
-  submitProductDeliveryConditionsStep(input: $input) {
-    ...ProductInfo
-  }
-}

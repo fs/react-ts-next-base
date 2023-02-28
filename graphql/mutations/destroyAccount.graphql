@@ -1,5 +1,0 @@
-mutation DestroyAccount {
-  destroyAccount {
-    message
-  }
-}

@@ -1,8 +1,0 @@
-fragment City on City {
-  cityType
-  fiasId
-  id
-  kladrId
-  name
-  region
-}

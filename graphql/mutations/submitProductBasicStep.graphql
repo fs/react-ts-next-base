@@ -1,7 +1,0 @@
-#import "../fragments/productInfo.graphql"
-
-mutation SubmitProductBasicStep($input: SubmitProductBasicStepInput!) {
-  submitProductBasicStep(input: $input) {
-    ...ProductInfo
-  }
-}

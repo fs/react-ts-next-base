@@ -1,7 +1,0 @@
-#import "../fragments/disputeInfo.graphql"
-
-mutation ReceiveReturnedShipment($input: ReceiveReturnedShipmentInput!) {
-  receiveReturnedShipment(input: $input) {
-    ...Dispute
-  }
-}

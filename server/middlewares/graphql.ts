@@ -12,15 +12,7 @@ const { REFRESH_TOKEN_KEY } = jwt;
 
 // Working with refresh token
 const handleResponse = ({ req, res, body }: { req: Request; res: Response; body: Buffer }) => {
-  const authOperationNames = [
-    'signIn',
-    'signUp',
-    'signout',
-    'updateToken',
-    'destroyAccount',
-    'updateUserPassword',
-    'authenticateGuestUser',
-  ];
+  const authOperationNames = ['signIn', 'signUp', 'signout', 'updateToken'];
 
   try {
     const { data, errors } = JSON.parse(body.toString());
@@ -29,7 +21,7 @@ const handleResponse = ({ req, res, body }: { req: Request; res: Response; body:
     }
     const authOperationName = Object.keys(data).find(key => authOperationNames.includes(key));
 
-    if (['signout', 'destroyAccount'].includes(authOperationName)) {
+    if (['signout'].includes(authOperationName)) {
       deleteRefreshToken({ res });
     } else if (authOperationName && data[authOperationName]) {
       const { refreshToken } = data[authOperationName];

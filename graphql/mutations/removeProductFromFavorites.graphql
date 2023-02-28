@@ -1,7 +1,0 @@
-#import "../fragments/productInfo.graphql"
-
-mutation RemoveProductFromFavorites($input: RemoveProductFromFavoritesInput!) {
-  removeProductFromFavorites(input: $input) {
-    ...ProductInfo
-  }
-}

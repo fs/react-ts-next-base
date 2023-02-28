@@ -3,35 +3,9 @@ import { keys, omit } from 'lodash';
 import { FieldMergeFunction } from '@apollo/client';
 
 import { PageInfo } from './types';
-import clientSideState from '../clientSideState/clientSideState';
 
-const notMergedQueries = ['companyLocations', 'deliveryPoints'];
-
-const mergedQueries = [
-  'myProducts',
-  'products',
-  'favoriteProducts',
-  'productReviews',
-  'accountOperations',
-  'customerOrders',
-  'customerAccountOperations',
-  'transfers',
-  'companies',
-  'myCompanies',
-  'customerCompanies',
-  'users',
-  'customerProducts',
-  'orders',
-  'companiesReviews',
-  'productsReviews',
-  'sellerProductReviews',
-  'sellerCompanyReviews',
-  'buyerProductReviews',
-  'buyerCompanyReviews',
-  'customerCompanyLocations',
-  'properties',
-  'disputeProposals',
-];
+const notMergedQueries: string[] = [];
+const mergedQueries: string[] = [];
 
 const keyArgsFunction: KeyArgsFunction = args =>
   keys(omit(args, ['first', 'last', 'after', 'before']));
@@ -55,85 +29,6 @@ const mergeFieldOptions = {
 
 export const apolloPolicies = {
   typePolicies: {
-    Product: {
-      fields: {
-        productFreeDeliveries: {
-          merge: false,
-        },
-        productPaidDeliveries: {
-          merge: false,
-        },
-        periodDiscounts: {
-          merge: false,
-        },
-        weeklyDiscounts: {
-          merge: false,
-        },
-        variants: {
-          merge: false,
-        },
-      },
-    },
-    Variant: {
-      fields: {
-        variantProperties: {
-          merge: false,
-        },
-        variantPhotos: {
-          merge: false,
-        },
-        variantCertificates: {
-          merge: false,
-        },
-        variantInstructions: {
-          merge: false,
-        },
-      },
-    },
-    User: {
-      fields: {
-        companyMembers: {
-          merge: false,
-        },
-      },
-    },
-    Order: {
-      fields: {
-        invoices: {
-          merge: false,
-        },
-      },
-    },
-    ReturnedShipment: {
-      fields: {
-        attachments: {
-          merge: false,
-        },
-      },
-    },
-    Company: {
-      fields: {
-        companyMembers: {
-          merge: false,
-        },
-        lastEmployeeMembers: {
-          merge: false,
-        },
-        companyConfirmationRecords: {
-          merge: false,
-        },
-        rejectedFields: {
-          merge: false,
-        },
-      },
-    },
-    CurrentUser: {
-      fields: {
-        menuItems: {
-          merge: false,
-        },
-      },
-    },
     Query: {
       fields: {
         ...notMergedQueries.reduce(
@@ -150,14 +45,6 @@ export const apolloPolicies = {
           }),
           {},
         ),
-        ...clientSideState,
-      },
-    },
-    CompanyLocation: {
-      fields: {
-        companyLicenses: {
-          merge: false,
-        },
       },
     },
   },

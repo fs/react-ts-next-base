@@ -1,7 +1,0 @@
-mutation ConfirmCompany($input: ConfirmCompanyInput!) {
-  confirmCompany(input: $input) {
-    id
-    officialName
-    status
-  }
-}

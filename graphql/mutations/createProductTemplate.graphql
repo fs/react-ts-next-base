@@ -1,7 +1,0 @@
-#import "../fragments/productInfo.graphql"
-
-mutation CreateProductTemplate($input: SubmitProductDiscountsStepInput!) {
-  createProductTemplate(input: $input) {
-    ...ProductInfo
-  }
-}

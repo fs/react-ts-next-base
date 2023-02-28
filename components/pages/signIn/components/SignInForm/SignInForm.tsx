@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { RECOVERY_PASSWORD } from 'config/routes';
 
-import useSignIn from 'lib/apollo/hooks/actions/useSignIn';
+import { useSignIn } from 'lib/apollo/hooks/actions/auth';
 
 import Button from 'components/shared/atoms/Button';
 import FormFieldInput from 'components/shared/atoms/FormField';
@@ -35,7 +35,7 @@ const SignInFormContent = ({ isSubmitting }: FormikProps<ValuesFromFormik>) => (
         <FormFieldInput name="password" type={FormFieldType.password} label="Password" />
       </FieldWrapper>
       <SubmitButtonWrapper>
-        <Button type={FormFieldType.submit} testID="submit-button" disabled={isSubmitting}>
+        <Button type={FormFieldType.submit} testId="submit-button" disabled={isSubmitting}>
           Submit
         </Button>
       </SubmitButtonWrapper>

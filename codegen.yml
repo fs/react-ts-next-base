@@ -5,7 +5,6 @@ hooks:
     - prettier --write
 documents:
   - 'graphql/**/*.graphql'
-  - '!graphql/**/clientSideState.graphql'
 generates:
   graphql/types.tsx:
     plugins:

@@ -1,5 +1,0 @@
-mutation UpdateDictionaryProperty($input: UpdateDictionaryPropertyInput!) {
-  updateDictionaryProperty(input: $input) {
-    name
-  }
-}

@@ -1,7 +1,0 @@
-#import "../fragments/currentUserInfo.graphql"
-
-mutation UpdateAdminAccount($input: UpdateAdminAccountInput!) {
-  updateAdminAccount(input: $input) {
-    ...CurrentUserInfo
-  }
-}

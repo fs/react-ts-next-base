@@ -1,5 +1,0 @@
-mutation CancelDispute($input: CancelDisputeInput!) {
-  cancelDispute(input: $input) {
-    id
-  }
-}

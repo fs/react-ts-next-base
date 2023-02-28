@@ -1,7 +1,0 @@
-query CompanyLegalForms {
-  companyLegalForms {
-    id
-    name
-    shortName
-  }
-}
