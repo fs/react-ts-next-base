@@ -34,11 +34,11 @@ export const FieldWrapper = styled.div(
       border: 0;
 
       ::placeholder {
-        color: ${theme.colors.greyA4};
+        color: ${theme.colors.grey_300};
       }
 
       :disabled {
-        background-color: ${theme.colors.greyFO};
+        background-color: ${theme.colors.grey_200};
         cursor: not-allowed;
       }
     }
@@ -73,7 +73,7 @@ export const InputWrapper = styled.div(
     align-items: center;
     flex-wrap: nowrap;
     overflow: hidden;
-    background-color: ${disabled ? theme.colors.greyFO : backgroundColor};
+    background-color: ${disabled ? theme.colors.grey_200 : backgroundColor};
     cursor: ${disabled && 'not-allowed'};
     height: 100%;
 
@@ -86,7 +86,7 @@ export const ErrorWrapper = styled.div(
   ({ padding }: ErrorWrapperProps) => css`
     position: absolute;
     width: 100%;
-    color: ${theme.colors.error};
+    color: ${theme.colors.red_500};
     font-size: 0.68rem;
     padding: ${padding};
     white-space: nowrap;
@@ -104,7 +104,7 @@ export const FieldLabel = styled.label(
     font-size: 0.7rem;
     line-height: 0;
     background-color: ${theme.colors.white};
-    color: ${theme.colors.grey};
+    color: ${theme.colors.grey_500};
     padding: 0 0.35rem;
     z-index: 1;
   `,

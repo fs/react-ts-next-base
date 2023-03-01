@@ -40,15 +40,31 @@ const SignInForm = () => {
         <FormContentWrapper>
           <Form>
             <FieldWrapper>
-              <Input name="email" type="email" title="Email" placeholder="Email" />
+              <Input
+                name="email"
+                type="email"
+                title="Email"
+                placeholder="Email"
+                testId="input-email"
+              />
             </FieldWrapper>
             <FieldWrapper>
-              <Input name="password" type="password" title="Password" placeholder="Password" />
+              <Input
+                name="password"
+                type="password"
+                title="Password"
+                placeholder="Password"
+                testId="input-password"
+              />
             </FieldWrapper>
             <SubmitButtonWrapper>
-              <Button type="submit" testId="submit-button" disabled={isSubmitting}>
-                Submit
-              </Button>
+              <Button
+                type="submit"
+                testId="submit-button"
+                disabled={isSubmitting}
+                isLoading={isSubmitting}
+                label="Submit"
+              />
             </SubmitButtonWrapper>
 
             <FieldWrapper>
