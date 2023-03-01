@@ -6,9 +6,9 @@ import { StyledNextLink, StyledLink } from './styled';
 const ActionLink: React.FunctionComponent<TActionLink> = ({
   onClick,
   label,
-  size = 12,
+  $size = 16,
   children,
-  $color = 'blue',
+  $color = 'blue_600',
   bold = false,
   href,
   ...props
@@ -18,7 +18,7 @@ const ActionLink: React.FunctionComponent<TActionLink> = ({
       <StyledNextLink
         $color={$color}
         onClick={onClick}
-        $size={size}
+        $size={$size}
         $bold={bold}
         href={href}
         passHref
@@ -28,7 +28,7 @@ const ActionLink: React.FunctionComponent<TActionLink> = ({
       </StyledNextLink>
     );
   return (
-    <StyledLink $color={$color} onClick={onClick} $size={size} $bold={bold} {...props}>
+    <StyledLink $color={$color} onClick={onClick} $size={$size} $bold={bold} {...props}>
       {label} {children}
     </StyledLink>
   );

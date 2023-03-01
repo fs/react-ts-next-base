@@ -1,9 +1,9 @@
-import Link from 'next/link';
+import React from 'react';
 import { PROFILE, ACTIVITY, SIGNIN, SIGNUP } from 'config/routes';
 
 import Logo from 'components/shared/atoms/Logo';
+import ActionLink from 'components/shared/atoms/ActionLink';
 
-import React from 'react';
 import UserNavigation from './UserNavigation';
 
 import { THeader } from './types';
@@ -26,13 +26,9 @@ const Header: React.FunctionComponent<THeader> = ({ user, signOut }) => {
       <Links data-cy="header-links">
         {!user && (
           <>
-            <Link href={SIGNIN} passHref>
-              Sign In
-            </Link>
+            <ActionLink label="Sign In" href={SIGNIN} />
             |
-            <Link href={SIGNUP} passHref>
-              Sign Up
-            </Link>
+            <ActionLink label="Sign Up" href={SIGNUP} />
           </>
         )}
         {!!user && <UserNavigation user={user} links={links} actions={actions} />}

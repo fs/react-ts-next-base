@@ -5,7 +5,7 @@ import { ColorKeys } from 'public/styles/config/colors';
 export type TActionLink = TMargin & {
   onClick?: () => void;
   label?: string;
-  size?: number;
+  $size?: number;
   bold?: boolean;
   children?: React.ReactNode;
   $color?: ColorKeys;

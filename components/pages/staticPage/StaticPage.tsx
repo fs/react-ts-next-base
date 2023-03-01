@@ -1,4 +1,8 @@
-import Link from 'next/link';
+import React from 'react';
+
+import { HOME } from 'config/routes';
+
+import ActionLink from 'components/shared/atoms/ActionLink';
 
 import { Title } from './styled';
 
@@ -12,18 +16,16 @@ const Home = () => (
 
     <p>
       <b>There is a body text</b> Lorem ipsum dolor sit amet,{' '}
-      <Link passHref href="/">
-        consectetur adipiscing elit
-      </Link>
-      , sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis
-      blandit turpis. Lobortis elementum nibh tellus molestie nunc. Felis donec et odio pellentesque
-      diam. Sit amet nisl purus in. Interdum consectetur libero id faucibus nisl tincidunt.
-      Tincidunt dui ut ornare lectus sit amet est placerat. Dolor sed viverra ipsum nunc aliquet
-      bibendum enim facilisis gravida. Eget aliquet nibh praesent tristique magna sit amet. Accumsan
-      lacus vel facilisis volutpat est velit egestas. Libero nunc consequat interdum varius sit.
-      Blandit libero volutpat sed cras ornare arcu dui vivamus arcu. Aliquam etiam erat velit
-      scelerisque in dictum non consectetur. Sit amet venenatis urna cursus. Tristique senectus et
-      netus et malesuada fames. Mauris a diam maecenas sed.
+      <ActionLink href={HOME} label="consectetur adipiscing elit" />, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis. Lobortis
+      elementum nibh tellus molestie nunc. Felis donec et odio pellentesque diam. Sit amet nisl
+      purus in. Interdum consectetur libero id faucibus nisl tincidunt. Tincidunt dui ut ornare
+      lectus sit amet est placerat. Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis
+      gravida. Eget aliquet nibh praesent tristique magna sit amet. Accumsan lacus vel facilisis
+      volutpat est velit egestas. Libero nunc consequat interdum varius sit. Blandit libero volutpat
+      sed cras ornare arcu dui vivamus arcu. Aliquam etiam erat velit scelerisque in dictum non
+      consectetur. Sit amet venenatis urna cursus. Tristique senectus et netus et malesuada fames.
+      Mauris a diam maecenas sed.
     </p>
     <p>
       Faucibus et molestie ac feugiat sed lectus vestibulum mattis ullamcorper. Et malesuada fames

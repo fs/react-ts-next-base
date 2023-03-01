@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { Form, Formik } from 'formik';
 
 import { RECOVERY_PASSWORD } from 'config/routes';
@@ -8,6 +7,7 @@ import { useSignIn } from 'lib/apollo/hooks/actions/auth';
 
 import Input from 'components/shared/atoms/Input';
 import Button from 'components/shared/atoms/Button';
+import ActionLink from 'components/shared/atoms/ActionLink';
 
 import { TFormValues } from './types';
 import { FormContentWrapper } from './styled';
@@ -50,9 +50,7 @@ const SignInForm = () => {
             />
 
             <div>
-              <Link href={RECOVERY_PASSWORD} passHref>
-                Forgot your password?
-              </Link>
+              <ActionLink href={RECOVERY_PASSWORD} label="Forgot your password?" />
             </div>
           </FormContentWrapper>
         </Form>

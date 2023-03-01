@@ -16,8 +16,8 @@ export default {
   },
   args: {
     label: 'action link',
-    size: 12,
-    $color: 'blue',
+    $size: 16,
+    $color: 'blue_500',
     onClick: () => {},
   },
 } as ComponentMeta<typeof ActionLink>;
