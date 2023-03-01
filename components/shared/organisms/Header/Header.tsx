@@ -3,6 +3,7 @@ import { PROFILE, ACTIVITY, SIGNIN, SIGNUP } from 'config/routes';
 
 import Logo from 'components/shared/atoms/Logo';
 
+import React from 'react';
 import UserNavigation from './UserNavigation';
 
 import { THeader } from './types';
@@ -26,11 +27,11 @@ const Header: React.FunctionComponent<THeader> = ({ user, signOut }) => {
         {!user && (
           <>
             <Link href={SIGNIN} passHref>
-              <a>Sign In</a>
+              Sign In
             </Link>
             |
             <Link href={SIGNUP} passHref>
-              <a>Sign Up</a>
+              Sign Up
             </Link>
           </>
         )}

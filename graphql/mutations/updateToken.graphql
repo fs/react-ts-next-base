@@ -1,11 +1,11 @@
 #import "../fragments/currentUserInfo.graphql"
-#import "../fragments/authTokens.graphql"
 
 mutation updateToken {
   updateToken {
     me {
       ...CurrentUserInfo
     }
-    ...AuthTokens
+   accessToken
+  refreshToken
   }
 }

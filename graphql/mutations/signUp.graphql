@@ -1,11 +1,11 @@
 #import "../fragments/currentUserInfo.graphql"
-#import "../fragments/authTokens.graphql"
 
 mutation signUp($input: SignUpInput!) {
-  signUp(input: $input) {
+  signup(input: $input) {
     me {
       ...CurrentUserInfo
     }
-    ...AuthTokens
+    accessToken
+  refreshToken
   }
 }

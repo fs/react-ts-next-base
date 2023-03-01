@@ -11,20 +11,10 @@ import useRouter from 'hooks/useRouter';
 import { SignInDocument } from 'graphql/mutations/__generated__/signIn.generated';
 import { SignUpDocument } from 'graphql/mutations/__generated__/signUp.generated';
 import { SignOutDocument } from 'graphql/mutations/__generated__/signOut.generated';
-import { SendSmsCodeDocument } from 'graphql/mutations/__generated__/sendSmsCode.generated';
-import { SignUpFromCartDocument } from 'graphql/mutations/__generated__/signUpFromCart.generated';
 import { UpdatePasswordDocument } from 'graphql/mutations/__generated__/updatePassword.generated';
 import { RequestPasswordRecoveryDocument } from 'graphql/mutations/__generated__/requestPasswordRecovery.generated';
 
-import {
-  useSignIn,
-  useSignUp,
-  useSignOut,
-  usePasswordRecovery,
-  useUpdatePassword,
-  useSendSmsCode,
-  useSignUpFromCart,
-} from './auth';
+import { useSignIn, useSignUp, useSignOut, usePasswordRecovery, useUpdatePassword } from './auth';
 
 jest.mock('hooks/useNotifier');
 jest.mock('hooks/useRouter');
@@ -268,92 +258,6 @@ describe('Auth actions', () => {
       await waitFor(() => {
         expect(result?.current[1]?.data?.updatePassword).toEqual({ accessToken: 'token' });
       });
-    });
-  });
-
-  describe('useSendSmsCode', () => {
-    test('should mutate state', async () => {
-      // Arrange
-      const phoneNumber = '12345672456';
-      const data = {
-        phoneNumber,
-      };
-
-      const mockResponse = { id: '1', resendingAvailableAfter: 'test', validUntil: 'test' };
-      const mocks = [
-        {
-          request: {
-            query: SendSmsCodeDocument,
-            variables: {
-              input: data,
-            },
-          },
-          result: {
-            data: { sendSmsCode: mockResponse },
-          },
-        },
-      ];
-
-      // Act
-      const { result } = renderHook(() => useSendSmsCode(), {
-        wrapper: ({ children }) => <MockedProvider mocks={mocks}>{children}</MockedProvider>,
-      });
-
-      const execute = result.current[0];
-      setTimeout(() => execute(phoneNumber));
-
-      // Assert
-      await waitFor(() => {
-        expect(result?.current[1]?.data?.sendSmsCode).toEqual(mockResponse);
-      });
-    });
-  });
-
-  describe('useSignUpFromCart', () => {
-    test('should mutate state & call localStorage.setItem & call onSubmit', async () => {
-      // Arrange
-      const mockOnSubmit = jest.fn();
-      const mockMessage = 'test message';
-      const data = {
-        email: 'test@test.test',
-        password: 'password',
-        firstName: 'test',
-        lastName: 'test',
-        middleName: 'test',
-        phoneNumber: '123456789',
-        smsCode: '1234',
-      };
-
-      const mockResponse = { me: { ...mockCurrentUser }, message: mockMessage };
-      const mocks = [
-        {
-          request: {
-            query: SignUpFromCartDocument,
-            variables: {
-              input: data,
-            },
-          },
-          result: {
-            data: { signUpFromCart: mockResponse },
-          },
-        },
-      ];
-
-      // Act
-      const { result } = renderHook(() => useSignUpFromCart({ onSubmit: mockOnSubmit }), {
-        wrapper: ({ children }) => <MockedProvider mocks={mocks}>{children}</MockedProvider>,
-      });
-
-      const execute = result.current[0];
-      setTimeout(() => execute(data));
-
-      // Assert
-      await waitFor(() => {
-        expect(result?.current[1]?.data?.signUpFromCart).toEqual(mockResponse);
-      });
-      expect(localStorage.setItem).toHaveBeenCalledTimes(1);
-      expect(mockOnSubmit).toHaveBeenCalled();
-      expect(mockSetError).toHaveBeenCalledWith(mockMessage);
     });
   });
 });

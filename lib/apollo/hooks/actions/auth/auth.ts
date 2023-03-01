@@ -31,7 +31,7 @@ export const useSignIn = () => {
         query: CurrentUser,
         data: {
           me: {
-            ...data?.signIn?.me,
+            ...data?.signin?.me,
           },
         },
       });
@@ -44,9 +44,9 @@ export const useSignIn = () => {
     },
   });
 
-  const mutate = async ({ login, password }: SignInInput) => {
+  const mutate = async ({ email, password }: SignInInput) => {
     const signInInput = {
-      login,
+      email,
       password,
     };
 
@@ -69,30 +69,20 @@ export const useSignUp = () => {
         query: CurrentUser,
         data: {
           me: {
-            ...data?.signUp?.me,
+            ...data?.signup?.me,
           },
         },
       });
     },
   });
 
-  const mutate = async ({
-    email,
-    password,
-    firstName,
-    lastName,
-    middleName,
-    phoneNumber,
-    smsCode,
-  }: SignUpInput) => {
+  const mutate = async ({ avatar, email, password, firstName, lastName }: SignUpInput) => {
     const signUpInput = {
+      avatar,
       email,
       password,
       firstName,
       lastName,
-      middleName,
-      phoneNumber,
-      smsCode,
     };
 
     try {

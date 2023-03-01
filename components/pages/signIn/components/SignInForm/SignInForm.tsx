@@ -1,15 +1,15 @@
-import { Form, Formik, FormikProps } from 'formik';
+import React from 'react';
 import * as Yup from 'yup';
 import Link from 'next/link';
+import { Form, Formik, FormikProps } from 'formik';
 
 import { RECOVERY_PASSWORD } from 'config/routes';
 
 import { useSignIn } from 'lib/apollo/hooks/actions/auth';
 
+import Input from 'components/shared/atoms/Input';
 import Button from 'components/shared/atoms/Button';
-import FormFieldInput from 'components/shared/atoms/FormField';
 import Loader from 'components/shared/atoms/Loader';
-import { FormFieldType } from 'types/formsType';
 
 import { FieldWrapper, FormContentWrapper, SubmitButtonWrapper } from './styled';
 
@@ -29,20 +29,20 @@ const SignInFormContent = ({ isSubmitting }: FormikProps<ValuesFromFormik>) => (
   <FormContentWrapper>
     <Form>
       <FieldWrapper>
-        <FormFieldInput name="email" type={FormFieldType.email} label="Email" />
+        <Input name="email" type="email" title="Email" />
       </FieldWrapper>
       <FieldWrapper>
-        <FormFieldInput name="password" type={FormFieldType.password} label="Password" />
+        <Input name="password" type="password" title="Password" />
       </FieldWrapper>
       <SubmitButtonWrapper>
-        <Button type={FormFieldType.submit} testId="submit-button" disabled={isSubmitting}>
+        <Button type="submit" testId="submit-button" disabled={isSubmitting}>
           Submit
         </Button>
       </SubmitButtonWrapper>
 
       <FieldWrapper>
         <Link href={RECOVERY_PASSWORD} passHref>
-          <a>Forgot your password?</a>
+          Forgot your password?
         </Link>
       </FieldWrapper>
     </Form>
@@ -64,7 +64,7 @@ const SignInForm = () => {
         component={SignInFormContent}
         validationSchema={SignInValidationSchema}
       />
-      {signInResult.loading && <Loader testId="signin-loader">Loading...</Loader>}
+      {signInResult.loading && <Loader testId="signin-loader" />}
     </>
   );
 };

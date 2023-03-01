@@ -1,3 +1,4 @@
+import React from 'react';
 import Link from 'next/link';
 
 import { TUserNavigationList } from './types';
@@ -12,7 +13,7 @@ const UserNavigationList: React.FunctionComponent<TUserNavigationList> = ({
       return (
         <UserMenuItem key={text} data-cy={testId}>
           <Link href={url} passHref>
-            <a>{text}</a>
+            {text}
           </Link>
         </UserMenuItem>
       );

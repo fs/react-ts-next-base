@@ -1,25 +1,22 @@
-import { NextPage } from 'next';
+import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { NextPage } from 'next';
+import useRouter from 'hooks/useRouter';
 
 import { HOME } from 'config/routes';
-import { ErrorPageContext } from 'types/pageContextInterfaces';
 
+import { TInitialProps, TErrorPage } from './types';
 import { TitleWrapper, Description, StyledLink } from './styled';
 
-interface Props {
-  statusCode: number;
-}
-
-const ErrorPage: NextPage<Props> = ({ statusCode }) => {
+const ErrorPage: NextPage<TErrorPage> = ({ statusCode }) => {
   const is404 = statusCode === 404;
-  const router = useRouter();
+  const { back } = useRouter();
 
   const links = (
     <>
-      <StyledLink onClick={() => router.back()}>Back to previous page</StyledLink> or{' '}
+      <StyledLink onClick={back}>Back to previous page</StyledLink> or{' '}
       <Link passHref href={HOME}>
-        <StyledLink>contact us</StyledLink>
+        contact us
       </Link>{' '}
       for help.
     </>
@@ -41,7 +38,7 @@ const ErrorPage: NextPage<Props> = ({ statusCode }) => {
   );
 };
 
-ErrorPage.getInitialProps = ({ res, err, statusCode }: ErrorPageContext) => {
+ErrorPage.getInitialProps = ({ res, err, statusCode }: TInitialProps) => {
   return {
     statusCode: statusCode || res?.statusCode || err?.statusCode || 404,
   };
