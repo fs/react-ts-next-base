@@ -9,7 +9,6 @@ type TOption<T> = {
   value: T;
   label: string | ReactNode;
   disabled?: boolean;
-  tooltip?: string;
 };
 
 export type TRadio<T> = {

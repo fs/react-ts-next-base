@@ -1,12 +1,13 @@
 import React from 'react';
 
 import { HOME } from 'config/routes';
+import { TNextPage } from 'lib/apollo/types';
 
 import ActionLink from 'components/shared/atoms/ActionLink';
 
 import { Title } from './styled';
 
-const Home = () => (
+const Home: TNextPage = () => (
   <>
     <Title data-cy="static-page-title">Welcome to static page</Title>
     <h1>h1 - This is a main title</h1>

@@ -32,9 +32,9 @@ export const colorConfig: TVariantConfig = {
     focused: defaultColor,
   },
   hollow: {
-    default: theme.colors.grey_200,
+    default: theme.colors.grey_500,
     hover: theme.colors.grey_400,
-    focused: theme.colors.grey_200,
+    focused: theme.colors.grey_500,
   },
 };
 

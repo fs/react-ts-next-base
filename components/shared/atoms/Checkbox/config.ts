@@ -23,13 +23,13 @@ export const variantConfig: TVariantConfig = {
     checked: {
       backgroundImage:
         'data:image/svg+xml,%3Csvg viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath fill-rule="evenodd" clip-rule="evenodd" d="M12 1.70733L10.8449 0.552246L5.51285 5.88431L1.9657 2.45422L0.810608 3.60931L5.48861 8.13292L5.53151 8.17582L5.53223 8.1751L5.533 8.17584L6.68809 7.02076L6.68732 7.02002L12 1.70733Z" fill="white"/%3E%3C/svg%3E%0A',
-      backgroundColor: theme.colors.blue,
-      borderColor: theme.colors.blue,
+      backgroundColor: theme.colors.blue_500,
+      borderColor: theme.colors.blue_500,
     },
     unchecked: {
       backgroundImage: null,
       backgroundColor: theme.colors.white,
-      borderColor: theme.colors.greyA3,
+      borderColor: theme.colors.grey_400,
     },
   },
   plus: {

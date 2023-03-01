@@ -1,6 +1,4 @@
-import React, { ReactNode } from 'react';
-
-import Tooltip from 'components/shared/atoms/Tooltip';
+import React from 'react';
 
 import { RadioWrapper, Label } from './styled';
 import { TRadio } from './types';
@@ -20,16 +18,18 @@ const Radio = <T,>({
     onChange(value);
   };
 
-  const radioContent = (content: ReactNode, tooltip: string | undefined) => {
-    return tooltip ? <Tooltip text={tooltip}>{content}</Tooltip> : <>{content}</>;
-  };
-
   return (
     <RadioWrapper direction={direction}>
-      {options.map(({ value, label, disabled, tooltip }) => {
+      {options.map(({ value, label, disabled }) => {
         const checked = selected === value;
-        const content = (
-          <>
+        return (
+          <Label
+            boldSelectedValue={boldSelectedValue}
+            isChecked={checked}
+            disabled={disabled}
+            key={`${value}`}
+            htmlFor={`${name}_${value}`}
+          >
             <input
               disabled={disabled || readOnly}
               type="radio"
@@ -40,17 +40,6 @@ const Radio = <T,>({
               data-cy={`${name}_${value}`}
             />
             {label}
-          </>
-        );
-        return (
-          <Label
-            boldSelectedValue={boldSelectedValue}
-            isChecked={checked}
-            disabled={disabled}
-            key={`${value}`}
-            htmlFor={`${name}_${value}`}
-          >
-            {radioContent(content, tooltip)}
           </Label>
         );
       })}

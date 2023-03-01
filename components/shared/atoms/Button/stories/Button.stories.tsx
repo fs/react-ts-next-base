@@ -86,7 +86,7 @@ const allVariants: TButtonStory[] = [
 
 export const Demo: ComponentStory<typeof Button> = args => <Button {...args} />;
 Demo.args = {
-  icon: <Icon name="plus" $color="grey_400" />,
+  icon: <Icon name="plus" $color="white" />,
 };
 
 export const Variant = (args: TButton) => renderComplexLayout(allVariants, args);
@@ -144,10 +144,10 @@ const extraShapeProps: TButton[] = [
     shape: 'extra-rounded',
   },
   {
-    variant: 'alert',
+    variant: 'primary',
     shape: 'extra-rounded',
     iconType: 'only',
-    icon: <Icon name="camera" $color="blue_400" />,
+    icon: <Icon name="camera" $color="white" />,
     size: 'extra-large',
   },
 ];
@@ -155,7 +155,7 @@ const shapeCircleProps: TButton[] = [
   {
     variant: 'alert',
     iconType: 'only',
-    icon: <Icon name="close" $color="grey_400" />,
+    icon: <Icon name="close" $color="white" />,
     size: 'extra-small',
   },
   {
@@ -176,7 +176,7 @@ const shapeCircleProps: TButton[] = [
 export const Shape = (args: TButton) => (
   <>
     {renderComplexLayout(
-      allVariants.map(config => ({ ...config, shape: 'rounded' })),
+      allVariants.map(config => ({ ...config, shape: 'rounded', label: 'rounded' })),
       args,
     )}
     {renderComplexLayout(extraShapeProps, args)}
