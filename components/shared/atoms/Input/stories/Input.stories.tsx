@@ -76,9 +76,6 @@ export const Variant = (args: TInput) => (
   <>
     <Input {...args} variant="default" />
     <Input {...args} variant="secondary" />
-    <Input {...args} variant="change" />
-    <Input {...args} variant="underlined" />
-    <Input {...args} variant="table-cell" />
   </>
 );
 
@@ -86,9 +83,6 @@ export const Filled = (args: TInput) => (
   <>
     <Input {...args} variant="default" />
     <Input {...args} variant="secondary" />
-    <Input {...args} variant="change" />
-    <Input {...args} variant="underlined" />
-    <Input {...args} variant="table-cell" />
   </>
 );
 Filled.parameters = {
@@ -101,9 +95,6 @@ export const Error = (args: TInput) => (
   <>
     <Input {...args} variant="default" />
     <Input {...args} variant="secondary" />
-    <Input {...args} variant="change" />
-    <Input {...args} variant="underlined" />
-    <Input {...args} variant="table-cell" />
   </>
 );
 Error.parameters = {
@@ -117,9 +108,6 @@ export const Disabled = (args: TInput) => (
   <>
     <Input {...args} variant="default" disabled />
     <Input {...args} variant="secondary" disabled />
-    <Input {...args} variant="change" disabled />
-    <Input {...args} variant="underlined" disabled />
-    <Input {...args} variant="table-cell" disabled />
   </>
 );
 
@@ -144,12 +132,12 @@ export const WithIcon = (args: TInput) => (
     <Input
       {...args}
       iconType="leading"
-      icon={<Icon name="pencil" $color="greyCC" $ml={12} $size={16} />}
+      icon={<Icon name="pencil" $color="grey_600" $ml={12} $size={16} />}
     />
     <Input
       {...args}
       iconType="trailing"
-      icon={<Icon name="pencil" $color="greyCC" $mr={12} $size={16} />}
+      icon={<Icon name="pencil" $color="grey_600" $mr={12} $size={16} />}
     />
   </>
 );

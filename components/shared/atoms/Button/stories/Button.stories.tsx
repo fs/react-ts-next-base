@@ -80,26 +80,13 @@ export default {
 
 const allVariants: TButtonStory[] = [
   { label: 'primary', variant: 'primary' },
-  { label: 'secondary', variant: 'secondary' },
-  { label: 'neutral', variant: 'neutral' },
-  { label: 'confirm', variant: 'confirm' },
-  { label: 'change', variant: 'change' },
   { label: 'alert', variant: 'alert' },
   { label: 'hollow', variant: 'hollow' },
-  { label: 'hollow-primary', variant: 'hollow-primary' },
-  { label: 'hollow-change', variant: 'hollow-change' },
-  { label: 'ghost', variant: 'ghost', bgColor: 'black' },
-  { label: 'shadowed', variant: 'shadowed' },
-  { label: 'dashed-primary', variant: 'dashed-primary' },
-  { label: 'outlined-confirm', variant: 'outlined-confirm' },
-  { label: 'outlined-secondary', variant: 'outlined-secondary', bgColor: 'blue' },
-  { label: 'outlined-neutral', variant: 'outlined-neutral' },
-  { label: 'outlined-primary', variant: 'outlined-primary' },
 ];
 
 export const Demo: ComponentStory<typeof Button> = args => <Button {...args} />;
 Demo.args = {
-  icon: <Icon name="plus" $color="greyCC" />,
+  icon: <Icon name="plus" $color="grey_400" />,
 };
 
 export const Variant = (args: TButton) => renderComplexLayout(allVariants, args);
@@ -148,27 +135,27 @@ export const Size = (args: TButton) => (
 const extraShapeProps: TButton[] = [
   {
     label: 'extra-rounded',
-    variant: 'confirm',
+    variant: 'alert',
     shape: 'extra-rounded',
   },
   {
     label: 'extra-rounded',
-    variant: 'outlined-neutral',
+    variant: 'alert',
     shape: 'extra-rounded',
   },
   {
-    variant: 'dashed-primary',
+    variant: 'alert',
     shape: 'extra-rounded',
     iconType: 'only',
-    icon: <Icon name="camera" $color="blue" />,
+    icon: <Icon name="camera" $color="blue_400" />,
     size: 'extra-large',
   },
 ];
 const shapeCircleProps: TButton[] = [
   {
-    variant: 'shadowed',
+    variant: 'alert',
     iconType: 'only',
-    icon: <Icon name="close" $color="greyC4" />,
+    icon: <Icon name="close" $color="grey_400" />,
     size: 'extra-small',
   },
   {
@@ -214,8 +201,8 @@ const iconProps: TButton[] = [
     icon: <Icon name="plus" $color="white" />,
   },
   { variant: 'primary', iconType: 'only', icon: <Icon name="search" $color="white" /> },
-  { variant: 'confirm', iconType: 'only', icon: <Icon name="info" $color="white" $size={24} /> },
-  { variant: 'change', iconType: 'only', icon: <Icon name="heart" $color="white" /> },
+  { variant: 'alert', iconType: 'only', icon: <Icon name="info" $color="white" $size={24} /> },
+  { variant: 'hollow', iconType: 'only', icon: <Icon name="heart" $color="white" /> },
 ];
 
 export const WithIcon = (args: TButton) => renderComplexLayout(iconProps, args);
