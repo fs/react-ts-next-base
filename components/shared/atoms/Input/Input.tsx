@@ -86,7 +86,9 @@ const Input: React.FunctionComponent<TInputType> = ({
             variant="hollow"
             size="small"
             iconType="only"
-            icon={<Icon name={isShowPassword ? 'eye-closed' : 'eye'} $size={22} $color="greyCC" />}
+            icon={
+              <Icon name={isShowPassword ? 'eye-closed' : 'eye'} $size={22} $color="grey_200" />
+            }
             onClick={() => setIsShowPassword(!isShowPassword)}
             disabled={disabled}
           />

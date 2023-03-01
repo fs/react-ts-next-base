@@ -19,9 +19,9 @@
   },
   "ts-node": {
     "compilerOptions": {
-      "module": "commonjs"
+      "module": "commonjs",
     }
   },
-  "include": ["pages", "components", "declarations/*", "hooks/", "helpers/", "e2e", "config"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.jsx", "**/*.js", "declarations/*"],
   "exclude": ["node_modules", "server/*", "server.ts"]
 }

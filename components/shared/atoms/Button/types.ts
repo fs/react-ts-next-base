@@ -6,21 +6,8 @@ import { ESize } from 'public/styles/config/size';
 
 export enum EVariant {
   PRIMARY = 'primary',
-  SECONDARY = 'secondary',
-  NEUTRAL = 'neutral',
-  CONFIRM = 'confirm',
-  CHANGE = 'change',
   ALERT = 'alert',
   HOLLOW = 'hollow',
-  HOLLOW_PRIMARY = 'hollow-primary',
-  HOLLOW_CHANGE = 'hollow-change',
-  GHOST = 'ghost',
-  SHADOWED = 'shadowed',
-  DASHED_PRIMARY = 'dashed-primary',
-  OUTLINED_CONFIRM = 'outlined-confirm',
-  OUTLINED_SECONDARY = 'outlined-secondary',
-  OUTLINED_NEUTRAL = 'outlined-neutral',
-  OUTLINED_PRIMARY = 'outlined-primary',
 }
 
 export enum EType {

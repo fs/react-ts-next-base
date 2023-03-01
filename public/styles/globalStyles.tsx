@@ -44,7 +44,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     transition: all .25s ease-in-out 0s;
     outline: none;
-    color: ${({ theme }) => theme.colors.blue};
+    color: ${({ theme }) => theme.colors.blue_700};
   }
 
   ul, ol {

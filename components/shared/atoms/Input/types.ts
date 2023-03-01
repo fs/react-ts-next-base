@@ -5,9 +5,6 @@ import { TWidth } from 'public/styles/config/width';
 export enum EVariant {
   DEFAULT = 'default',
   SECONDARY = 'secondary',
-  CHANGE = 'change',
-  UNDERLINED = 'underlined',
-  TABLE_CELL = 'table-cell',
 }
 
 export enum ETextAlign {

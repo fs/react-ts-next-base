@@ -1,13 +1,7 @@
+import { configColors } from './config/colors';
+
 const theme = {
-  colors: {
-    black: '#000',
-    white: '#fff',
-    link: '#00f',
-    darkGrey: '#606c76',
-    grey: '#ccc',
-    lightGrey: '#eee',
-    green: '#46a049',
-  },
+  colors: configColors,
 
   breakpoints: {
     xs: 320,
