@@ -16,7 +16,7 @@ const DefaultTemplate: React.FunctionComponent<TDefaultTemplate> = ({
   const [signOut] = useSignOut();
 
   return (
-    <Wrapper data-cy={testId} data-testid={testId}>
+    <Wrapper data-testid={testId}>
       <Header user={user} signOut={signOut} />
       <PageContent>{children}</PageContent>
     </Wrapper>

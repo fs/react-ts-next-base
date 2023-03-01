@@ -1,34 +1,27 @@
 import React from 'react';
 
 import withAuth from 'lib/auth/withAuth';
-import withGetDataFromTree from 'lib/apollo/withGetDataFromTree';
 import withAuthSecurity from 'lib/auth/withAuthSecurity';
-
-import ErrorMessage from 'components/shared/atoms/ErrorMessage';
+import withGetDataFromTree from 'lib/apollo/withGetDataFromTree';
 
 import useCurrentUser from 'hooks/useCurrentUser';
-import parseApolloError from 'lib/apollo/parseApolloError';
 
-import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
+import { TNextPage } from 'lib/apollo/types';
+
+import Loader from 'components/shared/atoms/Loader';
 import ProfileForm from 'components/shared/organisms/ProfileForm';
+import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
+import ErrorPage from 'pages/_error';
 
-const ProfilePage = () => {
+export const ProfilePage: TNextPage = () => {
   const { loading, error, user } = useCurrentUser();
 
-  const { message: errorMessage } = parseApolloError(error);
+  if (!loading && error) return <ErrorPage statusCode={404} />;
 
   return (
-    <>
-      {loading && <h3 data-testid="profile-loading">Loading...</h3>}
-
-      {errorMessage && <ErrorMessage testId="profile-error">{errorMessage}</ErrorMessage>}
-
-      {!loading && !error && (
-        <DefaultTemplate data-testid="profile-page">
-          <ProfileForm profile={user} />
-        </DefaultTemplate>
-      )}
-    </>
+    <DefaultTemplate testId="profile-page">
+      {!loading ? <ProfileForm profile={user} /> : <Loader testId="profile-loading" />}
+    </DefaultTemplate>
   );
 };
 

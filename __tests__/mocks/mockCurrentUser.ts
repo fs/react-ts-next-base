@@ -6,4 +6,12 @@ export const mockCurrentUser = {
   lastName: 'Test',
 };
 
+export const mockCurrentUserData = {
+  user: mockCurrentUser,
+  loading: false,
+  error: undefined,
+  refetch: jest.fn(),
+  networkStatus: 2,
+};
+
 export default mockCurrentUser;

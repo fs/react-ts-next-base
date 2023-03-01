@@ -125,7 +125,7 @@ export const Size = (args: TButton) => (
       sizeIconOnlyProps.map(config => ({
         ...config,
         iconType: 'only',
-        icon: <Icon name="heart" $color="white" />,
+        icon: <Icon name="star" $color="white" />,
       })),
       args,
     )}
@@ -147,7 +147,7 @@ const extraShapeProps: TButton[] = [
     variant: 'primary',
     shape: 'extra-rounded',
     iconType: 'only',
-    icon: <Icon name="camera" $color="white" />,
+    icon: <Icon name="star" $color="white" />,
     size: 'extra-large',
   },
 ];
@@ -200,9 +200,9 @@ const iconProps: TButton[] = [
     iconType: 'trailing',
     icon: <Icon name="plus" $color="white" />,
   },
-  { variant: 'primary', iconType: 'only', icon: <Icon name="search" $color="white" /> },
-  { variant: 'alert', iconType: 'only', icon: <Icon name="info" $color="white" $size={24} /> },
-  { variant: 'hollow', iconType: 'only', icon: <Icon name="heart" $color="white" /> },
+  { variant: 'primary', iconType: 'only', icon: <Icon name="plus" $color="white" /> },
+  { variant: 'alert', iconType: 'only', icon: <Icon name="minus" $color="white" $size={24} /> },
+  { variant: 'hollow', iconType: 'only', icon: <Icon name="eye" $color="black" /> },
 ];
 
 export const WithIcon = (args: TButton) => renderComplexLayout(iconProps, args);

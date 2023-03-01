@@ -43,13 +43,6 @@ Object.defineProperty(window, 'scroll', {
   value: jest.fn(),
 });
 
-const MockResponsiveContainer = props => <div {...props} />;
-
-jest.mock('recharts', () => ({
-  ...jest.requireActual('recharts'),
-  ResponsiveContainer: MockResponsiveContainer,
-}));
-
 jest.mock('react-sortablejs', () => ({
   ReactSortable: () => <div />,
 }));

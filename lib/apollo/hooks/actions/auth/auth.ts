@@ -1,9 +1,9 @@
 import useRouter from 'hooks/useRouter';
-import globalEvents from 'config/globalEvents.json';
-import CurrentUser from 'graphql/queries/currentUser.graphql';
 import useNotifier from 'hooks/useNotifier';
 
 import { HOME, SIGNIN } from 'config/routes';
+import globalEvents from 'config/globalEvents.json';
+import CurrentUser from 'graphql/queries/currentUser.graphql';
 
 import { useSignInMutation } from 'graphql/mutations/__generated__/signIn.generated';
 import { useSignUpMutation } from 'graphql/mutations/__generated__/signUp.generated';
@@ -64,6 +64,10 @@ export const useSignUp = () => {
   const { pushRoute } = useRouter();
 
   const [mutation, mutationState] = useSignUpMutation({
+    onCompleted: () => {
+      window.localStorage.setItem(SIGN_IN_EVENT, Date.now().toString());
+      pushRoute(HOME);
+    },
     update: (store, { data }) => {
       store.writeQuery({
         query: CurrentUser,
@@ -87,10 +91,6 @@ export const useSignUp = () => {
 
     try {
       await mutation({ variables: { input: signUpInput } });
-
-      window.localStorage.setItem(SIGN_IN_EVENT, Date.now().toString());
-
-      pushRoute(HOME);
     } catch (error) {
       setError(error);
     }
@@ -104,6 +104,10 @@ export const useSignOut = () => {
   const { pushRoute } = useRouter();
 
   const [mutation, mutationState] = useSignOutMutation({
+    onCompleted: () => {
+      window.localStorage.setItem(SIGN_OUT_EVENT, Date.now().toString());
+      pushRoute(HOME);
+    },
     update: store => {
       store.writeQuery({
         query: CurrentUser,
@@ -114,15 +118,11 @@ export const useSignOut = () => {
     },
   });
 
-  const mutate = async ({ everywhere = false }: SignOutInput = {}) => {
+  const mutate = async ({ everywhere = false }: SignOutInput) => {
     const signOutInput = { everywhere };
 
     try {
       await mutation({ variables: { input: signOutInput } });
-
-      window.localStorage.setItem(SIGN_OUT_EVENT, Date.now().toString());
-
-      pushRoute(HOME);
     } catch (error) {
       setError(error);
     }
