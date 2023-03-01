@@ -37,14 +37,6 @@ Ask for token and key from admin
 
 #
 
-### Dev
-
-The dev area can be found at the following link: [https://dev.medagregator.ru](https://dev.medagregator.ru)
-
-### Staging
-
-The staging area can be found at the following link: [https://demo.medagregator.ru](https://demo.medagregator.ru)
-
 ### Useful links
 
 ###

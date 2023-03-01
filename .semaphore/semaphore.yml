@@ -50,15 +50,7 @@ blocks:
           commands:
             - artifact push job test-results
 promotions:
-  - name: Deploy to dev server
-    pipeline_file: dev-deploy.yml
+  - name: Deploy to Heroku
+    pipeline_file: heroku.yml
     auto_promote:
-      when: branch = 'master' AND result = 'passed'
-  - name: Deploy to staging server
-    pipeline_file: staging-deploy.yml
-    auto_promote:
-      when: branch = 'staging' AND result = 'passed'
-  - name: Deploy to production server
-    pipeline_file: production-deploy.yml
-    auto_promote:
-      when: branch = 'production' AND result = 'passed'
+      when: "result = 'passed' and branch = 'master'"
