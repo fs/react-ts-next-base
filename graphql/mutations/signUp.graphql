@@ -6,6 +6,6 @@ mutation signUp($input: SignUpInput!) {
       ...CurrentUserInfo
     }
     accessToken
-  refreshToken
+    refreshToken
   }
 }

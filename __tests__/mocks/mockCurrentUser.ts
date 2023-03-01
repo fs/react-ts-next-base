@@ -1,5 +1,6 @@
 export const mockCurrentUser = {
   __typename: 'CurrentUser' as const,
+  avatarUrl: '',
   id: '160',
   email: 'test.test@test.com',
   firstName: 'Test',

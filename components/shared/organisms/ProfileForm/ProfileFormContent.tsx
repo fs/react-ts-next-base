@@ -1,46 +1,22 @@
-import { ChangeEvent } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
-import { FormikHelpers } from 'formik';
 
-import User from 'domain/User';
-import { FormFieldConfig, FormFieldType } from 'types/formsType';
-
-import type useUpdateUser from 'lib/apollo/hooks/actions/useUpdateUser';
-
-import Loader from 'components/shared/atoms/Loader';
 import Form from 'components/shared/molecules/Form';
 
 import { FormWrapper, StyledTitle, AvatarWrapper, AvatarImg } from './styled';
+import { TFormValues, TProfileFormContent } from './types';
 
-type UpdateUserFn = ReturnType<typeof useUpdateUser>[0];
-type ValuesFromFormik = Parameters<UpdateUserFn>[0];
-
-type ProfileFormContentProps = {
-  temporaryUrl: string | null;
-  profile: User;
-  onSubmit: (values: ValuesFromFormik, formikHelpers: FormikHelpers<ValuesFromFormik>) => Promise<void>;
-  handleAvatarChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  loading: boolean;
-};
-
-type ProfileFormValues = {
-  email: string;
-  firstName: string;
-  lastName: string;
-  password: string;
-  currentPassword: string;
-};
-
-const ProfileFormContent = ({
+const ProfileFormContent: React.FunctionComponent<TProfileFormContent> = ({
   temporaryUrl,
-  profile: { email, firstName, lastName, avatarUrl },
+  user,
   onSubmit,
   handleAvatarChange,
-  loading,
-}: ProfileFormContentProps) => {
-  const fields: FormFieldConfig[] = [
+}) => {
+  const { email, firstName, lastName, avatarUrl } = user;
+
+  const fields = [
     {
-      type: FormFieldType.file,
+      type: 'file',
       name: 'avatar',
       title: 'Avatar',
       testID: 'avatar',
@@ -49,7 +25,7 @@ const ProfileFormContent = ({
       initialValue: null,
     },
     {
-      type: FormFieldType.text,
+      type: 'text',
       name: 'firstName',
       title: 'First Name',
       placeholder: 'First Name',
@@ -58,7 +34,7 @@ const ProfileFormContent = ({
       validationSchema: Yup.string(),
     },
     {
-      type: FormFieldType.text,
+      type: 'text',
       name: 'lastName',
       title: 'Last Name',
       placeholder: 'Last Name',
@@ -67,16 +43,18 @@ const ProfileFormContent = ({
       validationSchema: Yup.string(),
     },
     {
-      type: FormFieldType.email,
+      type: 'text',
       name: 'email',
       title: 'Email',
       placeholder: 'Email',
       testID: 'email',
       initialValue: email || '',
-      validationSchema: Yup.string().email('The email must be valid!!').required('This field is required'),
+      validationSchema: Yup.string()
+        .email('The email must be valid!!')
+        .required('This field is required'),
     },
     {
-      type: FormFieldType.password,
+      type: 'password',
       name: 'password',
       title: 'New Password',
       placeholder: 'New Password',
@@ -85,20 +63,22 @@ const ProfileFormContent = ({
       validationSchema: Yup.string(),
     },
     {
-      type: FormFieldType.password,
+      type: 'password',
       name: 'currentPassword',
       title: 'Current Password',
       placeholder: 'Current Password',
       testID: 'current-password',
       initialValue: '',
       validationSchema: Yup.string().when(['password'], {
-        is: (password) => password?.length > 0,
-        then: Yup.string().required('If you filled New Password, Current Password field should be filled too'),
+        is: (password: string) => password?.length > 0,
+        then: Yup.string().required(
+          'If you filled New Password, Current Password field should be filled too',
+        ),
         otherwise: Yup.string(),
       }),
     },
     {
-      type: FormFieldType.submit,
+      type: 'submit',
       name: 'Update',
       testID: 'submit-button',
       label: 'Update',
@@ -121,8 +101,7 @@ const ProfileFormContent = ({
           <AvatarImg src={avatarSrc} />
         </AvatarWrapper>
       )}
-      <Form<ProfileFormValues> form={form} />
-      {loading && <Loader testId="profile-updating-loader">Loading</Loader>}
+      <Form<TFormValues> form={form} />
     </FormWrapper>
   );
 };

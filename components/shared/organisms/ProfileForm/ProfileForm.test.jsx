@@ -9,8 +9,8 @@ import { useFileUpload } from 'hooks/useFileUpload';
 
 import ProfileForm from './ProfileForm';
 
-jest.mock('lib/apollo/hooks/actions/useUpdateUser');
-jest.mock('lib/apollo/hooks/actions/usePresignFile');
+jest.mock('lib/apollo/hooks/actions/user');
+jest.mock('lib/apollo/hooks/actions/presignFile');
 jest.mock('lib/apollo/parseApolloError');
 jest.mock('contexts/NotifierContext');
 jest.mock('hooks/useFileUpload');

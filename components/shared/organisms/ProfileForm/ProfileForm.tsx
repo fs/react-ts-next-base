@@ -1,26 +1,26 @@
 import { ChangeEvent, useMemo, useState } from 'react';
 import type { FormikHelpers } from 'formik';
-import useUpdateUser from 'lib/apollo/hooks/actions/useUpdateUser';
-import usePresignFile from 'lib/apollo/hooks/actions/usePresignFile';
+
+import useNotifier from 'hooks/useNotifier';
 import { useFileUpload } from 'hooks/useFileUpload';
-import type { Uploaded } from 'hooks/useFileUpload';
-import parseApolloError from 'lib/apollo/parseApolloError';
-import { useNotifier } from 'contexts/NotifierContext';
-import User from 'domain/User';
+import { useUpdateUser } from 'lib/apollo/hooks/actions/user';
+import { usePresignFile } from 'lib/apollo/hooks/actions/presignFile';
+
+import { ImageUploader } from 'graphql/types';
+
 import ProfileFormContent from './ProfileFormContent';
 
-type Props = {
-  profile: User;
-};
+import { TFormValues, TProfileForm } from './types';
 
-const ProfileForm = ({ profile }: Props) => {
-  const { setSuccess } = useNotifier();
-  const [updateUser] = useUpdateUser();
+const ProfileForm: React.FunctionComponent<TProfileForm> = ({ user }) => {
+  const { setSuccess, setError } = useNotifier();
+  const [updateUser] = useUpdateUser({
+    onSubmit: () => setSuccess('Пользователь успешно обновлен'),
+  });
   const [presignFile] = usePresignFile();
   const [uploadFile] = useFileUpload();
 
   const [avatar, setAvatar] = useState<File | undefined>(undefined);
-  const [loading, setLoading] = useState(false);
 
   const temporaryUrl = useMemo(() => (avatar ? URL.createObjectURL(avatar) : null), [avatar]);
 
@@ -39,15 +39,11 @@ const ProfileForm = ({ profile }: Props) => {
     }
   };
 
-  type ValuesFromFormik = Parameters<typeof updateUser>[0];
-
-  const onSubmit = async (values: ValuesFromFormik, { setSubmitting, setStatus }: FormikHelpers<ValuesFromFormik>) => {
-    setStatus('');
+  const onSubmit = async (values: TFormValues, { setSubmitting }: FormikHelpers<TFormValues>) => {
     setSubmitting(true);
-    setLoading(true);
 
     try {
-      let uploadedAvatar: Uploaded | undefined;
+      let uploadedAvatar: ImageUploader | undefined;
       if (avatar) {
         const presignData = await presignFile({ type: avatar.type, filename: avatar.name });
 
@@ -58,12 +54,8 @@ const ProfileForm = ({ profile }: Props) => {
         uploadedAvatar = await uploadFile(presignData, avatar);
       }
       await updateUser({ ...values, avatar: uploadedAvatar });
-      setLoading(false);
-      setSuccess('Profile updated successfully');
     } catch (error) {
-      const { message: errorMsg } = parseApolloError(error);
-      setLoading(false);
-      setStatus(errorMsg);
+      setError(error);
     }
 
     setSubmitting(false);
@@ -72,10 +64,9 @@ const ProfileForm = ({ profile }: Props) => {
   return (
     <ProfileFormContent
       temporaryUrl={temporaryUrl}
-      profile={profile}
+      user={user}
       onSubmit={onSubmit}
       handleAvatarChange={handleAvatarChange}
-      loading={loading}
     />
   );
 };

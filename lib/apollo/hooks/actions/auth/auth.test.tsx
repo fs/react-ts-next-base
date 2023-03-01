@@ -20,12 +20,12 @@ jest.mock('hooks/useNotifier');
 jest.mock('hooks/useRouter');
 
 const mockedUseRouter = useRouter as jest.MockedFunction<typeof useRouter>;
+const mockedUseNotifier = useNotifier as jest.Mock;
 
 describe('Auth actions', () => {
   const mockUseRouter = jest.fn(() => mockUseRouterData);
   mockedUseRouter.mockImplementation(mockUseRouter);
 
-  const mockedUseNotifier = useNotifier as jest.Mock;
   const mockSetError = jest.fn();
   mockedUseNotifier.mockImplementation(
     jest.fn(() => ({ setSuccess: jest.fn(), setError: mockSetError })),
@@ -34,7 +34,8 @@ describe('Auth actions', () => {
   describe('useSignIn', () => {
     test('should mutate state & call localStorage.setItem & call pushRoute', async () => {
       // Arrange
-      const data = { login: 'test', password: 'password' };
+      const data = { email: 'test', password: 'password' };
+      const expectedValue = { me: mockCurrentUser, accessToken: '', refreshToken: '' }
 
       const mocks = [
         {
@@ -45,7 +46,7 @@ describe('Auth actions', () => {
             },
           },
           result: {
-            data: { signIn: { me: { ...mockCurrentUser } } },
+            data: { signin: expectedValue },
           },
         },
       ];
@@ -60,7 +61,7 @@ describe('Auth actions', () => {
 
       // Assert
       await waitFor(() => {
-        expect(result?.current[1]?.data?.signIn).toEqual({ me: { ...mockCurrentUser } });
+        expect(result?.current[1]?.data?.signin).toEqual(expectedValue);
       });
       expect(localStorage.setItem).toHaveBeenCalledTimes(1);
     });
@@ -70,16 +71,14 @@ describe('Auth actions', () => {
     test('should mutate state & call localStorage.setItem & call pushRoute', async () => {
       // Arrange
       const data = {
+        avatar: undefined,
         email: 'test@test.test',
         password: 'password',
         firstName: 'test',
         lastName: 'test',
-        middleName: 'test',
-        phoneNumber: '123456789',
-        smsCode: '1234',
       };
+      const expectedValue = { me: mockCurrentUser, accessToken: '', refreshToken: '' }
 
-      const mockResponse = { me: { ...mockCurrentUser } };
       const mocks = [
         {
           request: {
@@ -89,7 +88,7 @@ describe('Auth actions', () => {
             },
           },
           result: {
-            data: { signUp: mockResponse },
+            data: { signup: expectedValue },
           },
         },
       ];
@@ -104,7 +103,7 @@ describe('Auth actions', () => {
 
       // Assert
       await waitFor(() => {
-        expect(result?.current[1]?.data?.signUp).toEqual(mockResponse);
+        expect(result?.current[1]?.data?.signup).toEqual(expectedValue);
       });
       expect(localStorage.setItem).toHaveBeenCalledTimes(1);
     });
@@ -231,6 +230,7 @@ describe('Auth actions', () => {
         password: 'password',
         resetToken: 'test',
       };
+      const expectedValue = { me: mockCurrentUser, accessToken: '', refreshToken: '' }
 
       const mocks = [
         {
@@ -241,7 +241,7 @@ describe('Auth actions', () => {
             },
           },
           result: {
-            data: { updatePassword: { accessToken: 'token' } },
+            data: { updatePassword: expectedValue },
           },
         },
       ];
@@ -256,7 +256,7 @@ describe('Auth actions', () => {
 
       // Assert
       await waitFor(() => {
-        expect(result?.current[1]?.data?.updatePassword).toEqual({ accessToken: 'token' });
+        expect(result?.current[1]?.data?.updatePassword).toEqual(expectedValue);
       });
     });
   });

@@ -16,11 +16,11 @@ import ErrorPage from 'pages/_error';
 export const ProfilePage: TNextPage = () => {
   const { loading, error, user } = useCurrentUser();
 
-  if (!loading && error) return <ErrorPage statusCode={404} />;
+  if (!loading && (error || !user)) return <ErrorPage statusCode={404} />;
 
   return (
     <DefaultTemplate testId="profile-page">
-      {!loading ? <ProfileForm profile={user} /> : <Loader testId="profile-loading" />}
+      {!loading && user ? <ProfileForm user={user} /> : <Loader testId="profile-loading" />}
     </DefaultTemplate>
   );
 };
