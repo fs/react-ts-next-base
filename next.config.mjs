@@ -66,12 +66,7 @@ const nextConfig = {
   env: {
     ASSET_HOST: process.env.ASSET_HOST || '',
     API_URL: process.env.API_URL,
-    API_KEY_MAP: process.env.API_KEY_MAP,
-    DEFAULT_LATITUDE: process.env.DEFAULT_LATITUDE,
-    DEFAULT_LONGITUDE: process.env.DEFAULT_LONGITUDE,
     PRINT_HTTP_REQUEST_LOGS: process.env.PRINT_HTTP_REQUEST_LOGS,
-    FEATURE_DISPUTES: process.env.FEATURE_DISPUTES,
-    FEATURE_ADMIN_DISPUTES_PAGE: process.env.FEATURE_ADMIN_DISPUTES_PAGE,
   },
 };
 
