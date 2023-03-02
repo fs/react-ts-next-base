@@ -1,6 +1,6 @@
-# MEDAGREGATOR Client App
+# react-ts-next-base
 
-[![Build Status](https://flatstack.semaphoreci.com/badges/nzemo_react/branches/master.svg?style=shields&key=17d93e8c-5f06-4c9d-b7ab-d109d057d9e4)](https://flatstack.semaphoreci.com/projects/nzemo_react)
+[![Build Status](https://flatstack.semaphoreci.com/badges/react-ts-next-base/branches/master.svg?style=shields)](https://flatstack.semaphoreci.com/projects/react-ts-next-base)
 
 ### Install dependencies:
 

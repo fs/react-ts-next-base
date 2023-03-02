@@ -5,7 +5,6 @@
   "scripts": {
     "build": "next build",
     "server": "node -r ts-node/register/transpile-only server.ts",
-    "server-prod": "yarn build && NODE_ENV=production API_URL=https://e2e-api.medagregator.ru yarn server",
     "test": "jest --watch",
     "test-debug": "node --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage",
     "lint": "yarn lint:js && yarn lint:css",
