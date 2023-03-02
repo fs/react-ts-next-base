@@ -1,13 +1,14 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
 import NiceModal from '@ebay/nice-modal-react';
-import GlobalStyles from 'public/styles/globalStyles';
-import theme from 'public/styles/theme';
+import { ThemeProvider } from 'styled-components';
 import { MockedProvider } from '@apollo/client/testing';
-import { NotifierProvider } from 'contexts/NotifierContext';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import 'react-toastify/dist/ReactToastify.css';
+
+import theme from 'public/styles/theme';
+import GlobalStyles from 'public/styles/globalStyles';
+import { NotifierProvider } from 'contexts/NotifierContext';
 
 import Notifier from 'components/shared/atoms/Notifier';
 

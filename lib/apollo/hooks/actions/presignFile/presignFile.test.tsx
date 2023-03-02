@@ -1,10 +1,10 @@
 import React from 'react';
-
-import { renderHook, waitFor } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
+import { renderHook, waitFor } from '@testing-library/react';
 
-import PresignData from 'graphql/mutations/presignData.graphql';
-import mockPresignData from '__tests__/mocks/mockPresignData';
+import { mockPresignData } from '__tests__/mocks/mockPresignData';
+import { PresignDataDocument } from 'graphql/mutations/__generated__/presignData.generated';
+
 import { usePresignFile } from './presignFile';
 
 describe('usePresignFile', () => {
@@ -17,7 +17,7 @@ describe('usePresignFile', () => {
     const mocks = [
       {
         request: {
-          query: PresignData,
+          query: PresignDataDocument,
           variables: { input: data },
         },
         result: {
@@ -36,7 +36,7 @@ describe('usePresignFile', () => {
 
     // Assert
     await waitFor(() => {
-      expect(result.current[1].data.presignData).toEqual(mockPresignData);
+      expect(result?.current[1]?.data?.presignData).toEqual(mockPresignData);
     });
   });
 });

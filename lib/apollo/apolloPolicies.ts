@@ -1,6 +1,7 @@
 import { KeyArgsFunction } from '@apollo/client/cache/inmemory/policies';
-import { keys, omit } from 'lodash';
 import { FieldMergeFunction } from '@apollo/client';
+import omit from 'lodash/omit';
+import keys from 'lodash/keys';
 
 import { PageInfo } from './types';
 

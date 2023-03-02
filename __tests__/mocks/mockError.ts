@@ -1,4 +1,4 @@
-export default [
+export const mockError = [
   {
     message: 'Invalid credentials',
     locations: [{ line: 2, column: 3 }],
