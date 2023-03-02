@@ -8,6 +8,7 @@ import { useActivities } from 'lib/apollo/hooks/state/activity';
 
 import Select from 'components/shared/atoms/Selects/Select';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
+import ErrorPage from 'pages/_error';
 
 import { TNextPage } from 'lib/apollo/types';
 import { ActivityEvent } from 'graphql/types';
@@ -27,7 +28,7 @@ export const ActivityPage: TNextPage = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(activityPageSizes[0]);
 
-  const { activities, pageInfo, loading } = useActivities({
+  const { activities, pageInfo, loading, error } = useActivities({
     before: beforeCursor,
     after: afterCursor,
     event: activityEvent,
@@ -53,6 +54,8 @@ export const ActivityPage: TNextPage = () => {
       resetState();
     }
   };
+
+  if (!loading && (error || !activities)) return <ErrorPage statusCode={404} />;
 
   return (
     <DefaultTemplate>
