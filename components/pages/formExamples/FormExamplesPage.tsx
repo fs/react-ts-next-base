@@ -2,12 +2,15 @@ import React from 'react';
 import * as Yup from 'yup';
 
 import Form from 'components/shared/molecules/Form';
+import { FormFieldType } from 'components/shared/molecules/Form/types';
+
 import { REQUIRED_FIELD } from 'config/constants/errorsText';
+import { PasswordAutocomplete } from 'components/shared/molecules/Form/formFields/types';
 
 const form = {
   fields: [
     {
-      type: 'text',
+      type: FormFieldType.text,
       name: 'text',
       title: 'Name',
       placeholder: 'Type here',
@@ -15,7 +18,7 @@ const form = {
       validationSchema: Yup.string().required('This field is required'),
     },
     {
-      type: 'email',
+      type: FormFieldType.email,
       name: 'email',
       title: 'E-mail',
       placeholder: 'your email',
@@ -25,19 +28,26 @@ const form = {
         .required('This field is required'),
     },
     {
-      type: 'text',
+      type: FormFieldType.password,
+      name: 'password',
+      placeholder: 'password',
+      initialValue: '',
+      autoComplete: PasswordAutocomplete.newPassword,
+    },
+    {
+      type: FormFieldType.text,
       name: 'text2',
       placeholder: 'Type here 2',
       initialValue: '222',
     },
     {
-      type: 'textarea',
+      type: FormFieldType.textarea,
       name: 'textarea',
       placeholder: 'Type here 3',
       initialValue: '3333',
     },
     {
-      type: 'select',
+      type: FormFieldType.select,
       name: 'select',
       initialValue: 2,
       options: [
@@ -46,21 +56,21 @@ const form = {
       ],
     },
     {
-      type: 'checkbox',
+      type: FormFieldType.checkbox,
       name: 'checkbox',
       label: 'check it',
       initialValue: true,
       validationSchema: Yup.string().required(REQUIRED_FIELD),
     },
+    // {
+    //   type: FormFieldType.submit,
+    //   name: 'button',
+    //   initialValue: 'check it',
+    //   // eslint-disable-next-line no-console
+    //   onClick: () => console.log('check it'),
+    // },
     {
-      type: 'button',
-      name: 'button',
-      initialValue: 'check it',
-      // eslint-disable-next-line no-console
-      onClick: () => console.log('check it'),
-    },
-    {
-      type: 'submit',
+      type: FormFieldType.submit,
       name: 'submit',
       initialValue: 'submit it',
     },

@@ -1,10 +1,10 @@
 import type { FormikValues } from 'formik';
-import { StringSchema } from 'yup';
+import * as Yup from 'yup';
 
 import { FormFieldConfig } from './types';
 
 type ValidationSchema = {
-  [key: string]: StringSchema;
+  [key: string]: Yup.AnySchema;
 };
 
 type FormikProps<FormValues> = {

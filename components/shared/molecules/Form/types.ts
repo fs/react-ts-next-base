@@ -1,6 +1,6 @@
 import React, { ComponentProps } from 'react';
 import type { FormikHelpers, FormikValues } from 'formik';
-import { StringSchema } from 'yup';
+import * as Yup from 'yup';
 
 import * as formFields from './formFields';
 
@@ -29,7 +29,7 @@ export type BaseFormFieldConfig = {
 };
 
 type FormikProps = {
-  validationSchema?: StringSchema;
+  validationSchema?: Yup.AnySchema;
   initialValue: unknown;
 };
 
@@ -41,8 +41,7 @@ type FieldsUnionPropsTypes = ComponentProps<InferValueTypes<typeof formFields>>;
 type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : never;
 
 export type FormFieldConfig = DistributiveOmit<FieldsUnionPropsTypes, 'isFormSubmitting'> &
-  FormikProps &
-  BaseFormFieldConfig;
+  FormikProps;
 
 type FormType<TFormValues extends FormikValues = FormikValues> = {
   fields: FormFieldConfig[];
