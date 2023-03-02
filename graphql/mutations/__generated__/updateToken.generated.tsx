@@ -1,7 +1,7 @@
 import * as Types from '../../types';
 
 import { gql } from '@apollo/client';
-import { CurrentUserInfoFragmentDoc } from '../../fragments/__generated__/currentUserInfo.generated';
+import { CurrentUserFragmentDoc } from '../../fragments/__generated__/currentUserInfo.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type UpdateTokenMutationVariables = Types.Exact<{ [key: string]: never }>;
@@ -27,13 +27,13 @@ export const UpdateTokenDocument = gql`
   mutation updateToken {
     updateToken {
       me {
-        ...CurrentUserInfo
+        ...CurrentUser
       }
       accessToken
       refreshToken
     }
   }
-  ${CurrentUserInfoFragmentDoc}
+  ${CurrentUserFragmentDoc}
 `;
 export type UpdateTokenMutationFn = Apollo.MutationFunction<
   UpdateTokenMutation,

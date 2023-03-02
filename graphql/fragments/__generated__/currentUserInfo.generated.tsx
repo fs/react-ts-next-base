@@ -1,7 +1,7 @@
 import * as Types from '../../types';
 
 import { gql } from '@apollo/client';
-export type CurrentUserInfoFragment = {
+export type CurrentUserFragment = {
   __typename?: 'CurrentUser';
   avatarUrl?: string | null;
   id: string;
@@ -10,8 +10,8 @@ export type CurrentUserInfoFragment = {
   lastName?: string | null;
 };
 
-export const CurrentUserInfoFragmentDoc = gql`
-  fragment CurrentUserInfo on CurrentUser {
+export const CurrentUserFragmentDoc = gql`
+  fragment CurrentUser on CurrentUser {
     avatarUrl
     id
     email

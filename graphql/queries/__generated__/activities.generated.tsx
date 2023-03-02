@@ -1,7 +1,9 @@
 import * as Types from '../../types';
 
 import { gql } from '@apollo/client';
-import { CurrentUserInfoFragmentDoc } from '../../fragments/__generated__/currentUserInfo.generated';
+import { CurrentUserFragmentDoc } from '../../fragments/__generated__/currentUserInfo.generated';
+import { ActivityFragmentDoc } from '../../fragments/__generated__/activityInfo.generated';
+import { PageInfoFragmentDoc } from '../../fragments/__generated__/pageInfo.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type ActivitiesQueryVariables = Types.Exact<{
@@ -63,35 +65,23 @@ export const ActivitiesDocument = gql`
     $after: String
   ) {
     me {
-      ...CurrentUserInfo
+      ...CurrentUser
     }
     activities(events: $events, last: $last, before: $before, first: $first, after: $after) {
       edges {
         cursor
         node {
-          body
-          createdAt
-          event
-          id
-          title
-          user {
-            avatarUrl
-            email
-            firstName
-            id
-            lastName
-          }
+          ...Activity
         }
       }
       pageInfo {
-        endCursor
-        hasNextPage
-        hasPreviousPage
-        startCursor
+        ...PageInfo
       }
     }
   }
-  ${CurrentUserInfoFragmentDoc}
+  ${CurrentUserFragmentDoc}
+  ${ActivityFragmentDoc}
+  ${PageInfoFragmentDoc}
 `;
 
 /**

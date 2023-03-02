@@ -1,7 +1,7 @@
 import * as Types from '../../types';
 
 import { gql } from '@apollo/client';
-import { CurrentUserInfoFragmentDoc } from '../../fragments/__generated__/currentUserInfo.generated';
+import { CurrentUserFragmentDoc } from '../../fragments/__generated__/currentUserInfo.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type UpdateUserMutationVariables = Types.Exact<{
@@ -27,11 +27,11 @@ export const UpdateUserDocument = gql`
   mutation updateUser($input: UpdateUserInput!) {
     updateUser(input: $input) {
       me {
-        ...CurrentUserInfo
+        ...CurrentUser
       }
     }
   }
-  ${CurrentUserInfoFragmentDoc}
+  ${CurrentUserFragmentDoc}
 `;
 export type UpdateUserMutationFn = Apollo.MutationFunction<
   UpdateUserMutation,

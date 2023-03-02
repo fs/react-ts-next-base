@@ -3,7 +3,7 @@
 mutation updateToken {
   updateToken {
     me {
-      ...CurrentUserInfo
+      ...CurrentUser
     }
    accessToken
   refreshToken

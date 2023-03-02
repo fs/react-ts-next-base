@@ -1,7 +1,7 @@
 import * as Types from '../../types';
 
 import { gql } from '@apollo/client';
-import { CurrentUserInfoFragmentDoc } from '../../fragments/__generated__/currentUserInfo.generated';
+import { CurrentUserFragmentDoc } from '../../fragments/__generated__/currentUserInfo.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type SignInMutationVariables = Types.Exact<{
@@ -29,13 +29,13 @@ export const SignInDocument = gql`
   mutation signIn($input: SignInInput!) {
     signin(input: $input) {
       me {
-        ...CurrentUserInfo
+        ...CurrentUser
       }
       accessToken
       refreshToken
     }
   }
-  ${CurrentUserInfoFragmentDoc}
+  ${CurrentUserFragmentDoc}
 `;
 export type SignInMutationFn = Apollo.MutationFunction<SignInMutation, SignInMutationVariables>;
 

@@ -1,7 +1,7 @@
 import * as Types from '../../types';
 
 import { gql } from '@apollo/client';
-import { CurrentUserInfoFragmentDoc } from '../../fragments/__generated__/currentUserInfo.generated';
+import { CurrentUserFragmentDoc } from '../../fragments/__generated__/currentUserInfo.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type CurrentUserQueryVariables = Types.Exact<{ [key: string]: never }>;
@@ -21,10 +21,10 @@ export type CurrentUserQuery = {
 export const CurrentUserDocument = gql`
   query CurrentUser {
     me {
-      ...CurrentUserInfo
+      ...CurrentUser
     }
   }
-  ${CurrentUserInfoFragmentDoc}
+  ${CurrentUserFragmentDoc}
 `;
 
 /**

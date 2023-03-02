@@ -3,7 +3,7 @@
 mutation signUp($input: SignUpInput!) {
   signup(input: $input) {
     me {
-      ...CurrentUserInfo
+      ...CurrentUser
     }
     accessToken
     refreshToken
