@@ -1,3 +1,1 @@
-import ActivityTable from './ActivityTable';
-
-export default ActivityTable;
+export { default } from './ActivityTable';

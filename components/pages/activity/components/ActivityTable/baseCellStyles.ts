@@ -1,6 +1,7 @@
+import { TTheme } from 'public/styles/theme';
 import { css } from 'styled-components';
 
-const baseCellStyles = ({ up, breakpoints }) => css`
+const baseCellStyles = ({ up, breakpoints }: TTheme) => css`
   border-bottom: 1px solid #e1e1e1;
   padding: 0.8rem 0.6rem;
   font-size: 0.8rem;

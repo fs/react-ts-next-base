@@ -10,7 +10,7 @@ export const StyledTable = styled.table(
       overflow-x: auto;
       text-align: left;
       width: 100%;
-      color: ${colors.darkGrey};
+      color: ${colors.grey_800};
 
       ${up(breakpoints.lg)} {
         display: table;

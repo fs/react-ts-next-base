@@ -1,34 +1,36 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 
 import withAuth from 'lib/auth/withAuth';
 import withAuthSecurity from 'lib/auth/withAuthSecurity';
 import withGetDataFromTree from 'lib/apollo/withGetDataFromTree';
 
-import { useActivity } from 'lib/apollo/hooks/state/activity';
+import { useActivities } from 'lib/apollo/hooks/state/activity';
 
+import Select from 'components/shared/atoms/Selects/Select';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 
+import { TNextPage } from 'lib/apollo/types';
 import { ActivityEvent } from 'graphql/types';
-import { activityEvents, activityPageSizes } from 'config/constants/activity';
 
+import Loader from 'components/shared/atoms/Loader';
 import ActivityTable from './components/ActivityTable';
-import ActivityDropdown from './components/ActivityDropdown';
 import ActivityPagination from './components/ActivityPagination';
 
-import { Wrapper, filterDropdownStyles, pageSizeDropdownStyles } from './styled';
+import { Wrapper } from './styled';
+import { TEventChange, TSizeChange } from './types';
+import { activityEvents, activityPageSizes, activityPageSizeOptions } from './constants';
 
-const ActivityPage = () => {
+export const ActivityPage: TNextPage = () => {
   const [beforeCursor, setBeforeCursor] = useState<undefined | string>();
   const [afterCursor, setAfterCursor] = useState<undefined | string>();
-  const [event, setEvent] = useState<undefined | ActivityEvent>();
-
+  const [activityEvent, setActivityEvent] = useState<undefined | ActivityEvent>();
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(activityPageSizes[0]);
 
-  const { activities, pageInfo, loading, error } = useActivity({
+  const { activities, pageInfo, loading } = useActivities({
     before: beforeCursor,
     after: afterCursor,
-    event,
+    event: activityEvent,
     pageSize,
   });
 
@@ -38,38 +40,36 @@ const ActivityPage = () => {
     setPageNumber(1);
   };
 
-  const handleFilterChange = (changeEvent: ChangeEvent<HTMLSelectElement>) => {
-    setEvent(changeEvent.target.value);
-    resetState();
+  const onEventChange: TEventChange = value => {
+    if (value && 'value' in value) {
+      setActivityEvent(value.value);
+      resetState();
+    }
   };
 
-  const handlePageSizeChange = (changeEvent: ChangeEvent<HTMLSelectElement>) => {
-    setPageSize(+changeEvent.target.value);
-    resetState();
+  const onPageSizeChange: TSizeChange = value => {
+    if (value && 'value' in value) {
+      setPageSize(value.value);
+      resetState();
+    }
   };
 
   return (
     <DefaultTemplate>
       <Wrapper>
-        <ActivityDropdown
-          label="Choose activity event:"
-          selectedValue={event}
-          values={activityEvents}
-          hasEmptyOption
-          onChange={handleFilterChange}
-          testId="activity-event-dropdown"
-          disabled={loading}
-          customStyles={filterDropdownStyles}
+        <Select
+          name="activity-event"
+          title="Choose activity event:"
+          options={activityEvents}
+          value={activityEvents.find(({ value }) => value === activityEvent) || null}
+          onChange={onEventChange}
         />
-
-        <ActivityDropdown
-          label="Choose activity page size:"
-          selectedValue={pageSize}
-          values={activityPageSizes.map(item => ({ value: item, name: item }))}
-          onChange={handlePageSizeChange}
-          testId="activity-size-dropdown"
-          disabled={loading}
-          customStyles={pageSizeDropdownStyles}
+        <Select
+          name="activity-size"
+          title="Choose activity page size:"
+          options={activityPageSizeOptions}
+          value={activityPageSizeOptions.find(({ value }) => value === pageSize) || null}
+          onChange={onPageSizeChange}
         />
 
         {pageInfo && (
@@ -82,7 +82,11 @@ const ActivityPage = () => {
           />
         )}
 
-        {!loading && !error && activities && <ActivityTable data={activities} />}
+        {!loading && activities ? (
+          <ActivityTable activities={activities} />
+        ) : (
+          <Loader testId="activity-loading" />
+        )}
       </Wrapper>
     </DefaultTemplate>
   );

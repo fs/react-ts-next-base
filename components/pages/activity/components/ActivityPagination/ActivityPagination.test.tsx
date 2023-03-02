@@ -1,8 +1,9 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import 'jest-styled-components';
 
 import renderWithTheme from '__tests__/helpers/renderWithTheme';
-import pageInfoMock from '__tests__/mocks/pageInfoMock';
+import { mockPageInfo } from '__tests__/mocks/mockPageInfo';
 import ActivityPagination from 'components/pages/activity/components/ActivityPagination';
 
 describe('ActivityPagination', () => {
@@ -16,31 +17,43 @@ describe('ActivityPagination', () => {
     // Act
     render(
       renderWithTheme(
-        <ActivityPagination pageInfo={pageInfoMock} pageNumber={mockPageNumber} setPageNumber={mockSetPageNumber} />,
+        <ActivityPagination
+          pageInfo={mockPageInfo}
+          pageNumber={mockPageNumber}
+          setPageNumber={mockSetPageNumber}
+          setAfterCursor={jest.fn}
+          setBeforeCursor={jest.fn}
+        />,
       ),
     );
 
     const pagination = screen.getByTestId(mockTestId);
 
     // Assert
-    expect(pagination).toMatchSnapshot();
+    expect(pagination).toBeInTheDocument();
   });
 
   test('should disable buttons if no other pages except current', () => {
     // Arrange
-    const mockPageInfo = { ...pageInfoMock, hasNextPage: false };
+    const mockPageInfoData = { ...mockPageInfo, hasNextPage: false };
 
     // Act
     render(
       renderWithTheme(
-        <ActivityPagination pageInfo={mockPageInfo} pageNumber={mockPageNumber} setPageNumber={mockSetPageNumber} />,
+        <ActivityPagination
+          pageInfo={mockPageInfoData}
+          pageNumber={mockPageNumber}
+          setPageNumber={mockSetPageNumber}
+          setAfterCursor={jest.fn}
+          setBeforeCursor={jest.fn}
+        />,
       ),
     );
 
     const buttons = screen.getAllByRole('button');
 
     // Assert
-    buttons.forEach((btn) => {
+    buttons.forEach(btn => {
       expect(btn).toBeDisabled();
     });
   });

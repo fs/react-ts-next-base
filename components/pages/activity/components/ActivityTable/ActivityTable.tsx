@@ -1,22 +1,19 @@
+import React from 'react';
 import ProfileImage from 'components/shared/atoms/ProfileImage';
-
-import { Activity } from 'types/activityType';
 
 import DataCell from './DataCell';
 
+import { TActivityTable } from './types';
+import { activityEventColors } from './constants';
 import { StyledTable, ColorLabel, HeaderCell, UserInfo, EmptyList } from './styled';
 
-type Props = {
-  data: Activity[];
-};
-
-const ActivityTable = ({ data }: Props) => {
+const ActivityTable: React.FunctionComponent<TActivityTable> = ({ activities }) => {
   const columnNames = ['Title', 'Description', 'Date', 'User'];
 
   return (
     <>
-      {data.length > 0 ? (
-        <StyledTable data-testid="activity-table" data-cy="activity-table">
+      {activities.length > 0 ? (
+        <StyledTable data-testid="activity-table">
           <thead>
             <tr>
               {columnNames.map((name, id) => (
@@ -27,17 +24,19 @@ const ActivityTable = ({ data }: Props) => {
             </tr>
           </thead>
           <tbody>
-            {data.map(({ id, title, description, date, color, name, email, avatarUrl }) => {
+            {activities.map(({ id, title, body, createdAt, event, user }) => {
+              const name = `${user?.firstName} ${user?.lastName}`;
+
               return (
-                <tr key={id} data-cy="activity-row" data-id={id}>
-                  <ColorLabel color={color} />
+                <tr key={id} data-testid="activity-row">
+                  <ColorLabel color={activityEventColors[event]} />
                   <DataCell>{title}</DataCell>
-                  <DataCell>{description}</DataCell>
-                  <DataCell>{date.toString()}</DataCell>
+                  <DataCell>{body}</DataCell>
+                  <DataCell>{new Date(createdAt).toLocaleString()}</DataCell>
                   <DataCell>
-                    <ProfileImage avatar={avatarUrl} />
+                    <ProfileImage avatar={user?.avatarUrl} />
                     <UserInfo>
-                      {name} ({email})
+                      {name} ({user.email})
                     </UserInfo>
                   </DataCell>
                 </tr>

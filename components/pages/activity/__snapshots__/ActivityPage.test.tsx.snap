@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Activity page should render correctly 1`] = `
+<table
+  class="sc-dIouRR jbjBFL"
+  data-testid="activity-table"
+>
+  <thead>
+    <tr>
+      <th
+        class="sc-dmRaPn oPUDT"
+        colspan="2"
+      >
+        Title
+      </th>
+      <th
+        class="sc-dmRaPn oPUDT"
+        colspan="1"
+      >
+        Description
+      </th>
+      <th
+        class="sc-dmRaPn oPUDT"
+        colspan="1"
+      >
+        Date
+      </th>
+      <th
+        class="sc-dmRaPn oPUDT"
+        colspan="1"
+      >
+        User
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      data-testid="activity-row"
+    >
+      <td
+        class="sc-hHLeRK AxKNg"
+        color="#00e676"
+      />
+      <td
+        class="sc-bBrHrO kdXtnc"
+      >
+        <div
+          class="sc-ivTmOn kDpbig"
+        >
+          title
+        </div>
+      </td>
+      <td
+        class="sc-bBrHrO kdXtnc"
+      >
+        <div
+          class="sc-ivTmOn kDpbig"
+        >
+          text
+        </div>
+      </td>
+      <td
+        class="sc-bBrHrO kdXtnc"
+      >
+        <div
+          class="sc-ivTmOn kDpbig"
+        >
+          Invalid Date
+        </div>
+      </td>
+      <td
+        class="sc-bBrHrO kdXtnc"
+      >
+        <div
+          class="sc-ivTmOn kDpbig"
+        >
+          <div
+            class="sc-kDDrLX fNsyKy"
+          >
+            <img
+              alt="Avatar"
+              class="sc-iqcoie gWfHcr"
+              src="/images/avatar-placeholder.png"
+            />
+          </div>
+          <span
+            class="sc-kgflAQ ccjRmf"
+          >
+            firstName lastName
+             (
+            test@test.com
+            )
+          </span>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Activity page should show loader while loading 1`] = `
+<div
+  class="sc-llJcti cgvikk"
+  data-testid="activity-loading"
+>
+  <div
+    class="sc-iIPllB bAGyCK"
+    size="45"
+  >
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;
