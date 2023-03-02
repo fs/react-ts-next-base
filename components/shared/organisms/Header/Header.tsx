@@ -6,7 +6,7 @@ import ActionLink from 'components/shared/atoms/ActionLink';
 
 import UserNavigation from './UserNavigation';
 
-import { THeader } from './types';
+import { ActionsConfig, THeader } from './types';
 import { HeaderWrapper, Links } from './styled';
 
 const Header: React.FunctionComponent<THeader> = ({ user, signOut }) => {
@@ -15,7 +15,7 @@ const Header: React.FunctionComponent<THeader> = ({ user, signOut }) => {
     { text: 'Activity', url: ACTIVITY, testId: 'activity' },
   ];
 
-  const actions = [
+  const actions: ActionsConfig[] = [
     { text: 'Sign Out', onClick: signOut, testId: 'sign-out' },
     { text: 'Log out from all devices', onClick: () => signOut({ everywhere: true }) },
   ];

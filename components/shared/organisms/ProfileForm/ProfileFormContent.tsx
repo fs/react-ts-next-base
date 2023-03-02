@@ -2,9 +2,10 @@ import React from 'react';
 import * as Yup from 'yup';
 
 import Form from 'components/shared/molecules/Form';
+import { FormFieldType } from 'components/shared/molecules/Form/types';
 
-import { FormWrapper, StyledTitle, AvatarWrapper, AvatarImg } from './styled';
 import { TFormValues, TProfileFormContent } from './types';
+import { FormWrapper, StyledTitle, AvatarWrapper, AvatarImg } from './styled';
 
 const ProfileFormContent: React.FunctionComponent<TProfileFormContent> = ({
   temporaryUrl,
@@ -16,58 +17,58 @@ const ProfileFormContent: React.FunctionComponent<TProfileFormContent> = ({
 
   const fields = [
     {
-      type: 'file',
+      type: FormFieldType.file,
       name: 'avatar',
       title: 'Avatar',
-      testID: 'avatar',
+      testId: 'avatar',
       accept: 'image/*',
       onChange: handleAvatarChange,
       initialValue: null,
     },
     {
-      type: 'text',
+      type: FormFieldType.text,
       name: 'firstName',
       title: 'First Name',
       placeholder: 'First Name',
-      testID: 'first-name',
+      testId: 'first-name',
       initialValue: firstName || '',
       validationSchema: Yup.string(),
     },
     {
-      type: 'text',
+      type: FormFieldType.text,
       name: 'lastName',
       title: 'Last Name',
       placeholder: 'Last Name',
-      testID: 'last-name',
+      testId: 'last-name',
       initialValue: lastName || '',
       validationSchema: Yup.string(),
     },
     {
-      type: 'text',
+      type: FormFieldType.text,
       name: 'email',
       title: 'Email',
       placeholder: 'Email',
-      testID: 'email',
+      testId: 'email',
       initialValue: email || '',
       validationSchema: Yup.string()
         .email('The email must be valid!!')
         .required('This field is required'),
     },
     {
-      type: 'password',
+      type: FormFieldType.password,
       name: 'password',
       title: 'New Password',
       placeholder: 'New Password',
-      testID: 'password',
+      testId: 'password',
       initialValue: '',
       validationSchema: Yup.string(),
     },
     {
-      type: 'password',
+      type: FormFieldType.password,
       name: 'currentPassword',
       title: 'Current Password',
       placeholder: 'Current Password',
-      testID: 'current-password',
+      testId: 'current-password',
       initialValue: '',
       validationSchema: Yup.string().when(['password'], {
         is: (password: string) => password?.length > 0,
@@ -78,9 +79,9 @@ const ProfileFormContent: React.FunctionComponent<TProfileFormContent> = ({
       }),
     },
     {
-      type: 'submit',
+      type: FormFieldType.submit,
       name: 'Update',
-      testID: 'submit-button',
+      testId: 'submit-button',
       label: 'Update',
       initialValue: 'Update',
     },
@@ -95,7 +96,7 @@ const ProfileFormContent: React.FunctionComponent<TProfileFormContent> = ({
 
   return (
     <FormWrapper>
-      <StyledTitle data-cy="profile-form-title">Profile</StyledTitle>
+      <StyledTitle data-testid="profile-form-title">Profile</StyledTitle>
       {avatarSrc && (
         <AvatarWrapper>
           <AvatarImg src={avatarSrc} />

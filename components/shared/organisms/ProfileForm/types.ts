@@ -1,10 +1,10 @@
-import { ChangeEvent } from "react";
-import { FormikHelpers } from "formik";
-import { CurrentUserInfoFragment } from "graphql/fragments/__generated__/currentUserInfo.generated"
+import { ChangeEvent } from 'react';
+import { FormikHelpers } from 'formik';
+import { CurrentUserFragment } from 'graphql/fragments/__generated__/currentUserInfo.generated';
 
 export type TProfileForm = {
-  user: CurrentUserInfoFragment;
-}
+  user: CurrentUserFragment;
+};
 
 export type TFormValues = {
   email: string;
@@ -16,8 +16,7 @@ export type TFormValues = {
 
 export type TProfileFormContent = {
   temporaryUrl: string | null;
-  user: CurrentUserInfoFragment;
+  user: CurrentUserFragment;
   onSubmit: (values: TFormValues, formikHelpers: FormikHelpers<TFormValues>) => Promise<void>;
   handleAvatarChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
-
