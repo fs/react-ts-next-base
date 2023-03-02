@@ -1,6 +1,7 @@
 import * as Types from '../../types';
 
 import { gql } from '@apollo/client';
+import { CurrentUserInfoFragmentDoc } from '../../fragments/__generated__/currentUserInfo.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type UpdatePasswordMutationVariables = Types.Exact<{
@@ -16,10 +17,9 @@ export type UpdatePasswordMutation = {
     me?: {
       __typename?: 'CurrentUser';
       avatarUrl?: string | null;
-      confirmedAt?: any | null;
+      id: string;
       email: string;
       firstName?: string | null;
-      id: string;
       lastName?: string | null;
     } | null;
   } | null;
@@ -29,17 +29,13 @@ export const UpdatePasswordDocument = gql`
   mutation updatePassword($input: UpdatePasswordInput!) {
     updatePassword(input: $input) {
       me {
-        avatarUrl
-        confirmedAt
-        email
-        firstName
-        id
-        lastName
+        ...CurrentUserInfo
       }
       accessToken
       refreshToken
     }
   }
+  ${CurrentUserInfoFragmentDoc}
 `;
 export type UpdatePasswordMutationFn = Apollo.MutationFunction<
   UpdatePasswordMutation,
