@@ -1,8 +1,7 @@
+import React from 'react';
 import type { FormikValues } from 'formik';
 import { Form as FormikForm, Formik } from 'formik';
-import { object } from 'yup';
-
-import { FormFieldConfig, FormFieldType, FormType } from 'types/formsType';
+import * as Yup from 'yup';
 
 import { collectFormikProps } from './utils';
 
@@ -17,12 +16,14 @@ import {
   EmailFormField,
 } from './formFields';
 import DefaultFieldWrapper from './DefaultFieldWrapper';
+
+import { FormFieldConfig, TForm } from './types';
 import { ErrorWrapper, FormContainer, FormWrapper, FieldWrapper } from './styled';
 
-const Form = <FormValues extends FormikValues = FormikValues>({ form }: { form: FormType<FormValues> }) => {
+const Form = <FormValues extends FormikValues = FormikValues>({ form }: TForm<FormValues>) => {
   const { fields, submit } = form;
   const { initialValues, validationSchema } = collectFormikProps<FormValues>(fields);
-  const formValidationSchema = object().shape(validationSchema);
+  const formValidationSchema = Yup.object().shape(validationSchema);
 
   return (
     <FormWrapper data-cy="profile-update-form">
@@ -32,7 +33,7 @@ const Form = <FormValues extends FormikValues = FormikValues>({ form }: { form: 
         initialValues={initialValues}
         validationSchema={formValidationSchema}
       >
-        {(props) => {
+        {props => {
           const { isSubmitting, status } = props;
           return (
             <FormikForm>
@@ -40,45 +41,51 @@ const Form = <FormValues extends FormikValues = FormikValues>({ form }: { form: 
                 {fields.map((fieldConfig: FormFieldConfig) => {
                   const { name, title } = fieldConfig;
                   switch (fieldConfig.type) {
-                    case FormFieldType.select:
+                    case 'select':
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
                           <SelectFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
-                    case FormFieldType.checkbox:
-                      return <CheckboxFormField key={name} {...fieldConfig} isFormSubmitting={isSubmitting} />;
-                    case FormFieldType.text:
+                    case 'checkbox':
+                      return (
+                        <CheckboxFormField
+                          key={name}
+                          {...fieldConfig}
+                          isFormSubmitting={isSubmitting}
+                        />
+                      );
+                    case 'text':
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
                           <TextFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
-                    case FormFieldType.password:
+                    case 'password':
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
                           <PasswordFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
-                    case FormFieldType.textarea:
+                    case 'textarea':
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
                           <TextareaFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
-                    case FormFieldType.file:
+                    case 'file':
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
                           <FileFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
-                    case FormFieldType.email:
+                    case 'email':
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
                           <EmailFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
-                    case FormFieldType.submit:
+                    case 'submit':
                       return (
                         <FieldWrapper key={name}>
                           <SubmitButton {...fieldConfig} isFormSubmitting={isSubmitting} />

@@ -1,5 +1,8 @@
+import React from 'react';
 import * as Yup from 'yup';
+
 import Form from 'components/shared/molecules/Form';
+import { REQUIRED_FIELD } from 'config/constants/errorsText';
 
 const form = {
   fields: [
@@ -17,7 +20,9 @@ const form = {
       title: 'E-mail',
       placeholder: 'your email',
       initialValue: '',
-      validationSchema: Yup.string().email('The email must be valid!!').required('This field is required'),
+      validationSchema: Yup.string()
+        .email('The email must be valid!!')
+        .required('This field is required'),
     },
     {
       type: 'text',
@@ -45,12 +50,13 @@ const form = {
       name: 'checkbox',
       label: 'check it',
       initialValue: true,
-      validationSchema: Yup.string().matches(true, 'Need to be checked'),
+      validationSchema: Yup.string().required(REQUIRED_FIELD),
     },
     {
       type: 'button',
       name: 'button',
       initialValue: 'check it',
+      // eslint-disable-next-line no-console
       onClick: () => console.log('check it'),
     },
     {
@@ -59,7 +65,8 @@ const form = {
       initialValue: 'submit it',
     },
   ],
-  submit: (values) => console.log(values),
+  // eslint-disable-next-line no-console
+  submit: (values: object) => console.log(values),
 };
 
 const FormExamples = () => {
