@@ -1,4 +1,5 @@
 import React from 'react';
+import { Story } from '@storybook/react';
 import NiceModal from '@ebay/nice-modal-react';
 import { ThemeProvider } from 'styled-components';
 import { MockedProvider } from '@apollo/client/testing';
@@ -37,9 +38,9 @@ export const parameters = {
 };
 
 export const decorators = [
-  Story => {
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  (Story: Story) => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
 
     return (
       <ApolloProvider client={new ApolloClient({ cache: new InMemoryCache({}) })}>
@@ -53,6 +54,6 @@ export const decorators = [
           <Notifier />
         </NotifierProvider>
       </ApolloProvider>
-    )
+    );
   },
 ];
