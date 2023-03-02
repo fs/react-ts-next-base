@@ -35,7 +35,7 @@ describe('Auth actions', () => {
     test('should mutate state & call localStorage.setItem & call pushRoute', async () => {
       // Arrange
       const data = { email: 'test', password: 'password' };
-      const expectedValue = { me: mockCurrentUser, accessToken: '', refreshToken: '' }
+      const expectedValue = { me: mockCurrentUser, accessToken: '', refreshToken: '' };
 
       const mocks = [
         {
@@ -77,7 +77,7 @@ describe('Auth actions', () => {
         firstName: 'test',
         lastName: 'test',
       };
-      const expectedValue = { me: mockCurrentUser, accessToken: '', refreshToken: '' }
+      const expectedValue = { me: mockCurrentUser, accessToken: '', refreshToken: '' };
 
       const mocks = [
         {
@@ -230,7 +230,7 @@ describe('Auth actions', () => {
         password: 'password',
         resetToken: 'test',
       };
-      const expectedValue = { me: mockCurrentUser, accessToken: '', refreshToken: '' }
+      const expectedValue = { me: mockCurrentUser, accessToken: '', refreshToken: '' };
 
       const mocks = [
         {

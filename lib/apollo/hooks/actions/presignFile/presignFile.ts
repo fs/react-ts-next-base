@@ -5,8 +5,7 @@ export const usePresignFile = () => {
   const [mutation, mutationState] = usePresignDataMutation();
 
   const mutate = async ({ type, filename }: PresignDataInput) => {
-    if (!type || !filename)
-      return { fields: [], url: '' };
+    if (!type || !filename) return { fields: [], url: '' };
 
     const presignDataInput = { type, filename };
 

@@ -1,5 +1,5 @@
 import { ActivityEvent } from 'graphql/types';
-import { filterAvailableNodes } from 'helpers/types';
+import { filterAvailableNodes } from 'helpers';
 import { useActivitiesQuery } from 'graphql/queries/__generated__/activities.generated';
 import { ActivityFragment } from 'graphql/fragments/__generated__/activityInfo.generated';
 

@@ -1,3 +1,1 @@
-export {
-  usePresignFile
-} from './presignFile';
+export { usePresignFile } from './presignFile';
