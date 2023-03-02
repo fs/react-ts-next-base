@@ -1,25 +1,24 @@
-import { ChangeEvent } from 'react';
+import React from 'react';
 import { Field } from 'formik';
-import { BaseFormFieldConfig, FormFieldType } from 'types/formsType';
 
-export type FileFormFieldConfig = BaseFormFieldConfig & {
-  type: FormFieldType.file;
-  accept: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-};
+import { FileFormFieldConfig } from './types';
 
-const FileFormField = ({ name, accept, testID, onChange, disabled }: FileFormFieldConfig) => {
-  const props = onChange ? { onChange } : {};
+const FileFormField: React.FunctionComponent<FileFormFieldConfig> = ({
+  name,
+  accept,
+  testId,
+  onChange = () => {},
+  disabled,
+}) => {
   return (
     <Field
       type="file"
       id={name}
       name={name}
       accept={accept}
-      data-testid={testID}
-      data-cy={testID}
-      {...props}
+      data-testid={testId}
       disabled={disabled}
+      onChange={onChange}
     />
   );
 };

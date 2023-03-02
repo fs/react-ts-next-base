@@ -1,19 +1,20 @@
+import React from 'react';
 import { Field } from 'formik';
-import { BaseFormFieldConfig, FormFieldType } from 'types/formsType';
 
-export type EmailFormFieldConfig = BaseFormFieldConfig & {
-  type: FormFieldType.email;
-  placeholder?: string;
-};
+import { EmailFormFieldConfig } from './types';
 
-const EmailFormField = ({ name, testID, disabled, placeholder }: EmailFormFieldConfig) => {
+const EmailFormField: React.FunctionComponent<EmailFormFieldConfig> = ({
+  name,
+  testId,
+  disabled,
+  placeholder,
+}) => {
   return (
     <Field
       type="email"
       name={name}
       id={name}
-      data-testid={testID}
-      data-cy={testID}
+      data-testid={testId}
       disabled={disabled}
       placeholder={placeholder}
     />

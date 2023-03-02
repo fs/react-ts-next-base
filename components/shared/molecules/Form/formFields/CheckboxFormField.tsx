@@ -1,14 +1,17 @@
+import React from 'react';
 import { Field } from 'formik';
-import { BaseFormFieldConfig, FormFieldType } from 'types/formsType';
 
-export type CheckboxFormFieldConfig = BaseFormFieldConfig & {
-  type: FormFieldType.checkbox;
-};
+import { CheckboxFormFieldConfig } from './types';
 
-const CheckboxFormField = ({ name, label, testID, disabled }: CheckboxFormFieldConfig) => {
+const CheckboxFormField: React.FunctionComponent<CheckboxFormFieldConfig> = ({
+  name,
+  label,
+  testId,
+  disabled,
+}) => {
   return (
     <label htmlFor={name}>
-      <Field type="checkbox" name={name} id={name} data-testid={testID} data-cy={testID} disabled={disabled} />
+      <Field type="checkbox" name={name} id={name} data-testid={testId} disabled={disabled} />
       {label}
     </label>
   );

@@ -1,21 +1,20 @@
-import { PropsWithChildren } from 'react';
+import React from 'react';
 import { ErrorMessage } from 'formik';
 
-import { BaseFormFieldConfig } from 'types/formsType';
+import { TDefaultFieldWrapper } from './types';
 
 import { ErrorWrapper, FieldLabel, FieldWrapper } from './styled';
 
-type DefaultFieldWrapperProps = {
-  name: BaseFormFieldConfig['name'];
-  title: BaseFormFieldConfig['title'];
-};
-
-const DefaultFieldWrapper = ({ name, title, children }: PropsWithChildren<DefaultFieldWrapperProps>) => {
+const DefaultFieldWrapper: React.FunctionComponent<TDefaultFieldWrapper> = ({
+  name,
+  title,
+  children,
+}) => {
   return (
     <FieldWrapper key={name}>
       {title && <FieldLabel htmlFor={name}>{title}</FieldLabel>}
       {children}
-      <ErrorMessage name={name}>{(msg) => <ErrorWrapper>{msg}</ErrorWrapper>}</ErrorMessage>
+      <ErrorMessage name={name}>{msg => <ErrorWrapper>{msg}</ErrorWrapper>}</ErrorMessage>
     </FieldWrapper>
   );
 };

@@ -1,27 +1,19 @@
+import React from 'react';
 import { Field } from 'formik';
-import { BaseFormFieldConfig, FormFieldType } from 'types/formsType';
 
-/**
- * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
- */
-export enum PasswordAutocomplete {
-  off = 'off',
-  newPassword = 'new-password',
-  currentPassword = 'current-password',
-}
+import { PasswordFormFieldConfig } from './types';
 
-export type PasswordFormFieldConfig = BaseFormFieldConfig & {
-  type: FormFieldType.password;
-  autoComplete?: PasswordAutocomplete;
-  placeholder?: string;
-};
-
-const PasswordFormField = ({ name, autoComplete, disabled, placeholder, testID }: PasswordFormFieldConfig) => {
+const PasswordFormField: React.FunctionComponent<PasswordFormFieldConfig> = ({
+  name,
+  autoComplete,
+  disabled,
+  placeholder,
+  testId,
+}) => {
   return (
     <Field
       type="password"
-      data-testid={testID}
-      data-cy={testID}
+      data-testid={testId}
       name={name}
       id={name}
       autoComplete={autoComplete}

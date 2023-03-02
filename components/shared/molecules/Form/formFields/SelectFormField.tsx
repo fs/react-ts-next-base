@@ -1,25 +1,21 @@
+import React from 'react';
 import { Field } from 'formik';
-import { BaseFormFieldConfig, FormFieldType } from 'types/formsType';
 
-export type SelectFormFieldConfig = BaseFormFieldConfig & {
-  type: FormFieldType.select;
-  options: OptionType[];
-  placeholder: string;
-};
+import { OptionType, SelectFormFieldConfig } from './types';
 
-export type OptionType = {
-  label: string | number;
-  value: string | number;
-};
-
-const SelectFormField = ({ name, testID, placeholder, disabled, options }: SelectFormFieldConfig) => {
+const SelectFormField: React.FunctionComponent<SelectFormFieldConfig> = ({
+  name,
+  testId,
+  placeholder,
+  disabled,
+  options = [],
+}) => {
   return (
     <Field
       as="select"
       name={name}
       id={name}
-      data-testid={testID}
-      data-cy={testID}
+      data-testid={testId}
       placeholder={placeholder}
       disabled={disabled}
     >

@@ -1,12 +1,16 @@
+import React from 'react';
 import { Field } from 'formik';
-import { BaseFormFieldConfig, FormFieldType } from 'types/formsType';
 
-export type TextareaFormFieldConfig = BaseFormFieldConfig & {
-  type: FormFieldType.textarea;
-};
+import { TextareaFormFieldConfig } from './types';
 
-const TextareaFormField = ({ name, testID, disabled }: TextareaFormFieldConfig) => {
-  return <Field component="textarea" name={name} id={name} data-testid={testID} data-cy={testID} disabled={disabled} />;
+const TextareaFormField: React.FunctionComponent<TextareaFormFieldConfig> = ({
+  name,
+  testId,
+  disabled,
+}) => {
+  return (
+    <Field component="textarea" name={name} id={name} data-testid={testId} disabled={disabled} />
+  );
 };
 
 export default TextareaFormField;

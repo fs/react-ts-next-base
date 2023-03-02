@@ -1,12 +1,14 @@
+import React from 'react';
 import { Field } from 'formik';
-import { BaseFormFieldConfig, FormFieldType } from 'types/formsType';
 
-export type TextFormFieldConfig = BaseFormFieldConfig & {
-  type: FormFieldType.text;
-  placeholder?: string;
-};
+import { TextFormFieldConfig } from './types';
 
-const TextFormField = ({ placeholder, disabled, name, testID }: TextFormFieldConfig) => {
+const TextFormField: React.FunctionComponent<TextFormFieldConfig> = ({
+  placeholder,
+  disabled,
+  name,
+  testId,
+}) => {
   return (
     <Field
       type="text"
@@ -14,8 +16,7 @@ const TextFormField = ({ placeholder, disabled, name, testID }: TextFormFieldCon
       disabled={disabled}
       name={name}
       id={name}
-      data-testid={testID}
-      data-cy={testID}
+      data-testid={testId}
     />
   );
 };

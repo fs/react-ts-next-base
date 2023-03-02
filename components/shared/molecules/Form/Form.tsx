@@ -17,7 +17,7 @@ import {
 } from './formFields';
 import DefaultFieldWrapper from './DefaultFieldWrapper';
 
-import { FormFieldConfig, TForm } from './types';
+import { FormFieldConfig, FormFieldType, TForm } from './types';
 import { ErrorWrapper, FormContainer, FormWrapper, FieldWrapper } from './styled';
 
 const Form = <FormValues extends FormikValues = FormikValues>({ form }: TForm<FormValues>) => {
@@ -26,28 +26,27 @@ const Form = <FormValues extends FormikValues = FormikValues>({ form }: TForm<Fo
   const formValidationSchema = Yup.object().shape(validationSchema);
 
   return (
-    <FormWrapper data-cy="profile-update-form">
+    <FormWrapper data-testid="profile-update-form">
       <Formik<FormValues>
         enableReinitialize
         onSubmit={submit}
         initialValues={initialValues}
         validationSchema={formValidationSchema}
       >
-        {props => {
-          const { isSubmitting, status } = props;
+        {({ isSubmitting, status }) => {
           return (
             <FormikForm>
               <FormContainer>
                 {fields.map((fieldConfig: FormFieldConfig) => {
                   const { name, title } = fieldConfig;
                   switch (fieldConfig.type) {
-                    case 'select':
+                    case FormFieldType.select:
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
                           <SelectFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
-                    case 'checkbox':
+                    case FormFieldType.checkbox:
                       return (
                         <CheckboxFormField
                           key={name}
@@ -55,37 +54,37 @@ const Form = <FormValues extends FormikValues = FormikValues>({ form }: TForm<Fo
                           isFormSubmitting={isSubmitting}
                         />
                       );
-                    case 'text':
+                    case FormFieldType.text:
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
                           <TextFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
-                    case 'password':
+                    case FormFieldType.password:
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
                           <PasswordFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
-                    case 'textarea':
+                    case FormFieldType.textarea:
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
                           <TextareaFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
-                    case 'file':
+                    case FormFieldType.file:
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
                           <FileFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
-                    case 'email':
+                    case FormFieldType.email:
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
                           <EmailFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
-                    case 'submit':
+                    case FormFieldType.submit:
                       return (
                         <FieldWrapper key={name}>
                           <SubmitButton {...fieldConfig} isFormSubmitting={isSubmitting} />
