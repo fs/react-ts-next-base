@@ -7,6 +7,8 @@ const withBundleAnalyzer = withAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
+const transpileDependencies = [];
+
 const nextConfig = {
   compiler: {
     styledComponents: true,
