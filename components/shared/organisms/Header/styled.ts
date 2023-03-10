@@ -11,7 +11,7 @@ export const HeaderWrapper = styled.header(
     padding: 1rem;
     z-index: 5;
     background-color: ${colors.white};
-    border-bottom: 1px solid ${colors.lightGrey};
+    border-bottom: 1px solid ${colors.grey_300};
   `,
 );
 
@@ -73,7 +73,7 @@ export const UserMenuItem = styled.li(
       &:hover,
       &:active,
       &:focus {
-        color: ${colors.green};
+        color: ${colors.green_500};
       }
     }
   `,

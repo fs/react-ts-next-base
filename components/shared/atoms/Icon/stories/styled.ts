@@ -16,7 +16,7 @@ export const IconItem = styled.div(
     width: 10rem;
     padding-top: 1.25rem;
     padding-bottom: 0.5rem;
-    border: 1px solid ${colors.greyE6};
+    border: 1px solid ${colors.grey_500};
   `,
 );
 

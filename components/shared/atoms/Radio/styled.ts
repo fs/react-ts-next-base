@@ -37,7 +37,9 @@ export const Label = styled.label(
       min-width: 1rem;
       height: 1rem;
       margin-right: 0.8rem;
-      border: ${isChecked ? `4px solid ${theme.colors.blue}` : `1px solid ${theme.colors.greyA3}`};
+      border: ${isChecked
+        ? `4px solid ${theme.colors.blue_500}`
+        : `1px solid ${theme.colors.grey_300}`};
       border-radius: 50%;
       box-sizing: border-box;
       content: '';
@@ -45,7 +47,7 @@ export const Label = styled.label(
 
     ${disabled &&
     css`
-      color: ${theme.colors.greyCC};
+      color: ${theme.colors.grey_300};
       cursor: default;
 
       > input {
@@ -53,7 +55,7 @@ export const Label = styled.label(
       }
 
       &::before {
-        border: 1px solid ${theme.colors.greyCC};
+        border: 1px solid ${theme.colors.grey_300};
       }
     `}
   `,

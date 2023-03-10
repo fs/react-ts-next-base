@@ -2,7 +2,7 @@ import theme from 'public/styles/theme';
 import { TVariantConfig, TVariantFlag } from './types';
 
 export const borderConfig: TVariantConfig = {
-  default: `border: 1px solid ${theme.colors.greyCC}`,
+  default: `border: 1px solid ${theme.colors.grey_500}`,
   table_cell: 'border: none',
 };
 

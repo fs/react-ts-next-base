@@ -26,7 +26,7 @@ export const FieldLabel = styled.label(
     font-size: 0.7rem;
     line-height: 0;
     background-color: ${colors.white};
-    color: ${colors.grey};
+    color: ${colors.grey_500};
     padding: 0 0.35rem;
     z-index: 1;
   `,
@@ -42,7 +42,7 @@ export const reactSelectStyles = <T>({
     ...styles,
     fontSize: '0.875rem',
     whiteSpace: 'nowrap',
-    color: theme.colors.greyA4,
+    color: theme.colors.grey_400,
   }),
 
   container: styles => ({
@@ -53,7 +53,7 @@ export const reactSelectStyles = <T>({
   control: (styles, { menuIsOpen }) => ({
     ...styles,
     padding: '0 0 0 0.5rem',
-    border: variant === 'default' ? `1px solid ${theme.colors.greyCC}` : '0',
+    border: variant === 'default' ? `1px solid ${theme.colors.grey_400}` : '0',
     height: '100%',
     boxShadow: 'none',
     fontSize: '0.875rem',
@@ -71,8 +71,8 @@ export const reactSelectStyles = <T>({
       width: 0,
       height: 0,
       border: '0.4rem solid transparent',
-      borderTop: menuIsOpen ? 'none' : `0.5rem solid ${theme.colors.grey}`,
-      borderBottom: menuIsOpen ? `0.5rem solid ${theme.colors.grey}` : 'none',
+      borderTop: menuIsOpen ? 'none' : `0.5rem solid ${theme.colors.grey_500}`,
+      borderBottom: menuIsOpen ? `0.5rem solid ${theme.colors.grey_500}` : 'none',
       content: "' '",
     },
   }),
@@ -83,9 +83,9 @@ export const reactSelectStyles = <T>({
     cursor: 'pointer',
     backgroundColor:
       isSelected && !isMulti
-        ? transparentize(0.4, theme.colors.blue)
+        ? transparentize(0.4, theme.colors.blue_500)
         : isFocused && !isMulti
-        ? transparentize(0.8, theme.colors.blue)
+        ? transparentize(0.8, theme.colors.blue_500)
         : 'transparent',
     color: theme.colors.black,
 
@@ -93,8 +93,8 @@ export const reactSelectStyles = <T>({
       backgroundColor:
         (!isDisabled &&
           (isSelected && !isMulti
-            ? transparentize(0.4, theme.colors.blue)
-            : transparentize(0.8, theme.colors.blue))) ||
+            ? transparentize(0.4, theme.colors.blue_500)
+            : transparentize(0.8, theme.colors.blue_500))) ||
         'transparent',
     },
   }),
@@ -146,7 +146,7 @@ export const ErrorWrapper = styled.div(
     position: absolute;
     width: 100%;
     font-size: 0.68rem;
-    color: ${colors.error};
+    color: ${colors.red_500};
     padding: 0.15rem 0 0 0.5rem;
   `,
 );

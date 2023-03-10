@@ -21,12 +21,12 @@ export const FieldWrapper = styled.div(
       font-family: 'Gilroy', sans-serif;
 
       :disabled {
-        background-color: ${theme.colors.greyFO};
+        background-color: ${theme.colors.grey_500};
         cursor: not-allowed;
       }
 
       ::placeholder {
-        color: ${theme.colors.greyA4};
+        color: ${theme.colors.grey_400};
       }
     }
   `,
@@ -37,7 +37,7 @@ export const ErrorWrapper = styled.div(
     position: absolute;
     width: fit-content;
     top: 100%;
-    color: ${colors.error};
+    color: ${colors.red_500};
     padding: 0.15rem 0 0 0.5rem;
     font-size: 0.68rem;
     white-space: nowrap;
@@ -53,7 +53,7 @@ export const FieldLabel = styled.label(
     font-size: 0.7rem;
     line-height: 0;
     background-color: ${colors.white};
-    color: ${colors.grey};
+    color: ${colors.grey_600};
     padding: 0 0.35rem;
     z-index: 1;
   `,
