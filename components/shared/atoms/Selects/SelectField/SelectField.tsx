@@ -39,7 +39,7 @@ const SelectField = <T,>({
     } else {
       setValue(newValue?.map(el => el.value) || null);
     }
-    setTouched(true);
+    setTouched(true, false);
     onChange(newValue || null);
   };
 

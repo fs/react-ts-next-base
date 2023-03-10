@@ -7,8 +7,6 @@ const withBundleAnalyzer = withAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
-const transpileDependencies = ['react-image-crop'];
-
 const nextConfig = {
   compiler: {
     styledComponents: true,
