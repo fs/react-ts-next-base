@@ -1,0 +1,25 @@
+export const company = {
+  legalFormId: 'Акционерное общество',
+  taxationSystem: 'ОСН',
+  inn: '1234567890',
+  officialName: 'ООО Первая компания',
+  unofficialName: 'РК',
+  directorFullName: 'Иванов Иван Иванович',
+  legalAddress: 'г. Москва, ул. Пролетарская, д. 17',
+  postcode: '123456',
+  kpp: '123456789',
+  ogrn: '1234567890123',
+  oktmo: '12345678',
+  bankName: 'Банк',
+  checkingAccount: '12345678901234567890',
+  correspondentAccount: '09876543210987654321',
+  bic: '123456789',
+  email: 'test.company@test.com',
+  phoneNumber: '1234567890',
+  licenseNumber: 'Лицензия № 12345678',
+  address: 'Россия, Москва, Кремлёвская улица',
+  postalCode: '123456',
+  comment: 'Комментарий',
+};
+
+export type TCompany = typeof company;

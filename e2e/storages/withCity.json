@@ -1,0 +1,14 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "http://localhost:8080",
+      "localStorage": [
+        {
+          "name": "city",
+          "value": "{\"id\":\"510\",\"name\":\"Москва\"}"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+#import "../fragments/currentUserInfo.graphql"
+
+mutation signUp($input: SignUpInput!) {
+  signup(input: $input) {
+    me {
+      ...CurrentUser
+    }
+    accessToken
+    refreshToken
+  }
+}
