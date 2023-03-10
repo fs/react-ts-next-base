@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import ProfileImage from 'components/shared/atoms/ProfileImage';
 
 import DataCell from './DataCell';
@@ -7,7 +7,7 @@ import { TActivityTable } from './types';
 import { activityEventColors } from './constants';
 import { StyledTable, ColorLabel, HeaderCell, UserInfo, EmptyList } from './styled';
 
-const ActivityTable: React.FunctionComponent<TActivityTable> = ({ activities }) => {
+const ActivityTable: FC<TActivityTable> = ({ activities }) => {
   const columnNames = ['Title', 'Description', 'Date', 'User'];
 
   return (

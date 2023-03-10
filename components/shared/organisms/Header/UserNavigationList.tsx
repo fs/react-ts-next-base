@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Link from 'next/link';
 
 import { TUserNavigationList } from './types';
 import { StyledUserMenu, UserMenuItem } from './styled';
 
-const UserNavigationList: React.FunctionComponent<TUserNavigationList> = ({
-  links = [],
-  actions = [],
-}) => (
+const UserNavigationList: FC<TUserNavigationList> = ({ links = [], actions = [] }) => (
   <StyledUserMenu>
     {links.map(({ text, url, testId }) => {
       return (
@@ -22,7 +19,7 @@ const UserNavigationList: React.FunctionComponent<TUserNavigationList> = ({
     {actions.map(({ text, onClick, testId }) => {
       return (
         <UserMenuItem key={text}>
-          <button data-cy={testId} type="button" onClick={() => onClick()}>
+          <button data-cy={testId} type="button" onClick={onClick}>
             {text}
           </button>
         </UserMenuItem>

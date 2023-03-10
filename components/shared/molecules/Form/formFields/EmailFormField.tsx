@@ -1,14 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Field } from 'formik';
 
 import { EmailFormFieldConfig } from './types';
 
-const EmailFormField: React.FunctionComponent<EmailFormFieldConfig> = ({
-  name,
-  testId,
-  disabled,
-  placeholder,
-}) => {
+const EmailFormField: FC<EmailFormFieldConfig> = ({ name, testId, disabled, placeholder }) => {
   return (
     <Field
       type="email"

@@ -15,7 +15,7 @@ export type LinkConfig = {
 export type ActionsConfig = {
   testId?: string;
   text: string;
-  onClick: (arg: { everywhere?: boolean }) => Promise<void>; // TODO: expect any function here
+  onClick: () => Promise<void>;
 };
 
 export type TUserNavigation = {

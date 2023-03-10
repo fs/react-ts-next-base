@@ -1,8 +1,8 @@
-import React, { ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 
 import { StyledCell, Wrap } from './styled';
 
-const DataCell: React.FunctionComponent<{ children: ReactNode }> = ({ children }) => {
+const DataCell: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <StyledCell>
       <Wrap>{children}</Wrap>

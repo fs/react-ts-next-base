@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Field } from 'formik';
 
 import { PasswordFormFieldConfig } from './types';
 
-const PasswordFormField: React.FunctionComponent<PasswordFormFieldConfig> = ({
+const PasswordFormField: FC<PasswordFormFieldConfig> = ({
   name,
   autoComplete,
   disabled,

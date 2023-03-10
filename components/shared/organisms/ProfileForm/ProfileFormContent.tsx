@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import * as Yup from 'yup';
 
 import Form from 'components/shared/molecules/Form';
@@ -7,7 +7,7 @@ import { FormFieldType } from 'components/shared/molecules/Form/types';
 import { TFormValues, TProfileFormContent } from './types';
 import { FormWrapper, StyledTitle, AvatarWrapper, AvatarImg } from './styled';
 
-const ProfileFormContent: React.FunctionComponent<TProfileFormContent> = ({
+const ProfileFormContent: FC<TProfileFormContent> = ({
   temporaryUrl,
   user,
   onSubmit,

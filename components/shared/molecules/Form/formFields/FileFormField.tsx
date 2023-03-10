@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Field } from 'formik';
 
 import { FileFormFieldConfig } from './types';
 
-const FileFormField: React.FunctionComponent<FileFormFieldConfig> = ({
+const FileFormField: FC<FileFormFieldConfig> = ({
   name,
   accept,
   testId,

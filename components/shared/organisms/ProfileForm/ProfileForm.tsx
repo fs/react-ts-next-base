@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useMemo, useState } from 'react';
+import React, { ChangeEvent, FC, useMemo, useState } from 'react';
 import type { FormikHelpers } from 'formik';
 
 import useNotifier from 'hooks/useNotifier';
@@ -12,7 +12,7 @@ import ProfileFormContent from './ProfileFormContent';
 
 import { TFormValues, TProfileForm } from './types';
 
-const ProfileForm: React.FunctionComponent<TProfileForm> = ({ user }) => {
+const ProfileForm: FC<TProfileForm> = ({ user }) => {
   const { setSuccess, setError } = useNotifier();
   const [updateUser] = useUpdateUser({
     onSubmit: () => setSuccess('Пользователь успешно обновлен'),

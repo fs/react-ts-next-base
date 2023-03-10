@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Field } from 'formik';
 
 import { OptionType, SelectFormFieldConfig } from './types';
 
-const SelectFormField: React.FunctionComponent<SelectFormFieldConfig> = ({
+const SelectFormField: FC<SelectFormFieldConfig> = ({
   name,
   testId,
   placeholder,

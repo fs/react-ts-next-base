@@ -13,19 +13,12 @@ export type PageInfo = {
   hasPreviousPage: boolean;
 };
 
-export type THistory = {
-  pathname: string;
-  query: ParsedUrlQuery;
-  asPath: string;
-};
-
 export type TApolloClient = ApolloClient<NormalizedCacheObject>;
 
 export type TPageProps = {
   query: ParsedUrlQuery;
   apolloClient: TApolloClient;
   pathname: string;
-  history?: THistory[];
   canVisit?: boolean;
   apolloState?: NormalizedCacheObject;
   accessTokenManager: AccessTokenManager;

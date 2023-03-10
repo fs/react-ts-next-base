@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { TActionLink } from './types';
 import { StyledNextLink, StyledLink } from './styled';
 
-const ActionLink: React.FunctionComponent<TActionLink> = ({
+const ActionLink: FC<TActionLink> = ({
   onClick,
   label,
   $size = 16,

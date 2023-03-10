@@ -29,13 +29,6 @@ const getStatus = (error: TGraphQLError | Error) => {
   return null;
 };
 
-const getExtra = (error: TGraphQLError | Error) => {
-  if ('extensions' in error) {
-    return error?.extensions?.extra ?? null;
-  }
-  return null;
-};
-
 export default class ErrorDecorator extends Error {
   errors: GraphQLErrors | Error[] = [];
 
@@ -51,10 +44,6 @@ export default class ErrorDecorator extends Error {
 
   hasStatus(status: string) {
     return this.errors.some(error => getStatus(error) === status);
-  }
-
-  getExtra() {
-    return this.errors.map(error => getExtra(error));
   }
 
   static parse(error: unknown) {

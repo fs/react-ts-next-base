@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import Header from 'components/shared/organisms/Header';
 
@@ -8,10 +8,7 @@ import { useSignOut } from 'lib/apollo/hooks/actions/auth';
 import { TDefaultTemplate } from './types';
 import { Wrapper, PageContent } from './styled';
 
-const DefaultTemplate: React.FunctionComponent<TDefaultTemplate> = ({
-  children,
-  testId = 'default-template',
-}) => {
+const DefaultTemplate: FC<TDefaultTemplate> = ({ children, testId = 'default-template' }) => {
   const { user } = useCurrentUser();
   const [signOut] = useSignOut();
 

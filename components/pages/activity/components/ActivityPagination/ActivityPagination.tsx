@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import Icon from 'components/shared/atoms/Icon';
 import Button from 'components/shared/atoms/Button';
@@ -6,7 +6,7 @@ import Button from 'components/shared/atoms/Button';
 import { TActivityPagination } from './types';
 import { Wrapper, PageNumber } from './styled';
 
-const ActivityPagination: React.FunctionComponent<TActivityPagination> = ({
+const ActivityPagination: FC<TActivityPagination> = ({
   pageInfo,
   setBeforeCursor,
   setAfterCursor,

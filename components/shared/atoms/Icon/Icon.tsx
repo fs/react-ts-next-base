@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { getMarginStyles } from 'public/styles/config/margin';
 import { getSizeStyles, getFillStyles, getRotateStyles } from './helpers';
@@ -14,7 +14,7 @@ const IconBase = styled.svg<TIconBase>(
   `,
 );
 
-const Icon: React.FunctionComponent<TIcon> = ({ name, ...props }) => (
+const Icon: FC<TIcon> = ({ name, ...props }) => (
   <IconBase {...props} as={configIcons[name as IconKeys]} />
 );
 

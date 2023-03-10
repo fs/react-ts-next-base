@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import NumberFormat from 'react-number-format';
 import { Field, ErrorMessage } from 'formik';
 
@@ -6,7 +6,7 @@ import { FieldWrapper, ErrorWrapper, FieldLabel } from './styled';
 import { TNumberInput, TNumberInputComponent } from './types';
 import { borderConfig, heightConfig, paddingConfig, showErrorMessage, showTitle } from './config';
 
-const numberInput: React.FunctionComponent<TNumberInput> = ({
+const numberInput: FC<TNumberInput> = ({
   field: { name, value },
   form: { isSubmitting, setFieldValue, setFieldTouched },
   variant,
@@ -53,7 +53,7 @@ const numberInput: React.FunctionComponent<TNumberInput> = ({
   );
 };
 
-const NumberInput: React.FunctionComponent<TNumberInputComponent> = ({
+const NumberInput: FC<TNumberInputComponent> = ({
   variant = 'default',
   name,
   testId,

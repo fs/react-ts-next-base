@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { PROFILE, ACTIVITY, SIGNIN, SIGNUP } from 'config/routes';
 
 import Logo from 'components/shared/atoms/Logo';
@@ -9,14 +9,14 @@ import UserNavigation from './UserNavigation';
 import { ActionsConfig, THeader } from './types';
 import { HeaderWrapper, Links } from './styled';
 
-const Header: React.FunctionComponent<THeader> = ({ user, signOut }) => {
+const Header: FC<THeader> = ({ user, signOut }) => {
   const links = [
     { text: 'Profile', url: PROFILE, testId: 'profile' },
     { text: 'Activity', url: ACTIVITY, testId: 'activity' },
   ];
 
   const actions: ActionsConfig[] = [
-    { text: 'Sign Out', onClick: signOut, testId: 'sign-out' },
+    { text: 'Sign Out', onClick: () => signOut({ everywhere: false }), testId: 'sign-out' },
     { text: 'Log out from all devices', onClick: () => signOut({ everywhere: true }) },
   ];
 

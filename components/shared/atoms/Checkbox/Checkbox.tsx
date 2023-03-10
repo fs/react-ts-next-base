@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { TCheckbox, TStates } from './types';
 import { Wrapper, Label, Input } from './styled';
 import { variantConfig, positionConfig, sizeConfig } from './config';
 
-const Checkbox: React.FunctionComponent<TCheckbox> = ({
+const Checkbox: FC<TCheckbox> = ({
   variant = 'default',
   position = 'left',
   name,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Modal from 'react-modal';
 
 import Icon from 'components/shared/atoms/Icon';
@@ -8,7 +8,7 @@ import { TModalWindow } from './types';
 import { positionConfig } from './config';
 import { modalStyles, Title, ModalWrapper, ModalCloseButton } from './styled';
 
-const ModalWindow: React.FunctionComponent<TModalWindow> = ({
+const ModalWindow: FC<TModalWindow> = ({
   position = 'center',
   isOpen,
   setIsOpen = () => {},
