@@ -132,12 +132,12 @@ export const WithIcon = (args: TInput) => (
     <Input
       {...args}
       iconType="leading"
-      icon={<Icon name="pencil" $color="grey_600" $ml={12} $size={16} />}
+      icon={<Icon name="plus" $color="grey_600" $ml={12} $size={16} />}
     />
     <Input
       {...args}
       iconType="trailing"
-      icon={<Icon name="pencil" $color="grey_600" $mr={12} $size={16} />}
+      icon={<Icon name="plus" $color="grey_600" $mr={12} $size={16} />}
     />
   </>
 );
