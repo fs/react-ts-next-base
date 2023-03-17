@@ -24,3 +24,9 @@ generates:
     plugins:
       - 'typescript-operations'
       - 'typescript-react-apollo'
+    config:
+      scalars: 
+        ISO8601Date: string
+        ISO8601DateTime: string
+        SquishedString: string
+        PhoneNumber: string

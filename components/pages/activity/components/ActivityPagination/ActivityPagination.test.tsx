@@ -13,8 +13,6 @@ describe('ActivityPagination', () => {
 
   test('should render correctly', () => {
     // Arrange
-
-    // Act
     render(
       renderWithTheme(
         <ActivityPagination
@@ -27,6 +25,7 @@ describe('ActivityPagination', () => {
       ),
     );
 
+    // Act
     const pagination = screen.getByTestId(mockTestId);
 
     // Assert
@@ -37,7 +36,6 @@ describe('ActivityPagination', () => {
     // Arrange
     const mockPageInfoData = { ...mockPageInfo, hasNextPage: false };
 
-    // Act
     render(
       renderWithTheme(
         <ActivityPagination
@@ -50,6 +48,7 @@ describe('ActivityPagination', () => {
       ),
     );
 
+    // Act
     const buttons = screen.getAllByRole('button');
 
     // Assert

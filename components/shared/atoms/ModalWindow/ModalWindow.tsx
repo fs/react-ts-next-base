@@ -50,7 +50,7 @@ const ModalWindow: FC<TModalWindow> = ({
             iconType="only"
             icon={<Icon name="close" $color="white" />}
             onClick={onCloseActions}
-            data-cy="close-button"
+            testId="close-button"
           />
         </ModalCloseButton>
       )}
@@ -61,11 +61,7 @@ const ModalWindow: FC<TModalWindow> = ({
           borderRadius: rounded ? '1.875rem' : '0',
         }}
       >
-        {title && (
-          <Title data-testid="modal-title" data-cy="modal-title">
-            {title}
-          </Title>
-        )}
+        {title && <Title data-testid="modal-title">{title}</Title>}
         {children}
       </ModalWrapper>
     </Modal>

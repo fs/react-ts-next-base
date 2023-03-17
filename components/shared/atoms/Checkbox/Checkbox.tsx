@@ -26,7 +26,6 @@ const Checkbox: FC<TCheckbox> = ({
         checked={checked}
         onChange={readOnly ? () => {} : onChangeHandler}
         data-testid={name}
-        data-cy={name}
         position={positionConfig[position]}
         $size={sizeConfig}
       />

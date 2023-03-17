@@ -32,7 +32,7 @@ export type ActivitiesQuery = {
       node?: {
         __typename?: 'Activity';
         body: string;
-        createdAt: any;
+        createdAt: string;
         event: Types.ActivityEvent;
         id: string;
         title: string;

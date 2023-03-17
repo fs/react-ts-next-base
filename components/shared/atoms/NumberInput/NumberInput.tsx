@@ -29,7 +29,6 @@ const numberInput: FC<TNumberInput> = ({
         type="text"
         name={name}
         data-testid={testId}
-        data-cy={testId}
         value={value}
         onValueChange={({ floatValue }) =>
           onChange

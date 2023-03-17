@@ -23,7 +23,7 @@ const Header: FC<THeader> = ({ user, signOut }) => {
   return (
     <HeaderWrapper>
       <Logo />
-      <Links data-cy="header-links">
+      <Links data-testid="header-links">
         {!user && (
           <>
             <ActionLink label="Sign In" href={SIGNIN} />

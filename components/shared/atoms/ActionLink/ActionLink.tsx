@@ -24,7 +24,8 @@ const ActionLink: FC<TActionLink> = ({
         passHref
         {...props}
       >
-        {label} {children}
+        {label}
+        {children}
       </StyledNextLink>
     );
   return (

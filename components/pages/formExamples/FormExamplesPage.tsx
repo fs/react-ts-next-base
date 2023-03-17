@@ -62,13 +62,6 @@ const form = {
       initialValue: true,
       validationSchema: Yup.string().required(REQUIRED_FIELD),
     },
-    // {
-    //   type: FormFieldType.submit,
-    //   name: 'button',
-    //   initialValue: 'check it',
-    //   // eslint-disable-next-line no-console
-    //   onClick: () => console.log('check it'),
-    // },
     {
       type: FormFieldType.submit,
       name: 'submit',

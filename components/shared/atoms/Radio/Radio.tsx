@@ -37,7 +37,6 @@ const Radio = <T,>({
               checked={checked}
               onChange={() => onChangeValue(value)}
               data-testid={`${name}_${value}`}
-              data-cy={`${name}_${value}`}
             />
             {label}
           </Label>

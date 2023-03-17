@@ -17,7 +17,7 @@ const Notifier = () => {
   }, [message, type, clearMessage]);
 
   return (
-    <ToastWrapper data-cy="notifier" data-testid="notifier">
+    <ToastWrapper data-testid="notifier">
       <ToastContainer position="top-center" autoClose={5000} closeOnClick hideProgressBar />
     </ToastWrapper>
   );

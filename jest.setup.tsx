@@ -7,11 +7,7 @@ jest.setTimeout(30000);
 // hotfix https://github.com/vercel/next.js/issues/15543
 jest.mock('next/link', () => {
   return ({ children, ...props }: { [key: string]: string }) => {
-    return (
-      <a data-testid={props['data-testid']} data-cy={props['data-cy']}>
-        {children}
-      </a>
-    );
+    return <a data-testid={props['data-testid']}>{children}</a>;
   };
 });
 

@@ -74,7 +74,6 @@ const Input: FC<TInputType> = ({
           name={name}
           id={name}
           data-testid={testId}
-          data-cy={testId}
           disabled={isSubmitting || disabled}
           autoComplete={autoComplete}
           readOnly={readOnly}

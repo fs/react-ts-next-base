@@ -42,7 +42,6 @@ const Button = forwardRef<HTMLButtonElement, TButtonType>(
       <StyledButton
         type={type}
         data-testid={testId}
-        data-cy={testId}
         ref={ref}
         $isLoading={isLoading}
         disabled={disabled}

@@ -8,7 +8,7 @@ const UserNavigationList: FC<TUserNavigationList> = ({ links = [], actions = [] 
   <StyledUserMenu>
     {links.map(({ text, url, testId }) => {
       return (
-        <UserMenuItem key={text} data-cy={testId}>
+        <UserMenuItem key={text} data-testid={testId}>
           <Link href={url} passHref>
             {text}
           </Link>
@@ -19,7 +19,7 @@ const UserNavigationList: FC<TUserNavigationList> = ({ links = [], actions = [] 
     {actions.map(({ text, onClick, testId }) => {
       return (
         <UserMenuItem key={text}>
-          <button data-cy={testId} type="button" onClick={onClick}>
+          <button data-testid={testId} type="button" onClick={onClick}>
             {text}
           </button>
         </UserMenuItem>

@@ -20,21 +20,15 @@ const UserNavigation: FC<TUserNavigation> = ({ user, links, actions }) => {
     <UserNavigationWrapper ref={wrapperRef}>
       {user && (
         <>
-          <UserNameWrapper
-            data-testid="user-name"
-            data-cy="dropdown-toggler"
-            onClick={toggleDropdown}
-            ref={togglerRef}
-          >
+          <UserNameWrapper data-testid="dropdown-toggler" onClick={toggleDropdown} ref={togglerRef}>
             <ProfileImage avatar={user.avatarUrl} alt={user.email} />
-            <UserName data-cy="user-name">{user.email}</UserName>
+            <UserName data-testid="user-name">{user.email}</UserName>
           </UserNameWrapper>
           {isOpen && (
             <UserNavigationList
               links={links}
               actions={actions}
-              data-testid="user-navigation"
-              data-cy="user-navigation-list"
+              data-testid="user-navigation-list"
             />
           )}
         </>

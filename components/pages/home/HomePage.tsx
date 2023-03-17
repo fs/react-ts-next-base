@@ -14,7 +14,7 @@ export const HomePage: TNextPage = () => {
   return (
     <DefaultTemplate>
       <PageContent data-testid="page-content">
-        <Title className="capitalize" data-cy="welcome-page">
+        <Title className="capitalize" data-testid="welcome-page">
           Welcome to React Next Base
         </Title>
       </PageContent>
