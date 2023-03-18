@@ -43,11 +43,10 @@ type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : nev
 export type FormFieldConfig = DistributiveOmit<FieldsUnionPropsTypes, 'isFormSubmitting'> &
   FormikProps;
 
-type FormType<TFormValues extends FormikValues = FormikValues> = {
+export type FormType<TFormValues extends FormikValues = FormikValues> = {
   fields: FormFieldConfig[];
   submit: (values: TFormValues, formikHelpers: FormikHelpers<TFormValues>) => void | Promise<void>;
 };
-export type TForm<T> = { form: FormType<T> };
 
 export type TDefaultFieldWrapper = {
   name: BaseFormFieldConfig['name'];

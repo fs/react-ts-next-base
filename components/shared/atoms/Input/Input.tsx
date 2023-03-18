@@ -9,7 +9,6 @@ import {
   borderConfig,
   backgroundColorConfig,
   marginConfig,
-  paddingConfig,
   heightConfig,
   colorConfig,
 } from './config';
@@ -48,7 +47,6 @@ const Input: FC<TInputType> = ({
 
   return (
     <FieldWrapper
-      padding={paddingConfig[variant].input}
       $width={$width}
       inputHeight={heightConfig[variant]}
       backgroundColor={backgroundColorConfig[variant]}
@@ -60,7 +58,7 @@ const Input: FC<TInputType> = ({
       $mr={$mr}
       $mt={$mt}
     >
-      {value && title && variant === 'default' && <FieldLabel htmlFor={title}>{title}</FieldLabel>}
+      {value && title && <FieldLabel htmlFor={title}>{title}</FieldLabel>}
       <InputWrapper
         border={borderConfig[variant][errorType]}
         rounded={rounded}
@@ -93,9 +91,7 @@ const Input: FC<TInputType> = ({
           />
         )}
       </InputWrapper>
-      <ErrorMessage name={name}>
-        {msg => <ErrorWrapper padding={paddingConfig[variant].error}>{msg}</ErrorWrapper>}
-      </ErrorMessage>
+      <ErrorMessage name={name}>{msg => <ErrorWrapper>{msg}</ErrorWrapper>}</ErrorMessage>
     </FieldWrapper>
   );
 };

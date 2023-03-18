@@ -1,6 +1,6 @@
 import theme from 'public/styles/theme';
 
-import { TVariantConfig, TBorderConfig, TPaddingConfig, TMarginConfig } from './types';
+import { TVariantConfig, TBorderConfig, TMarginConfig } from './types';
 
 export const borderConfig: TBorderConfig = {
   default: {
@@ -16,17 +16,6 @@ export const borderConfig: TBorderConfig = {
 export const backgroundColorConfig: TVariantConfig = {
   default: theme.colors.white,
   secondary: theme.colors.white,
-};
-
-export const paddingConfig: TPaddingConfig = {
-  default: {
-    error: '0.15rem 0 0 0.5rem',
-    input: '0.625rem 1rem',
-  },
-  secondary: {
-    error: '0.15rem 0 0 0.5rem',
-    input: '0.625rem 1rem',
-  },
 };
 
 export const marginConfig: TMarginConfig = {

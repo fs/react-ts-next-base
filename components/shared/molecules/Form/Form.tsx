@@ -17,10 +17,14 @@ import {
 } from './formFields';
 import DefaultFieldWrapper from './DefaultFieldWrapper';
 
-import { FormFieldConfig, FormFieldType, TForm } from './types';
+import { FormFieldConfig, FormFieldType, FormType } from './types';
 import { ErrorWrapper, FormContainer, FormWrapper, FieldWrapper } from './styled';
 
-const Form = <FormValues extends FormikValues = FormikValues>({ form }: TForm<FormValues>) => {
+const Form = <FormValues extends FormikValues = FormikValues>({
+  form,
+}: {
+  form: FormType<FormValues>;
+}) => {
   const { fields, submit } = form;
   const { initialValues, validationSchema } = collectFormikProps<FormValues>(fields);
   const formValidationSchema = Yup.object().shape(validationSchema);

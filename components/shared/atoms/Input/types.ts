@@ -39,7 +39,6 @@ export type InputWrapperProps = {
 
 export type FieldWrapperProps = TMargin &
   TWidth & {
-    padding: string;
     inputHeight: string;
     backgroundColor: string;
     textAlign: `${ETextAlign}`;
@@ -47,24 +46,12 @@ export type FieldWrapperProps = TMargin &
     type: string;
   };
 
-export type ErrorWrapperProps = {
-  padding: string;
-};
-
 export type TBorderStates = {
   default: string;
   error: string;
 };
 export type TBorderConfig = { [innerKey in EVariant]: TBorderStates };
 
-export type TPaddingStates = {
-  error: string;
-  input: string;
-};
-export type TPaddingConfig = { [innerKey in EVariant]: TPaddingStates };
-
 export type TMarginConfig = { [innerKey in EVariant]: number };
-
-export type TTextAlign = { [innerKey in ETextAlign]: string };
 
 export type TVariantConfig = { [innerKey in EVariant]: string };

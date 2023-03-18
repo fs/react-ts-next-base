@@ -2,11 +2,10 @@ import styled, { css } from 'styled-components';
 import theme from 'public/styles/theme';
 import { getMarginStyles } from 'public/styles/config/margin';
 
-import { FieldWrapperProps, ErrorWrapperProps, InputWrapperProps } from './types';
+import { FieldWrapperProps, InputWrapperProps } from './types';
 
 export const FieldWrapper = styled.div(
   ({
-    padding,
     $width,
     inputHeight,
     type,
@@ -28,7 +27,7 @@ export const FieldWrapper = styled.div(
       width: 100%;
       height: 100%;
       margin: 0;
-      padding: ${padding};
+      padding: 0.625rem 1rem;
       background-color: ${backgroundColor};
       text-align: ${textAlign};
       border: 0;
@@ -82,18 +81,16 @@ export const InputWrapper = styled.div(
   `,
 );
 
-export const ErrorWrapper = styled.div(
-  ({ padding }: ErrorWrapperProps) => css`
-    position: absolute;
-    width: 100%;
-    color: ${theme.colors.red_500};
-    font-size: 0.68rem;
-    padding: ${padding};
-    white-space: nowrap;
-    text-align: end;
-    direction: rtl;
-  `,
-);
+export const ErrorWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  color: ${theme.colors.red_500};
+  font-size: 0.68rem;
+  padding: 0.15rem 0 0 0.5rem;
+  white-space: nowrap;
+  text-align: end;
+  direction: rtl;
+`;
 
 export const FieldLabel = styled.label(
   () => css`
