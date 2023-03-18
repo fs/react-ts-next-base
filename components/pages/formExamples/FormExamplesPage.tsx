@@ -69,7 +69,7 @@ const form = {
     },
   ],
   // eslint-disable-next-line no-console
-  submit: (values: object) => console.log(values),
+  onSubmit: (values: object) => console.log(values),
 };
 
 const FormExamples = () => {

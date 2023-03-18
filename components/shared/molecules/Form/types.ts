@@ -21,7 +21,7 @@ export enum FormFieldType {
 export type BaseFormFieldConfig = {
   type: FormFieldType;
   name: string;
-  isFormSubmitting: boolean;
+  isSubmitting: boolean;
   label?: string;
   title?: string;
   testId?: string;
@@ -30,7 +30,7 @@ export type BaseFormFieldConfig = {
 
 type FormikProps = {
   validationSchema?: Yup.AnySchema;
-  initialValue: unknown;
+  initialValue?: unknown;
 };
 
 type FieldsUnionPropsTypes = ComponentProps<InferValueTypes<typeof formFields>>;
@@ -40,12 +40,14 @@ type FieldsUnionPropsTypes = ComponentProps<InferValueTypes<typeof formFields>>;
 // eslint-disable-next-line
 type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : never;
 
-export type FormFieldConfig = DistributiveOmit<FieldsUnionPropsTypes, 'isFormSubmitting'> &
-  FormikProps;
+export type FormFieldConfig = DistributiveOmit<FieldsUnionPropsTypes, 'isSubmitting'> & FormikProps;
 
 export type FormType<TFormValues extends FormikValues = FormikValues> = {
   fields: FormFieldConfig[];
-  submit: (values: TFormValues, formikHelpers: FormikHelpers<TFormValues>) => void | Promise<void>;
+  onSubmit: (
+    values: TFormValues,
+    formikHelpers: FormikHelpers<TFormValues>,
+  ) => void | Promise<void>;
 };
 
 export type TDefaultFieldWrapper = {

@@ -23,7 +23,7 @@ describe('SignInForm', () => {
   test('should call SignIn fn after click "Submit" button', async () => {
     // Arrange
     const inputEmailValue = 'email@gmail.com';
-    const inputPasswordValue = 'password';
+    const inputPasswordValue = 'Password1';
     const expectedValue = {
       email: inputEmailValue,
       password: inputPasswordValue,

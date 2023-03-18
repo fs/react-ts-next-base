@@ -25,7 +25,7 @@ const Form = <FormValues extends FormikValues = FormikValues>({
 }: {
   form: FormType<FormValues>;
 }) => {
-  const { fields, submit } = form;
+  const { fields, onSubmit } = form;
   const { initialValues, validationSchema } = collectFormikProps<FormValues>(fields);
   const formValidationSchema = Yup.object().shape(validationSchema);
 
@@ -33,7 +33,7 @@ const Form = <FormValues extends FormikValues = FormikValues>({
     <FormWrapper data-testid="profile-update-form">
       <Formik<FormValues>
         enableReinitialize
-        onSubmit={submit}
+        onSubmit={onSubmit}
         initialValues={initialValues}
         validationSchema={formValidationSchema}
       >
@@ -47,7 +47,7 @@ const Form = <FormValues extends FormikValues = FormikValues>({
                     case FormFieldType.select:
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
-                          <SelectFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
+                          <SelectFormField {...fieldConfig} isSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
                     case FormFieldType.checkbox:
@@ -55,43 +55,43 @@ const Form = <FormValues extends FormikValues = FormikValues>({
                         <CheckboxFormField
                           key={name}
                           {...fieldConfig}
-                          isFormSubmitting={isSubmitting}
+                          isSubmitting={isSubmitting}
                         />
                       );
                     case FormFieldType.text:
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
-                          <TextFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
+                          <TextFormField {...fieldConfig} isSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
                     case FormFieldType.password:
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
-                          <PasswordFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
+                          <PasswordFormField {...fieldConfig} isSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
                     case FormFieldType.textarea:
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
-                          <TextareaFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
+                          <TextareaFormField {...fieldConfig} isSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
                     case FormFieldType.file:
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
-                          <FileFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
+                          <FileFormField {...fieldConfig} isSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
                     case FormFieldType.email:
                       return (
                         <DefaultFieldWrapper key={name} name={name} title={title}>
-                          <EmailFormField {...fieldConfig} isFormSubmitting={isSubmitting} />
+                          <EmailFormField {...fieldConfig} isSubmitting={isSubmitting} />
                         </DefaultFieldWrapper>
                       );
                     case FormFieldType.submit:
                       return (
                         <FieldWrapper key={name}>
-                          <SubmitButton {...fieldConfig} isFormSubmitting={isSubmitting} />
+                          <SubmitButton {...fieldConfig} isSubmitting={isSubmitting} />
                         </FieldWrapper>
                       );
                     default:

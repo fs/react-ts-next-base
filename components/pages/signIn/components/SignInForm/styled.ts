@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
-export const FormContentWrapper = styled.div`
-  width: 40rem;
+export const SignInFormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

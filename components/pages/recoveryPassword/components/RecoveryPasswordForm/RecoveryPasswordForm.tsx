@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import { Form, Formik } from 'formik';
+import * as Yup from 'yup';
 
 import useNotifier from 'hooks/useNotifier';
 import { usePasswordRecovery } from 'lib/apollo/hooks/actions/auth';
 
-import Input from 'components/shared/atoms/Input';
-import Button from 'components/shared/atoms/Button';
+import { EMAIL_INVALID, REQUIRED_FIELD } from 'config/constants/errorsText';
+
+import Form from 'components/shared/molecules/Form';
+import { FormFieldType } from 'components/shared/molecules/Form/types';
 
 import { TFormValues } from './types';
-import { FormContentWrapper } from './styled';
-import { initialValues, validationSchema } from './fields';
 
 const RecoveryPasswordForm = () => {
   const [recoveryPassword, detailMessage] = usePasswordRecovery();
@@ -19,34 +19,31 @@ const RecoveryPasswordForm = () => {
     if (detailMessage) setInfo(detailMessage);
   }, [detailMessage]);
 
-  const onSubmit = async (values: TFormValues) => {
-    await recoveryPassword(values);
+  const form = {
+    fields: [
+      {
+        type: FormFieldType.text,
+        name: 'email',
+        title: 'Email',
+        placeholder: 'Email',
+        testId: 'input-email',
+        initialValue: '',
+        validationSchema: Yup.string().email(EMAIL_INVALID).max(255).required(REQUIRED_FIELD),
+      },
+      {
+        type: FormFieldType.submit,
+        name: 'submit',
+        title: 'First Name',
+        placeholder: 'First Name',
+        testId: 'submit-button',
+      },
+    ],
+    onSubmit: async (values: TFormValues) => {
+      await recoveryPassword(values);
+    },
   };
 
-  return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-      {({ isSubmitting }) => (
-        <Form>
-          <FormContentWrapper>
-            <Input
-              name="email"
-              type="email"
-              title="Email"
-              placeholder="Email"
-              testId="input-email"
-            />
-            <Button
-              type="submit"
-              testId="submit-button"
-              disabled={isSubmitting}
-              isLoading={isSubmitting}
-              label="Submit"
-            />
-          </FormContentWrapper>
-        </Form>
-      )}
-    </Formik>
-  );
+  return <Form form={form} />;
 };
 
 export default RecoveryPasswordForm;

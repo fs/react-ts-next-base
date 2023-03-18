@@ -89,7 +89,7 @@ const ProfileFormContent: FC<TProfileFormContent> = ({
 
   const form = {
     fields,
-    submit: onSubmit,
+    onSubmit,
   };
 
   const avatarSrc = temporaryUrl || avatarUrl;

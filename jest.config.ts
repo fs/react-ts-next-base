@@ -6,7 +6,7 @@ const config: Config = {
   verbose: true,
   clearMocks: true,
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.tsx', '<rootDir>/jest.setEnvVars.ts', 'jest-extended'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.tsx', 'jest-extended'],
   testPathIgnorePatterns: [
     '<rootDir>/.next/',
     '<rootDir>/node_modules/',

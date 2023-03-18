@@ -1,66 +1,80 @@
 import React from 'react';
-import { Form, Formik } from 'formik';
+import * as Yup from 'yup';
 
 import { useSignUp } from 'lib/apollo/hooks/actions/auth';
 
-import Input from 'components/shared/atoms/Input';
-import Button from 'components/shared/atoms/Button';
+import {
+  EMAIL_INVALID,
+  PASSWORD_INVALID_FORMAT,
+  PASSWORD_INVALID_LENGTH,
+  REQUIRED_FIELD,
+} from 'config/constants/errorsText';
+import { passwordRegularExp } from 'config/constants/regularExpressions';
+
+import Form from 'components/shared/molecules/Form';
+import { FormFieldType } from 'components/shared/molecules/Form/types';
 
 import { TFormValues } from './types';
-import { FormContentWrapper } from './styled';
-import { initialValues, validationSchema } from './fields';
 
 const SignUpForm = () => {
   const [signUp] = useSignUp();
 
-  const onSubmit = async (values: TFormValues) => {
-    await signUp(values);
+  const form = {
+    fields: [
+      {
+        type: FormFieldType.text,
+        name: 'firstName',
+        title: 'First Name',
+        placeholder: 'First Name',
+        testId: 'input-firstName',
+        initialValue: '',
+        validationSchema: Yup.string().required(REQUIRED_FIELD),
+      },
+      {
+        type: FormFieldType.text,
+        name: 'lastName',
+        title: 'Last Name',
+        placeholder: 'Last Name',
+        testId: 'input-lastName',
+        initialValue: '',
+        validationSchema: Yup.string().required(REQUIRED_FIELD),
+      },
+      {
+        type: FormFieldType.text,
+        name: 'email',
+        title: 'Email',
+        placeholder: 'Email',
+        testId: 'input-email',
+        initialValue: '',
+        validationSchema: Yup.string().email(EMAIL_INVALID).max(255).required(REQUIRED_FIELD),
+      },
+      {
+        type: FormFieldType.password,
+        name: 'password',
+        title: 'Password',
+        placeholder: 'Password',
+        testId: 'input-password',
+        initialValue: '',
+        validationSchema: Yup.string()
+          .required(REQUIRED_FIELD)
+          .trim()
+          .min(6, PASSWORD_INVALID_LENGTH)
+          .matches(passwordRegularExp, PASSWORD_INVALID_FORMAT),
+      },
+      {
+        type: FormFieldType.submit,
+        name: 'submit',
+        title: 'First Name',
+        placeholder: 'First Name',
+        testId: 'submit-button',
+      },
+    ],
+    onSubmit: async (values: TFormValues) => {
+      await signUp(values);
+    },
   };
 
-  return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-      {({ isSubmitting }) => (
-        <FormContentWrapper>
-          <Form>
-            <Input
-              name="firstName"
-              testId="input-firstName"
-              title="First Name"
-              placeholder="First Name"
-            />
-            <Input
-              name="lastName"
-              testId="input-lastName"
-              title="Last Name"
-              placeholder="Last Name"
-            />
-            <Input
-              name="email"
-              testId="input-email"
-              type="email"
-              title="Email"
-              placeholder="Email"
-            />
-            <Input
-              name="password"
-              testId="input-password"
-              type="password"
-              title="Password"
-              placeholder="Password"
-            />
-            <Button
-              type="submit"
-              testId="submit-button"
-              disabled={isSubmitting}
-              isLoading={isSubmitting}
-              label="Submit"
-              $mt={16}
-            />
-          </Form>
-        </FormContentWrapper>
-      )}
-    </Formik>
-  );
+  return <Form form={form} />;
 };
 
 export default SignUpForm;
