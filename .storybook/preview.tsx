@@ -1,4 +1,5 @@
 import React from 'react';
+import * as jest from "jest-mock";
 import { Story } from '@storybook/react';
 import NiceModal from '@ebay/nice-modal-react';
 import { ThemeProvider } from 'styled-components';
@@ -12,6 +13,10 @@ import GlobalStyles from 'public/styles/globalStyles';
 import { NotifierProvider } from 'contexts/NotifierContext';
 
 import Notifier from 'components/shared/atoms/Notifier';
+import useCalculateVh from 'hooks/useCalculateVh';
+
+// ts-ignore
+window.jest = jest as any;
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -39,8 +44,7 @@ export const parameters = {
 
 export const decorators = [
   (Story: Story) => {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    useCalculateVh();
 
     return (
       <ApolloProvider client={new ApolloClient({ cache: new InMemoryCache({}) })}>

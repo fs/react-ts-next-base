@@ -10,7 +10,6 @@ import { TNumberInputComponent } from '../types';
 
 const inputName = 'input_name';
 const initialArgs = {
-  variant: 'default',
   suffix: ' кг.',
   prefix: '',
   decimalScale: 0,
@@ -75,31 +74,14 @@ const Template: ComponentStory<typeof NumberInput> = args => {
 
 export const Demo = Template.bind({});
 
-export const Variant = (agrs: TNumberInputComponent) => (
-  <>
-    <NumberInput {...agrs} variant="default" />
-    <NumberInput {...agrs} variant="table_cell" />
-  </>
-);
-
-export const Filled = (agrs: TNumberInputComponent) => (
-  <>
-    <NumberInput {...agrs} variant="default" />
-    <NumberInput {...agrs} variant="table_cell" />
-  </>
-);
+export const Filled = (agrs: TNumberInputComponent) => <NumberInput {...agrs} />;
 Filled.parameters = {
   formik: {
     initialValues: { [inputName]: 100 },
   },
 };
 
-export const Error = (agrs: TNumberInputComponent) => (
-  <>
-    <NumberInput {...agrs} $mb={20} variant="default" />
-    <NumberInput {...agrs} variant="table_cell" />
-  </>
-);
+export const Error = (agrs: TNumberInputComponent) => <NumberInput {...agrs} $mb={20} />;
 Error.parameters = {
   formik: {
     initialErrors: { [inputName]: REQUIRED_FIELD },
@@ -107,9 +89,4 @@ Error.parameters = {
   },
 };
 
-export const Disabled = (agrs: TNumberInputComponent) => (
-  <>
-    <NumberInput {...agrs} variant="default" disabled />
-    <NumberInput {...agrs} variant="table_cell" disabled />
-  </>
-);
+export const Disabled = (agrs: TNumberInputComponent) => <NumberInput {...agrs} disabled />;

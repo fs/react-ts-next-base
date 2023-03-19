@@ -4,18 +4,18 @@ import { getMarginStyles } from 'public/styles/config/margin';
 import { FieldWrapperProps } from './types';
 
 export const FieldWrapper = styled.div(
-  ({ textAlign, $height, border, padding, ...props }: FieldWrapperProps) => css`
+  ({ textAlign, ...props }: FieldWrapperProps) => css`
     position: relative;
     width: 100%;
-    height: ${$height};
+    height: 2.5rem;
     ${getMarginStyles(props)}
 
     input {
       width: 100%;
       margin: 0;
-      ${border};
-      ${padding};
-      height: ${$height};
+      border: 1px solid ${theme.colors.grey_500};
+      padding: 0.625rem 1rem;
+      height: 2.5rem;
       text-align: ${textAlign};
       font-size: 0.875rem;
       font-family: 'Gilroy', sans-serif;

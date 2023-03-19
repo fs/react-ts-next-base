@@ -52,11 +52,13 @@ const Form = <FormValues extends FormikValues = FormikValues>({
                       );
                     case FormFieldType.checkbox:
                       return (
-                        <CheckboxFormField
-                          key={name}
-                          {...fieldConfig}
-                          isSubmitting={isSubmitting}
-                        />
+                        <DefaultFieldWrapper key={name} name={name} title={title}>
+                          <CheckboxFormField
+                            key={name}
+                            {...fieldConfig}
+                            isSubmitting={isSubmitting}
+                          />
+                        </DefaultFieldWrapper>
                       );
                     case FormFieldType.text:
                       return (

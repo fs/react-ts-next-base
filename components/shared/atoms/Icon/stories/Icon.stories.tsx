@@ -22,7 +22,7 @@ export default {
   },
   args: {
     $color: 'black',
-    name: 'star',
+    name: 'close',
     $size: 24,
     $mt: 0,
     $mr: 0,
@@ -33,9 +33,8 @@ export default {
 } as ComponentMeta<typeof Icon>;
 
 export const Demo: ComponentStory<typeof Icon> = args => <Icon {...args} />;
-
 Demo.args = {
-  name: 'star',
+  name: 'close',
 };
 
 export const All: ComponentStory<typeof Icon> = args => (

@@ -28,6 +28,8 @@ module.exports = {
         tls: false,
         path: require.resolve('path-browserify'),
         os: false,
+        stream: false,
+        constants: false
       };
     }
     config.module.rules.push({

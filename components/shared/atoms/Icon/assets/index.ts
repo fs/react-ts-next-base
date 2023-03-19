@@ -5,6 +5,5 @@ import ArrowChevronLeft from './arrow-chevron-left.svg';
 import ArrowChevronRight from './arrow-chevron-right.svg';
 import Plus from './plus.svg';
 import Minus from './minus.svg';
-import Star from './star.svg';
 
-export { Close, ArrowChevronLeft, ArrowChevronRight, EyeClosed, Eye, Plus, Minus, Star };
+export { Close, ArrowChevronLeft, ArrowChevronRight, EyeClosed, Eye, Plus, Minus };

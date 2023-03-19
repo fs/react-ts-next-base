@@ -4,12 +4,10 @@ import { Field, ErrorMessage } from 'formik';
 
 import { FieldWrapper, ErrorWrapper, FieldLabel } from './styled';
 import { TNumberInput, TNumberInputComponent } from './types';
-import { borderConfig, heightConfig, paddingConfig, showErrorMessage, showTitle } from './config';
 
 const numberInput: FC<TNumberInput> = ({
   field: { name, value },
   form: { isSubmitting, setFieldValue, setFieldTouched },
-  variant,
   placeholder,
   title,
   suffix,
@@ -24,7 +22,7 @@ const numberInput: FC<TNumberInput> = ({
 }) => {
   return (
     <>
-      {!!(value && title && showTitle[variant]) && <FieldLabel htmlFor={title}>{title}</FieldLabel>}
+      {!!(value && title) && <FieldLabel htmlFor={title}>{title}</FieldLabel>}
       <NumberFormat
         type="text"
         name={name}
@@ -53,7 +51,6 @@ const numberInput: FC<TNumberInput> = ({
 };
 
 const NumberInput: FC<TNumberInputComponent> = ({
-  variant = 'default',
   name,
   testId,
   title = '',
@@ -71,15 +68,8 @@ const NumberInput: FC<TNumberInputComponent> = ({
   ...props
 }) => {
   return (
-    <FieldWrapper
-      border={borderConfig[variant]}
-      padding={paddingConfig[variant]}
-      $height={heightConfig[variant]}
-      textAlign={textAlign}
-      {...props}
-    >
+    <FieldWrapper textAlign={textAlign} {...props}>
       <Field
-        variant={variant}
         name={name}
         placeholder={placeholder}
         title={title}
@@ -94,7 +84,7 @@ const NumberInput: FC<TNumberInputComponent> = ({
         component={numberInput}
         readOnly={readOnly}
       />
-      {errorMessage && showErrorMessage[variant] && (
+      {errorMessage && (
         <ErrorMessage name={name}>{msg => <ErrorWrapper>{msg}</ErrorWrapper>}</ErrorMessage>
       )}
     </FieldWrapper>

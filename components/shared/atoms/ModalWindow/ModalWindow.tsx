@@ -5,11 +5,9 @@ import Icon from 'components/shared/atoms/Icon';
 import Button from 'components/shared/atoms/Button';
 
 import { TModalWindow } from './types';
-import { positionConfig } from './config';
 import { modalStyles, Title, ModalWrapper, ModalCloseButton } from './styled';
 
 const ModalWindow: FC<TModalWindow> = ({
-  position = 'center',
   isOpen,
   setIsOpen = () => {},
   isClosable = true,
@@ -29,7 +27,7 @@ const ModalWindow: FC<TModalWindow> = ({
   return (
     <Modal
       style={{
-        content: { ...modalStyles.content, ...positionConfig[position] },
+        content: modalStyles.content,
         overlay: modalStyles.overlay,
       }}
       isOpen={isOpen}
