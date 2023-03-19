@@ -125,7 +125,7 @@ export const Size = (args: TButton) => (
       sizeIconOnlyProps.map(config => ({
         ...config,
         iconType: 'only',
-        icon: <Icon name="star" $color="white" />,
+        icon: <Icon name="plus" $color="white" />,
       })),
       args,
     )}
@@ -147,7 +147,7 @@ const extraShapeProps: TButton[] = [
     variant: 'primary',
     shape: 'extra-rounded',
     iconType: 'only',
-    icon: <Icon name="star" $color="white" />,
+    icon: <Icon name="plus" $color="white" />,
     size: 'extra-large',
   },
 ];
