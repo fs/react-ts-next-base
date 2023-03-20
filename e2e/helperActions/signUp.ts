@@ -15,8 +15,8 @@ export const signup = async ({
   password,
   firstName,
   lastName,
-}: // expectedPath = '',
-TSignup) => {
+  expectedPath = '',
+}: TSignup) => {
   await page.goto('/signup');
   await expect(page).toHaveURL(`/signup`);
 
@@ -26,5 +26,5 @@ TSignup) => {
   await page.locator('[data-testid=input-password]').fill(password);
 
   await page.locator('[data-testid=submit-button]').click();
-  // await expect(page).toHaveURL(expectedPath);
+  await expect(page).toHaveURL(expectedPath);
 };

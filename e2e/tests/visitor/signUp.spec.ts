@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
 
 import { users } from '../../fixtures/users';
-// import { closeNotification } from '../../helperActions/notification';
-// import { signOut } from '../../helperActions/signOut';
+import { closeNotification } from '../../helperActions/notification';
+import { signOut } from '../../helperActions/signOut';
 import { signup } from '../../helperActions/signUp';
 
 test.describe('Sign Up', () => {
@@ -10,9 +10,9 @@ test.describe('Sign Up', () => {
     validUser: { firstName, lastName, password, email },
   } = users;
 
-  test('Visitor sign-ups with valid credentials', async ({ page }) => {
+  test('Visitor sign-ups with valid credentials', async ({ page, baseURL }) => {
     // eslint-disable-next-line playwright/no-conditional-in-test
-    // const baseUrl = baseURL || '';
+    const baseUrl = baseURL || '';
 
     const timestamp = Date.now();
 
@@ -24,20 +24,21 @@ test.describe('Sign Up', () => {
     };
     await signup({ page, ...validCredentials });
 
-    // await signOut({ page, baseURL: baseUrl });
+    await signOut({ page, baseURL: baseUrl });
   });
 
-  test('Visitor sign-ups with invalid credentials', async ({ page }) => {
+  test('Visitor sign-ups with existed email', async ({ page }) => {
+    const timestamp = +new Date();
+
     const invalidCredentials = {
       firstName,
       lastName,
-      phoneNumber: (Date.now() % 1000000000000).toString().slice(2),
-      password,
-      expectedPath: '/signup',
+      password: `Password${timestamp}`,
       email,
+      expectedPath: '/signup',
     };
 
     await signup({ page, ...invalidCredentials });
-    // await closeNotification({ page, text: 'Запись недействительна' });
+    await closeNotification({ page, text: 'Record invalid' });
   });
 });
