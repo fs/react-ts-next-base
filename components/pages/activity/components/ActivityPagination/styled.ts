@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -6,8 +6,14 @@ export const Wrapper = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const PageNumber = styled.span`
-  padding: 0.25rem 0.7rem;
-  border: 2px solid ${({ theme }) => theme.colors.grey_300};
-  font-size: 1.1rem;
-`;
+export const PageNumber = styled.span(
+  ({ theme: { colors } }) => css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    border-top: 2px solid ${colors.grey_300};
+    border-bottom: 2px solid ${colors.grey_300};
+    font-size: 1.1rem;
+  `,
+);

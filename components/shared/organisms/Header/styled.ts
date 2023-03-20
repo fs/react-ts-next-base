@@ -49,7 +49,7 @@ export const StyledUserMenu = styled.ul(
       height: 0.625rem;
       position: absolute;
       top: -0.3125rem;
-      right: 0.25rem;
+      right: 50%;
       background-color: ${colors.white};
       -webkit-transform: rotate(45deg);
       transform: rotate(45deg);
@@ -62,7 +62,8 @@ export const UserMenuItem = styled.li(
     a,
     button {
       display: block;
-      padding: 0.7rem 1rem;
+      padding: 0.75rem 1.25rem;
+      margin: 0;
       line-height: 1;
       color: ${colors.black};
       cursor: pointer;
@@ -126,3 +127,8 @@ export const UserNameWrapper = styled.div(
     }
   `,
 );
+
+export const ImageWrapper = styled.div`
+  width: 1.75rem;
+  height: 1.75rem;
+`;

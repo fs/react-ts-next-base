@@ -7,7 +7,7 @@ import useCloseOnOutsideClick from 'hooks/useCloseOnOutsideClick';
 import UserNavigationList from './UserNavigationList';
 
 import { TUserNavigation } from './types';
-import { UserName, UserNavigationWrapper, UserNameWrapper } from './styled';
+import { UserName, UserNavigationWrapper, UserNameWrapper, ImageWrapper } from './styled';
 
 const UserNavigation: FC<TUserNavigation> = ({ user, links, actions }) => {
   const [isOpen, setIsOpen, wrapperRef, togglerRef] = useCloseOnOutsideClick();
@@ -21,8 +21,12 @@ const UserNavigation: FC<TUserNavigation> = ({ user, links, actions }) => {
       {user && (
         <>
           <UserNameWrapper data-testid="dropdown-toggler" onClick={toggleDropdown} ref={togglerRef}>
-            <ProfileImage avatar={user.avatarUrl} alt={user.email} />
-            <UserName data-testid="user-name">{user.email}</UserName>
+            <ImageWrapper>
+              <ProfileImage avatar={user.avatarUrl} alt={user.email} />
+            </ImageWrapper>
+            <UserName data-testid="user-name" title={user.email}>
+              {user.email}
+            </UserName>
           </UserNameWrapper>
           {isOpen && (
             <UserNavigationList

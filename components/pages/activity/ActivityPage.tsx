@@ -42,14 +42,20 @@ export const ActivityPage: TNextPage = () => {
   };
 
   const onEventChange: TEventChange = value => {
-    if (value && 'value' in value) {
+    if (value === null) {
+      setActivityEvent(undefined);
+      resetState();
+    } else if (value && 'value' in value) {
       setActivityEvent(value.value);
       resetState();
     }
   };
 
   const onPageSizeChange: TSizeChange = value => {
-    if (value && 'value' in value) {
+    if (value === null) {
+      setActivityEvent(undefined);
+      resetState();
+    } else if (value && 'value' in value) {
       setPageSize(value.value);
       resetState();
     }
@@ -63,9 +69,11 @@ export const ActivityPage: TNextPage = () => {
         <Select
           name="activity-event"
           title="Choose activity event:"
+          placeholder="Choose activity event:"
           options={activityEvents}
           value={activityEvents.find(({ value }) => value === activityEvent) || null}
           onChange={onEventChange}
+          $mb={16}
         />
         <Select
           name="activity-size"
@@ -73,6 +81,8 @@ export const ActivityPage: TNextPage = () => {
           options={activityPageSizeOptions}
           value={activityPageSizeOptions.find(({ value }) => value === pageSize) || null}
           onChange={onPageSizeChange}
+          isClearable={false}
+          $mb={16}
         />
 
         {pageInfo && (

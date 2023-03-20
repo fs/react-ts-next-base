@@ -37,7 +37,7 @@ const ActivityPagination: FC<TActivityPagination> = ({
         disabled={!hasPreviousPage}
         onClick={goToPrevPage}
         iconType="only"
-        icon={<Icon name="arrow-chevron-left" />}
+        icon={<Icon name="arrow-chevron-left" $color="white" />}
       />
 
       <PageNumber>{pageNumber}</PageNumber>
@@ -47,7 +47,7 @@ const ActivityPagination: FC<TActivityPagination> = ({
         disabled={!hasNextPage}
         onClick={goToNextPage}
         iconType="only"
-        icon={<Icon name="arrow-chevron-right" />}
+        icon={<Icon name="arrow-chevron-right" $color="white" />}
       />
     </Wrapper>
   );
