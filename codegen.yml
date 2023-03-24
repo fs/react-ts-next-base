@@ -1,0 +1,32 @@
+overwrite: true
+schema: 'http://localhost:8080/graphql'
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+documents:
+  - 'graphql/**/*.graphql'
+generates:
+  graphql/types.tsx:
+    plugins:
+      - typescript
+    config:
+      scalars: 
+        ISO8601Date: string
+        ISO8601DateTime: string
+        SquishedString: string
+        PhoneNumber: string
+  graphql/:
+    preset: near-operation-file
+    presetConfig:
+      extension: .generated.tsx
+      baseTypesPath: types.tsx
+      folder: __generated__
+    plugins:
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      scalars: 
+        ISO8601Date: string
+        ISO8601DateTime: string
+        SquishedString: string
+        PhoneNumber: string

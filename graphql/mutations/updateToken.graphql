@@ -1,0 +1,11 @@
+#import "../fragments/currentUserInfo.graphql"
+
+mutation updateToken {
+  updateToken {
+    me {
+      ...CurrentUser
+    }
+   accessToken
+  refreshToken
+  }
+}

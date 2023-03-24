@@ -1,0 +1,14 @@
+fragment Activity on Activity {
+  body
+  createdAt
+  event
+  id
+  title
+  user {
+    avatarUrl
+    email
+    firstName
+    id
+    lastName
+  }
+}

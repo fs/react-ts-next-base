@@ -1,0 +1,1 @@
+export { useUpdateUser } from './user';
