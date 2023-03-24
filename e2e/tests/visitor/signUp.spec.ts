@@ -24,7 +24,7 @@ test.describe('Sign Up', () => {
     };
     await signup({ page, ...validCredentials });
 
-    await signOut({ page, baseURL: baseUrl });
+    await signOut({ page, expectedPath: baseUrl });
   });
 
   test('Visitor sign-ups with existed email', async ({ page }) => {
