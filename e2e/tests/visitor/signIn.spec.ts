@@ -10,29 +10,26 @@ test.describe('signIn', () => {
   } = users;
 
   test('Visitor signs in with valid credentials', async ({ page }) => {
-    await signIn({ page, email, password, expectedPath: '' });
+    await signIn({ page, email, password });
 
-    await expect(page.locator('[data-cy=user-name]', { hasText: email })).toBeVisible();
+    await expect(page.locator('[data-testid=user-name]', { hasText: email })).toBeVisible();
 
-    await signOut({ page, expectedPath: '/signin' });
+    await signOut({ page });
   });
 
   test('Visitor signs in with invalid credentials', async ({ page }) => {
-    await page.goto('/signin');
-    await page.locator('[data-testid="input-email"]').fill(email);
-    await page.locator('[data-testid="input-password"]').fill(password);
-    await page.locator('[data-testid="submit-button"]').click();
-    await expect(page).toHaveURL(`/dashboard`);
-    await closeNotification({ page, text: 'Неверно введены учетные данные' });
+    await signIn({ page, email, password, expectedPath: '/signin' });
+
+    await closeNotification({ page, text: 'Invalid credentials' });
   });
 
   test('Authorized user visits auth page', async ({ page }) => {
-    await signIn({ page, email, password, expectedPath: '' });
+    await signIn({ page, email, password });
 
     page.goto('/signin');
 
     await expect(page).toHaveURL(new RegExp(''));
 
-    await signOut({ page, expectedPath: '/signin' });
+    await signOut({ page });
   });
 });

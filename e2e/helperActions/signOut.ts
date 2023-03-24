@@ -2,7 +2,7 @@ import { expect, Page } from '@playwright/test';
 
 export const signOut = async ({
   page,
-  expectedPath = '',
+  expectedPath = '/signin',
 }: {
   page: Page;
   expectedPath?: string;
