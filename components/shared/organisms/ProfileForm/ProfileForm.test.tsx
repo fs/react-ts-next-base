@@ -22,7 +22,7 @@ const mockedUsePresignFile = usePresignFile as jest.Mock;
 const mockedUseFileUpload = useFileUpload as jest.Mock;
 
 describe('ProfileForm', () => {
-  const mockPressgnFile = {
+  const mockPresignFileData = {
     fields: [
       {
         key: 'mockKey',
@@ -34,7 +34,7 @@ describe('ProfileForm', () => {
   const mockSetSuccess = jest.fn();
   const mockUseNotifier = jest.fn(() => ({ setSuccess: mockSetSuccess, setError: jest.fn() }));
   const mockUpdateUser = jest.fn(() => Promise.resolve());
-  const mockPresignFile = jest.fn(() => Promise.resolve(mockPressgnFile));
+  const mockPresignFile = jest.fn(() => Promise.resolve(mockPresignFileData));
   const mockFileUpload = jest.fn(() => Promise.resolve());
 
   beforeEach(() => {
@@ -108,7 +108,7 @@ describe('ProfileForm', () => {
 
     // Assert
     await waitFor(() => expect(mockPresignFile).toHaveBeenCalledWith(expectedPresignFileValues));
-    expect(mockFileUpload).toHaveBeenCalledWith(mockPressgnFile, mockFile);
+    expect(mockFileUpload).toHaveBeenCalledWith(mockPresignFileData, mockFile);
     expect(mockUpdateUser).toHaveBeenCalledWith(expectedUpdateUserValues);
   });
 });

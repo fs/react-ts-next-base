@@ -18,8 +18,7 @@
     "localStorage": true,
     "window": true,
     "navigator": true,
-    "fetch": true,
-    
+    "fetch": true
   },
   "plugins": [
     "@typescript-eslint/eslint-plugin",

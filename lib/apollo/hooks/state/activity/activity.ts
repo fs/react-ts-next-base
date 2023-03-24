@@ -2,13 +2,7 @@ import { ActivityEvent } from 'graphql/types';
 import { filterAvailableNodes } from 'helpers';
 import { useActivitiesQuery } from 'graphql/queries/__generated__/activities.generated';
 import { ActivityFragment } from 'graphql/fragments/__generated__/activityInfo.generated';
-
-type TActivity = {
-  before?: string;
-  after?: string;
-  event?: ActivityEvent;
-  pageSize: number;
-};
+import { TActivity } from './types';
 
 export const useActivities = ({ before, after, event, pageSize = 5 }: TActivity) => {
   const { loading, error, data } = useActivitiesQuery({

@@ -18,7 +18,6 @@ import useCalculateVh from 'hooks/useCalculateVh';
 
 // Custom styles
 import 'public/styles/custom.css';
-import 'public/styles/animation.css';
 
 const MyApp: TAppPage = ({ Component, pageProps, router, accessTokenManager, apolloClient }) => {
   const { query } = router;

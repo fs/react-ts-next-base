@@ -28,20 +28,24 @@ export const FormWrapper = styled.div`
     resize: vertical;
   }
 `;
+
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 export const FieldWrapper = styled.div`
   position: relative;
   padding-top: 1.5rem;
   margin-bottom: 1rem;
 `;
+
 export const FieldLabel = styled.label`
   position: absolute;
   top: 0;
   left: 0;
 `;
+
 export const ErrorWrapper = styled.div`
   font-size: 0.9rem;
   color: red;

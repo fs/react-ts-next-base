@@ -66,12 +66,10 @@ export const createUpdateTokenLink = ({
     return forward(operation).map(data => {
       const name = operation.operationName;
 
-      // eslint-disable-next-line default-case
       switch (name) {
         case 'signIn':
         case 'signUp':
-        case 'updateUserPassword':
-        case 'authenticateGuestUser':
+        case 'updatePassword':
         case 'updateToken': {
           if (!data?.data?.[name]) break;
 
@@ -81,11 +79,12 @@ export const createUpdateTokenLink = ({
 
           break;
         }
-        case 'destroyAccount':
         case 'SignOut': {
           deleteAccessToken();
           break;
         }
+        default:
+          break;
       }
 
       return data;

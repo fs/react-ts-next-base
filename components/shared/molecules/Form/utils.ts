@@ -16,13 +16,12 @@ export const collectFormikProps = <FormValues extends FormikValues = FormikValue
   fields: FormFieldConfig[],
 ): FormikProps<FormValues> => {
   const init: FormikProps<FormValues> = { initialValues: {} as FormValues, validationSchema: {} };
-  return fields.reduce((acc, item) => {
-    if (item.initialValue != null) {
-      acc.initialValues[item.name as keyof FormValues] =
-        item.initialValue as FormikValues[typeof item.name];
+  return fields.reduce((acc, { initialValue, name, validationSchema }) => {
+    if (initialValue !== null) {
+      acc.initialValues[name as keyof FormValues] = initialValue as FormikValues[typeof name];
     }
-    if (item.validationSchema) {
-      acc.validationSchema[item.name] = item.validationSchema;
+    if (validationSchema) {
+      acc.validationSchema[name] = validationSchema;
     }
     return acc;
   }, init);
