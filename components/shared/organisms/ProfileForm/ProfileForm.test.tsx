@@ -56,7 +56,6 @@ describe('ProfileForm', () => {
       ...expectedProfile,
       password: '',
       currentPassword: '',
-      Update: 'Update',
       avatar: undefined,
     };
 
@@ -93,7 +92,6 @@ describe('ProfileForm', () => {
       ...expectedProfile,
       password: '',
       currentPassword: '',
-      Update: 'Update',
       avatar: undefined,
     };
 
