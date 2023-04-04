@@ -18,7 +18,7 @@ test.describe('signIn', () => {
   });
 
   test('Visitor signs in with invalid credentials', async ({ page }) => {
-    await signIn({ page, email, password, expectedPath: '/signin' });
+    await signIn({ page, email, password: 'invalid', expectedPath: '/signin' });
 
     await closeNotification({ page, text: 'Invalid credentials' });
   });
@@ -28,8 +28,8 @@ test.describe('signIn', () => {
 
     page.goto('/signin');
 
-    await expect(page).toHaveURL(new RegExp(''));
+    await expect(page).toHaveURL('');
 
-    await signOut({ page });
+    await signOut({ page, expectedPath: '' });
   });
 });

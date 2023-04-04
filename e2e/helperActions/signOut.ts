@@ -10,5 +10,5 @@ export const signOut = async ({
   await page.locator('[data-testid=dropdown-toggler]').click();
   await page.locator('[data-testid=sign-out]').click();
 
-  await expect(page).toHaveURL(new RegExp(expectedPath));
+  await expect(page).toHaveURL(expectedPath);
 };
