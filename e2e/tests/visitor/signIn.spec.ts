@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { users } from '../../fixtures/users';
-import { signIn } from '../../helperActions/signIn';
-import { closeNotification } from '../../helperActions/notification';
-import { signOut } from '../../helperActions/signOut';
+
+import { users } from 'e2e/fixtures/users';
+import { signIn } from 'e2e/helperActions/signIn';
+import { signOut } from 'e2e/helperActions/signOut';
+import { closeNotification } from 'e2e/helperActions/notification';
 
 test.describe('signIn', () => {
   const {
