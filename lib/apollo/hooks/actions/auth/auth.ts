@@ -104,10 +104,6 @@ export const useSignOut = () => {
   const { pushRoute } = useRouter();
 
   const [mutation, mutationState] = useSignOutMutation({
-    onCompleted: () => {
-      window.localStorage.setItem(SIGN_OUT_EVENT, Date.now().toString());
-      pushRoute(HOME);
-    },
     update: store => {
       store.writeQuery({
         query: CurrentUser,
@@ -115,6 +111,10 @@ export const useSignOut = () => {
           me: null,
         },
       });
+    },
+    onCompleted: () => {
+      window.localStorage.setItem(SIGN_OUT_EVENT, Date.now().toString());
+      pushRoute(SIGNIN);
     },
   });
 
