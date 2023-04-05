@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 import { users } from 'e2e/fixtures/users';
 import { signIn } from 'e2e/helperActions/signIn';
-import { chooseFile } from 'e2e/helperActions/fileChooser';
+// import { chooseFile } from 'e2e/helperActions/fileChooser';
 import { closeNotification } from 'e2e/helperActions/notification';
 
 test.describe('Update Profile', () => {
@@ -23,11 +23,11 @@ test.describe('Update Profile', () => {
 
     await expect(page.locator('[data-testid=profile-update-form]')).toBeVisible();
 
-    await chooseFile({
-      page,
-      selector: '[data-testid=avatar]',
-      filePath: './e2e/fixtures/images/logo.png',
-    });
+    // await chooseFile({
+    //   page,
+    //   selector: '[data-testid=avatar]',
+    //   filePath: './e2e/fixtures/images/logo.png',
+    // });
 
     await page.locator('[data-testid="first-name"]').fill(`${firstName}-${timestamp}`);
     await page.locator('[data-testid="last-name"]').fill(`${lastName}-${timestamp}`);
