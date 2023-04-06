@@ -7,6 +7,6 @@ export const users = {
   },
   invalidUser: {
     email: 'test@test.com',
-    password: '000',
+    password: 'Invalid123',
   },
 };

@@ -19,7 +19,11 @@ test.describe('signIn', () => {
   });
 
   test('Visitor signs in with invalid credentials', async ({ page }) => {
-    await signIn({ page, email, password: 'Invalid123', expectedPath: '/signin' });
+    const {
+      invalidUser: { password: invalidPassword, email: invalidEmail },
+    } = users;
+
+    await signIn({ page, email: invalidEmail, password: invalidPassword, expectedPath: '/signin' });
 
     await closeNotification({ page, text: 'Invalid credentials' });
   });
