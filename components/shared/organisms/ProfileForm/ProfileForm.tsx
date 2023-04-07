@@ -15,7 +15,7 @@ import { TFormValues, TProfileForm } from './types';
 const ProfileForm: FC<TProfileForm> = ({ user }) => {
   const { setSuccess, setError } = useNotifier();
   const [updateUser] = useUpdateUser({
-    onSubmit: () => setSuccess('Пользователь успешно обновлен'),
+    onSubmit: () => setSuccess('Profile updated successfully'),
   });
   const [presignFile] = usePresignFile();
   const [uploadFile] = useFileUpload();
@@ -70,4 +70,5 @@ const ProfileForm: FC<TProfileForm> = ({ user }) => {
     />
   );
 };
+
 export default ProfileForm;

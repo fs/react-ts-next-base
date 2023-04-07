@@ -1,9 +1,9 @@
 import { test } from '@playwright/test';
 
-import { users } from '../../fixtures/users';
-import { closeNotification } from '../../helperActions/notification';
-import { signOut } from '../../helperActions/signOut';
-import { signup } from '../../helperActions/signUp';
+import { users } from 'e2e/fixtures/users';
+import { signup } from 'e2e/helperActions/signUp';
+import { signOut } from 'e2e/helperActions/signOut';
+import { closeNotification } from 'e2e/helperActions/notification';
 
 test.describe('Sign Up', () => {
   const {
@@ -24,7 +24,7 @@ test.describe('Sign Up', () => {
     };
     await signup({ page, ...validCredentials });
 
-    await signOut({ page, baseURL: baseUrl });
+    await signOut({ page, expectedPath: baseUrl });
   });
 
   test('Visitor sign-ups with existed email', async ({ page }) => {
