@@ -8,10 +8,10 @@ import { getMarginStyles } from 'public/styles/config/margin';
 import { TReactSelectProps, TFieldWrapperProps, TOption } from './types';
 
 export const FieldWrapper = styled.div(
-  ({ height, isMulti, ...props }: TFieldWrapperProps) => css`
+  ({ isMulti, ...props }: TFieldWrapperProps) => css`
     position: relative;
     width: 100%;
-    height: ${isMulti ? 'auto' : height};
+    height: ${isMulti ? 'auto' : '2.5rem'};
 
     ${getMarginStyles(props)}
   `,
@@ -34,7 +34,6 @@ export const FieldLabel = styled.label(
 
 export const reactSelectStyles = <T>({
   height,
-  variant,
   rounded,
   readOnly,
 }: TReactSelectProps): StylesConfig<TOption<T>> => ({
@@ -53,7 +52,7 @@ export const reactSelectStyles = <T>({
   control: (styles, { menuIsOpen }) => ({
     ...styles,
     padding: '0 0 0 0.5rem',
-    border: variant === 'default' ? `1px solid ${theme.colors.grey_400}` : '0',
+    border: `1px solid ${theme.colors.grey_400}`,
     height: '100%',
     boxShadow: 'none',
     fontSize: '0.875rem',

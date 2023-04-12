@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
 
-import { TCheckbox, TStates } from './types';
+import { TCheckbox } from './types';
 import { Wrapper, Label, Input } from './styled';
-import { variantConfig, positionConfig, sizeConfig } from './config';
+import { positionConfig, sizeConfig } from './config';
 
 const Checkbox: FC<TCheckbox> = ({
-  variant = 'default',
   position = 'left',
   name,
   label = '',
@@ -16,7 +15,6 @@ const Checkbox: FC<TCheckbox> = ({
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.checked);
   };
-  const checkedState: TStates = checked ? 'checked' : 'unchecked';
 
   return (
     <Wrapper>
@@ -33,8 +31,8 @@ const Checkbox: FC<TCheckbox> = ({
         htmlFor={name}
         positionVariant={position}
         position={positionConfig[position]}
-        state={variantConfig[variant][checkedState]}
         $size={sizeConfig}
+        checked={checked}
       >
         {label}
       </Label>
