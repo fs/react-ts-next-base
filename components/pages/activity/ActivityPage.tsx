@@ -6,7 +6,7 @@ import withGetDataFromTree from 'lib/apollo/withGetDataFromTree';
 
 import { useActivities } from 'lib/apollo/hooks/state/activity';
 
-import Select from 'components/shared/atoms/Select/Select';
+import Select from 'components/shared/atoms/Select';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import ErrorPage from 'pages/_error';
 
