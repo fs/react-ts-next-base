@@ -5,7 +5,7 @@ import Form from 'components/shared/molecules/Form';
 import { FormFieldType } from 'components/shared/molecules/Form/types';
 import { PasswordAutocomplete } from 'components/shared/molecules/Form/formFields/types';
 
-import { TFormValues, TProfileFormContent } from './types';
+import { TProfileFormContent } from './types';
 import { FormWrapper, StyledTitle, AvatarWrapper, AvatarImg } from './styled';
 
 const ProfileFormContent: FC<TProfileFormContent> = ({
@@ -103,7 +103,7 @@ const ProfileFormContent: FC<TProfileFormContent> = ({
           <AvatarImg src={avatarSrc} />
         </AvatarWrapper>
       )}
-      <Form<TFormValues> form={form} />
+      <Form form={form} />
     </FormWrapper>
   );
 };

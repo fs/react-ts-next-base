@@ -3,18 +3,12 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
 
 import Checkbox from '../index';
-import { EPosition, EVariant } from '../types';
+import { EPosition } from '../types';
 
 export default {
   title: 'atoms/Checkbox',
   component: Checkbox,
   argTypes: {
-    variant: {
-      control: { type: 'select' },
-      table: {
-        defaultValue: { summary: EVariant.DEFAULT },
-      },
-    },
     position: {
       control: { type: 'select' },
       table: {
@@ -31,7 +25,6 @@ export default {
   },
   args: {
     checked: false,
-    variant: 'default',
     position: 'left',
     label: 'checkbox label',
     name: 'checkbox_name',
@@ -47,38 +40,9 @@ export const Demo: ComponentStory<typeof Checkbox> = args => {
   return <Checkbox {...args} onChange={handleChange} checked={checked} />;
 };
 
-export const Variant: ComponentStory<typeof Checkbox> = args => {
-  const [{ checked }, updateArgs] = useArgs();
-  const handleChange = (value: boolean) => updateArgs({ checked: value });
-
-  return (
-    <>
-      <Checkbox {...args} onChange={handleChange} checked={checked} variant="default" />
-      <Checkbox {...args} onChange={handleChange} checked={checked} variant="plus" />
-    </>
-  );
-};
-
 export const Right: ComponentStory<typeof Checkbox> = args => {
   const [{ checked }, updateArgs] = useArgs();
   const handleChange = (value: boolean) => updateArgs({ checked: value });
 
-  return (
-    <>
-      <Checkbox
-        {...args}
-        onChange={handleChange}
-        checked={checked}
-        variant="default"
-        position="right"
-      />
-      <Checkbox
-        {...args}
-        onChange={handleChange}
-        checked={checked}
-        variant="plus"
-        position="right"
-      />
-    </>
-  );
+  return <Checkbox {...args} onChange={handleChange} checked={checked} position="right" />;
 };

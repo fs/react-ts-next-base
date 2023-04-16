@@ -2,13 +2,11 @@ import React, { useId } from 'react';
 
 import ReactSelect, { MultiValue, SingleValue } from 'react-select';
 
-import { TOption, TSelect } from '../types';
-import { heightConfig } from '../config';
-import { MultiOption } from '../helpers';
-import { FieldWrapper, FieldLabel, reactSelectStyles, ErrorWrapper } from '../styled';
+import { MultiOption } from './helpers';
+import { TOption, TSelect } from './types';
+import { FieldWrapper, FieldLabel, reactSelectStyles, ErrorWrapper } from './styled';
 
 const Select = <T,>({
-  variant = 'default',
   name,
   title,
   placeholder = '',
@@ -27,18 +25,16 @@ const Select = <T,>({
   readOnly = false,
   ...props
 }: TSelect<T>): JSX.Element => {
-  const styles = reactSelectStyles<T>({ height, variant, rounded, readOnly });
+  const styles = reactSelectStyles<T>({ height, rounded, readOnly });
 
   const onOptionChange = (newValue: SingleValue<TOption<T>> | MultiValue<TOption<T>>) => {
     onChange(newValue || null);
   };
 
-  const hasTitle =
-    (isMulti && Array.isArray(value) ? !!value.length : value) && title && variant === 'default';
-  const hasError = error && variant === 'default';
+  const hasTitle = (isMulti && Array.isArray(value) ? !!value.length : value) && title;
 
   return (
-    <FieldWrapper height={heightConfig[variant]} isMulti={isMulti} {...props}>
+    <FieldWrapper isMulti={isMulti} {...props}>
       {hasTitle && <FieldLabel htmlFor={title}>{title}</FieldLabel>}
       <ReactSelect<TOption<T>, boolean>
         id={`select-${name}`}
@@ -59,7 +55,7 @@ const Select = <T,>({
         hideSelectedOptions={hideSelectedOptions}
         components={isMulti ? { Option: MultiOption } : {}}
       />
-      {hasError && <ErrorWrapper>{error}</ErrorWrapper>}
+      {error && <ErrorWrapper>{error}</ErrorWrapper>}
     </FieldWrapper>
   );
 };

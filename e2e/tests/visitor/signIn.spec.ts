@@ -35,6 +35,6 @@ test.describe('signIn', () => {
 
     await expect(page).toHaveURL('');
 
-    await signOut({ page, expectedPath: '' });
+    await signOut({ page });
   });
 });
