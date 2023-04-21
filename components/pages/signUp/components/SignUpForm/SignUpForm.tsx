@@ -9,10 +9,9 @@ import {
   PASSWORD_INVALID_LENGTH,
   REQUIRED_FIELD,
 } from 'config/constants/errorsText';
-import { passwordRegularExp } from 'config/constants/regularExpressions';
+import { PASSWORD_REGULAR_EXP } from 'config/constants/regularExpressions';
 
-import Form from 'components/shared/molecules/Form';
-import { FormFieldType } from 'components/shared/molecules/Form/types';
+import Form, { FormFieldType } from 'components/shared/molecules/Form';
 
 import { TFormValues } from './types';
 
@@ -59,7 +58,7 @@ const SignUpForm = () => {
           .required(REQUIRED_FIELD)
           .trim()
           .min(6, PASSWORD_INVALID_LENGTH)
-          .matches(passwordRegularExp, PASSWORD_INVALID_FORMAT),
+          .matches(PASSWORD_REGULAR_EXP, PASSWORD_INVALID_FORMAT),
       },
       {
         type: FormFieldType.submit,
@@ -74,7 +73,7 @@ const SignUpForm = () => {
     },
   };
 
-  return <Form form={form} />;
+  return <Form form={form} $width="20rem" />;
 };
 
 export default SignUpForm;

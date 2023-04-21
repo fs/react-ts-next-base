@@ -1,9 +1,7 @@
 import React, { FC } from 'react';
 import * as Yup from 'yup';
 
-import Form from 'components/shared/molecules/Form';
-import { FormFieldType } from 'components/shared/molecules/Form/types';
-import { PasswordAutocomplete } from 'components/shared/molecules/Form/formFields/types';
+import Form, { FormFieldType, PasswordAutocomplete } from 'components/shared/molecules/Form';
 
 import { TProfileFormContent } from './types';
 import { FormWrapper, StyledTitle, AvatarWrapper, AvatarImg } from './styled';

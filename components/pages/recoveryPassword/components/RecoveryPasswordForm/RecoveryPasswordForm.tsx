@@ -6,8 +6,7 @@ import { usePasswordRecovery } from 'lib/apollo/hooks/actions/auth';
 
 import { EMAIL_INVALID, REQUIRED_FIELD } from 'config/constants/errorsText';
 
-import Form from 'components/shared/molecules/Form';
-import { FormFieldType } from 'components/shared/molecules/Form/types';
+import Form, { FormFieldType } from 'components/shared/molecules/Form';
 
 import { TFormValues } from './types';
 
@@ -43,7 +42,7 @@ const RecoveryPasswordForm = () => {
     },
   };
 
-  return <Form form={form} />;
+  return <Form form={form} $width="20rem" />;
 };
 
 export default RecoveryPasswordForm;

@@ -1,8 +1,16 @@
 import { usePresignDataMutation } from 'graphql/mutations/__generated__/presignData.generated';
 import { PresignDataInput } from 'graphql/types';
 
+import useNotifier from 'hooks/useNotifier';
+
 export const usePresignFile = () => {
-  const [mutation, mutationState] = usePresignDataMutation();
+  const { setError } = useNotifier();
+
+  const [mutation, mutationState] = usePresignDataMutation({
+    onError: error => {
+      setError(error);
+    },
+  });
 
   const mutate = async ({ type, filename }: PresignDataInput) => {
     if (!type || !filename) return { fields: [], url: '' };

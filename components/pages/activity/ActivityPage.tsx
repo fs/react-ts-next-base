@@ -6,6 +6,7 @@ import withGetDataFromTree from 'lib/apollo/withGetDataFromTree';
 
 import { useActivities } from 'lib/apollo/hooks/state/activity';
 
+import Loader from 'components/shared/atoms/Loader';
 import Select from 'components/shared/atoms/Select';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import ErrorPage from 'pages/_error';
@@ -13,20 +14,19 @@ import ErrorPage from 'pages/_error';
 import { TNextPage } from 'lib/apollo/types';
 import { ActivityEvent } from 'graphql/types';
 
-import Loader from 'components/shared/atoms/Loader';
 import ActivityTable from './components/ActivityTable';
 import ActivityPagination from './components/ActivityPagination';
 
 import { Wrapper } from './styled';
 import { TEventChange, TSizeChange } from './types';
-import { activityEvents, activityPageSizes, activityPageSizeOptions } from './constants';
+import { ACTIVITY_EVENTS, ACTIVITY_PAGE_SIZES, ACTIVITY_PAGE_SIZE_OPTIONS } from './constants';
 
 export const ActivityPage: TNextPage = () => {
   const [beforeCursor, setBeforeCursor] = useState<undefined | string>();
   const [afterCursor, setAfterCursor] = useState<undefined | string>();
   const [activityEvent, setActivityEvent] = useState<undefined | ActivityEvent>();
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(activityPageSizes[0]);
+  const [pageSize, setPageSize] = useState(ACTIVITY_PAGE_SIZES[0]);
 
   const { activities, pageInfo, loading, error } = useActivities({
     before: beforeCursor,
@@ -70,16 +70,16 @@ export const ActivityPage: TNextPage = () => {
           name="activity-event"
           title="Choose activity event:"
           placeholder="Choose activity event:"
-          options={activityEvents}
-          value={activityEvents.find(({ value }) => value === activityEvent) || null}
+          options={ACTIVITY_EVENTS}
+          value={ACTIVITY_EVENTS.find(({ value }) => value === activityEvent) || null}
           onChange={onEventChange}
           $mb={16}
         />
         <Select
           name="activity-size"
           title="Choose activity page size:"
-          options={activityPageSizeOptions}
-          value={activityPageSizeOptions.find(({ value }) => value === pageSize) || null}
+          options={ACTIVITY_PAGE_SIZE_OPTIONS}
+          value={ACTIVITY_PAGE_SIZE_OPTIONS.find(({ value }) => value === pageSize) || null}
           onChange={onPageSizeChange}
           isClearable={false}
           $mb={16}

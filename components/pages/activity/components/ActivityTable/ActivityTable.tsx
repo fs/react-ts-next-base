@@ -4,7 +4,7 @@ import ProfileImage from 'components/shared/atoms/ProfileImage';
 import DataCell from './DataCell';
 
 import { TActivityTable } from './types';
-import { activityEventColors } from './constants';
+import { ACTIVITY_EVENTS_COLORS } from './constants';
 import { StyledTable, ColorLabel, HeaderCell, UserInfo, EmptyList } from './styled';
 
 const ActivityTable: FC<TActivityTable> = ({ activities }) => {
@@ -29,7 +29,7 @@ const ActivityTable: FC<TActivityTable> = ({ activities }) => {
 
               return (
                 <tr key={id} data-testid="activity-row">
-                  <ColorLabel color={activityEventColors[event]} />
+                  <ColorLabel color={ACTIVITY_EVENTS_COLORS[event]} />
                   <DataCell>{title}</DataCell>
                   <DataCell>{body}</DataCell>
                   <DataCell>{new Date(createdAt).toLocaleString()}</DataCell>

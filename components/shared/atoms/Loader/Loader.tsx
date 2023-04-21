@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 
 import { TLoader } from './types';
 import { sizeConfig } from './config';
 import { LoaderWrapper, Spinner } from './styled';
 
-const Loader: FunctionComponent<TLoader> = ({
+const Loader: FC<TLoader> = ({
   variant = 'default',
   testId,
   size = sizeConfig[variant].spinner,
