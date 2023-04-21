@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import { Property } from 'csstype';
 import { TWidth } from 'public/styles/config/width';
 
@@ -7,7 +7,7 @@ export type TModalWindow = TWidth & {
   setIsOpen?: (state: boolean) => void;
   isClosable?: boolean;
   closeOnOverlayClick?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
   padding?: Property.Padding;
   rounded?: boolean;
   title?: string;

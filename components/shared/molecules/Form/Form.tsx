@@ -1,4 +1,3 @@
-import React from 'react';
 import * as Yup from 'yup';
 import type { FormikValues } from 'formik';
 import { Form as FormikForm, Formik } from 'formik';

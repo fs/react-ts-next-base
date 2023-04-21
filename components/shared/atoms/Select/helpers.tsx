@@ -1,4 +1,3 @@
-import React from 'react';
 import { components, OptionProps } from 'react-select';
 import Checkbox from 'components/shared/atoms/Checkbox';
 

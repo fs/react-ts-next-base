@@ -1,5 +1,5 @@
 declare module '*.svg' {
-  import React, { FC } from 'react';
-  const src: FC<React.PropsWithChildren<React.SVGProps<SVGSVGElement>>>;
+  import { FC, PropsWithChildren, SVGProps } from 'react';
+  const src: FC<PropsWithChildren<SVGProps<SVGSVGElement>>>;
   export default src;
 }

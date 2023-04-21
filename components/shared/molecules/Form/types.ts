@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 import type { FormikHelpers, FormikValues } from 'formik';
 import * as Yup from 'yup';
 
@@ -53,5 +53,5 @@ export type FormType<TFormValues extends FormikValues = FormikValues> = {
 export type TDefaultFieldWrapper = {
   name: BaseFormFieldConfig['name'];
   title: BaseFormFieldConfig['title'];
-  children: React.ReactNode;
+  children: ReactNode;
 };

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { TypeOptions } from 'react-toastify';
 
 import ErrorDecorator from 'decorators/ErrorDecorator';

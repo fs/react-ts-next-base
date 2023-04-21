@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useMemo, useState } from 'react';
+import { ChangeEvent, FC, useMemo, useState } from 'react';
 import type { FormikHelpers } from 'formik';
 
 import useNotifier from 'hooks/useNotifier';

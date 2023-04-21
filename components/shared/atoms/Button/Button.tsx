@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { ButtonHTMLAttributes, forwardRef } from 'react';
 import Link from 'next/link';
 
 import Loader from 'components/shared/atoms/Loader';
@@ -16,7 +16,7 @@ import {
   shadowConfig,
 } from './config';
 
-type TButtonType = TButton & React.ButtonHTMLAttributes<HTMLButtonElement>;
+type TButtonType = TButton & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = forwardRef<HTMLButtonElement, TButtonType>(
   (

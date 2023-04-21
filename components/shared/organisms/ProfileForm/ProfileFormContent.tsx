@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import * as Yup from 'yup';
 
 import Form, { FormFieldType, PasswordAutocomplete } from 'components/shared/molecules/Form';

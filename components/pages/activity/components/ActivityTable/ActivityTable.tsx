@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import ProfileImage from 'components/shared/atoms/ProfileImage';
 
 import DataCell from './DataCell';

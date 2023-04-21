@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import renderWithApolloClient from '__tests__/helpers/renderWithApolloClient';

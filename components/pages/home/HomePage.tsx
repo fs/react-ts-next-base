@@ -1,5 +1,3 @@
-import React from 'react';
-
 import withAuth from 'lib/auth/withAuth';
 import withAuthSecurity from 'lib/auth/withAuthSecurity';
 import withGetDataFromTree from 'lib/apollo/withGetDataFromTree';

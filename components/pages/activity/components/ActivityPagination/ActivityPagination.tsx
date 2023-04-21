@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import Icon from 'components/shared/atoms/Icon';
 import Button from 'components/shared/atoms/Button';

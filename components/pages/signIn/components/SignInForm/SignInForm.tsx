@@ -1,4 +1,3 @@
-import React from 'react';
 import * as Yup from 'yup';
 
 import { useSignIn } from 'lib/apollo/hooks/actions/auth';

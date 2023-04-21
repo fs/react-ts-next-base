@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { TActionLink } from './types';
 import { StyledNextLink, StyledLink } from './styled';
