@@ -42,6 +42,9 @@ export const useSignIn = () => {
         pathname: HOME,
       });
     },
+    onError: error => {
+      setError(error);
+    },
   });
 
   const mutate = async ({ email, password }: SignInInput) => {
@@ -50,11 +53,7 @@ export const useSignIn = () => {
       password,
     };
 
-    try {
-      await mutation({ variables: { input: signInInput } });
-    } catch (error) {
-      setError(error);
-    }
+    await mutation({ variables: { input: signInInput } });
   };
   return [mutate, mutationState] as const;
 };
@@ -78,6 +77,9 @@ export const useSignUp = () => {
         },
       });
     },
+    onError: error => {
+      setError(error);
+    },
   });
 
   const mutate = async ({ avatar, email, password, firstName, lastName }: SignUpInput) => {
@@ -89,11 +91,7 @@ export const useSignUp = () => {
       lastName,
     };
 
-    try {
-      await mutation({ variables: { input: signUpInput } });
-    } catch (error) {
-      setError(error);
-    }
+    await mutation({ variables: { input: signUpInput } });
   };
 
   return [mutate, mutationState] as const;
@@ -116,16 +114,15 @@ export const useSignOut = () => {
       window.localStorage.setItem(SIGN_OUT_EVENT, Date.now().toString());
       pushRoute(SIGNIN);
     },
+    onError: error => {
+      setError(error);
+    },
   });
 
   const mutate = async ({ everywhere = false }: SignOutInput) => {
     const signOutInput = { everywhere };
 
-    try {
-      await mutation({ variables: { input: signOutInput } });
-    } catch (error) {
-      setError(error);
-    }
+    await mutation({ variables: { input: signOutInput } });
   };
 
   return [mutate, mutationState] as const;
@@ -134,16 +131,16 @@ export const useSignOut = () => {
 export const usePasswordRecovery = () => {
   const { setError } = useNotifier();
 
-  const [mutation, mutationState] = useRequestPasswordRecoveryMutation();
+  const [mutation, mutationState] = useRequestPasswordRecoveryMutation({
+    onError: error => {
+      setError(error);
+    },
+  });
 
   const mutate = async ({ email }: RequestPasswordRecoveryInput) => {
     const requestPasswordRecoveryInput = { email };
 
-    try {
-      await mutation({ variables: { input: requestPasswordRecoveryInput } });
-    } catch (error) {
-      setError(error);
-    }
+    await mutation({ variables: { input: requestPasswordRecoveryInput } });
   };
 
   const error = mutationState?.error;
@@ -156,23 +153,20 @@ export const useUpdatePassword = () => {
   const { setError, setSuccess } = useNotifier();
   const { pushRoute } = useRouter();
 
-  const onCompleted = () => {
-    setSuccess('Пароль успешно изменен');
-    setTimeout(() => pushRoute(SIGNIN), 1000);
-  };
-
   const [mutation, mutationState] = useUpdatePasswordMutation({
-    onCompleted,
+    onCompleted: () => {
+      setSuccess('Пароль успешно изменен');
+      setTimeout(() => pushRoute(SIGNIN), 1000);
+    },
+    onError: error => {
+      setError(error);
+    },
   });
 
   const mutate = async ({ password, resetToken }: UpdatePasswordInput) => {
     const updatePasswordInput = { password, resetToken };
 
-    try {
-      await mutation({ variables: { input: updatePasswordInput } });
-    } catch (error) {
-      setError(error);
-    }
+    await mutation({ variables: { input: updatePasswordInput } });
   };
 
   return [mutate, mutationState] as const;

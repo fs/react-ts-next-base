@@ -1,4 +1,4 @@
-import React, { useCallback, FC } from 'react';
+import { useCallback, FC } from 'react';
 
 import ProfileImage from 'components/shared/atoms/ProfileImage';
 

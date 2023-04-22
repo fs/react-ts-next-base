@@ -1,4 +1,3 @@
-import React from 'react';
 import * as jest from "jest-mock";
 import { Story } from '@storybook/react';
 import NiceModal from '@ebay/nice-modal-react';

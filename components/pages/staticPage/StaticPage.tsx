@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { HOME } from 'config/routes';
 import { TNextPage } from 'lib/apollo/types';
 

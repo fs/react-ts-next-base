@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useMemo, useState } from 'react';
+import { ChangeEvent, FC, useMemo, useState } from 'react';
 import type { FormikHelpers } from 'formik';
 
 import useNotifier from 'hooks/useNotifier';
@@ -13,7 +13,7 @@ import ProfileFormContent from './ProfileFormContent';
 import { TFormValues, TProfileForm } from './types';
 
 const ProfileForm: FC<TProfileForm> = ({ user }) => {
-  const { setSuccess, setError } = useNotifier();
+  const { setSuccess } = useNotifier();
   const [updateUser] = useUpdateUser({
     onSubmit: () => setSuccess('Profile updated successfully'),
   });
@@ -42,21 +42,17 @@ const ProfileForm: FC<TProfileForm> = ({ user }) => {
   const onSubmit = async (values: TFormValues, { setSubmitting }: FormikHelpers<TFormValues>) => {
     setSubmitting(true);
 
-    try {
-      let uploadedAvatar: ImageUploader | undefined;
-      if (avatar) {
-        const presignData = await presignFile({ type: avatar.type, filename: avatar.name });
+    let uploadedAvatar: ImageUploader | undefined;
+    if (avatar) {
+      const presignData = await presignFile({ type: avatar.type, filename: avatar.name });
 
-        if (!presignData) {
-          throw new Error('Unsigned file');
-        }
-
-        uploadedAvatar = await uploadFile(presignData, avatar);
+      if (!presignData) {
+        throw new Error('Unsigned file');
       }
-      await updateUser({ ...values, avatar: uploadedAvatar });
-    } catch (error) {
-      setError(error);
+
+      uploadedAvatar = await uploadFile(presignData, avatar);
     }
+    await updateUser({ ...values, avatar: uploadedAvatar });
 
     setSubmitting(false);
   };

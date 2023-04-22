@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import Cookie from 'universal-cookie';
 import omit from 'lodash/omit';
 

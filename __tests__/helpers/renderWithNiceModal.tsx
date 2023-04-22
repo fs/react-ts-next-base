@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import NiceModal from '@ebay/nice-modal-react';
 
 export default function renderWithNiceModal(component: ReactElement): ReactElement {

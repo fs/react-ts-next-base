@@ -1,11 +1,8 @@
-import React from 'react';
 import * as Yup from 'yup';
 
-import Form from 'components/shared/molecules/Form';
-import { FormFieldType } from 'components/shared/molecules/Form/types';
+import Form, { FormFieldType, PasswordAutocomplete } from 'components/shared/molecules/Form';
 
 import { REQUIRED_FIELD } from 'config/constants/errorsText';
-import { PasswordAutocomplete } from 'components/shared/molecules/Form/formFields/types';
 
 const form = {
   fields: [
@@ -76,7 +73,7 @@ const FormExamples = () => {
   return (
     <div>
       <h1>Form examples</h1>
-      <Form form={form} />
+      <Form form={form} $width="20rem" />
     </div>
   );
 };

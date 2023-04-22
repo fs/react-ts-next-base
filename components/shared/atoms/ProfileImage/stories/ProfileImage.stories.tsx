@@ -1,4 +1,3 @@
-import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import ProfileImage from '../index';
 import { ImageWrapper } from './styled';

@@ -1,1 +1,1 @@
-export { useUpdateUser } from './user';
+export * from './user';

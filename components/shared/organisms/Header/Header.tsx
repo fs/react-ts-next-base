@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { PROFILE, ACTIVITY, SIGNIN, SIGNUP } from 'config/routes';
 
 import Logo from 'components/shared/atoms/Logo';

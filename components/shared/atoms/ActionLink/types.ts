@@ -1,3 +1,4 @@
+import { HTMLAttributeAnchorTarget, HTMLAttributeReferrerPolicy, ReactNode } from 'react';
 import { UrlObject } from 'url';
 import { TMargin } from 'public/styles/config/margin';
 import { ColorKeys } from 'public/styles/config/colors';
@@ -7,11 +8,11 @@ export type TActionLink = TMargin & {
   label?: string;
   $size?: number;
   bold?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
   $color?: ColorKeys;
   href?: UrlObject | string;
-  target?: React.HTMLAttributeAnchorTarget;
-  rel?: React.HTMLAttributeReferrerPolicy;
+  target?: HTMLAttributeAnchorTarget;
+  rel?: HTMLAttributeReferrerPolicy;
 };
 
 export type TStyledLinkProps = TMargin & {

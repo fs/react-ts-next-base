@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { HTMLAttributeAnchorTarget, HTMLAttributeReferrerPolicy, ReactNode } from 'react';
 import { UrlObject } from 'url';
 import { TMargin } from 'public/styles/config/margin';
 import { TWidth } from 'public/styles/config/width';
@@ -43,8 +43,8 @@ export type TButton = TMargin &
     shape?: `${EShape}`;
     isLoading?: boolean;
     href?: UrlObject | string;
-    target?: React.HTMLAttributeAnchorTarget;
-    rel?: React.HTMLAttributeReferrerPolicy;
+    target?: HTMLAttributeAnchorTarget;
+    rel?: HTMLAttributeReferrerPolicy;
   };
 
 export type TButtonStates = {

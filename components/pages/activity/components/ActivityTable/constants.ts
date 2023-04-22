@@ -1,6 +1,6 @@
 import { ActivityEvent } from 'graphql/types';
 
-export const activityEventColors = {
+export const ACTIVITY_EVENTS_COLORS = {
   [ActivityEvent.UserLoggedIn]: '#00e676',
   [ActivityEvent.UserRegistered]: '#f50057',
   [ActivityEvent.UserResetPassword]: '#d500f9',

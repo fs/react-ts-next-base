@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import { TypeOptions } from 'react-toastify';
 
 export type TNotifierContext = {
@@ -11,5 +11,5 @@ export type TNotifierContext = {
 };
 
 export type TNotifierProvider = {
-  children: React.ReactNode;
+  children: ReactNode;
 };

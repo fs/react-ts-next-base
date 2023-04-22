@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Field } from 'formik';
 
 import { PasswordFormFieldConfig } from './types';

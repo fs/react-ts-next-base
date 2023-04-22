@@ -1,7 +1,8 @@
-import React from 'react';
+import * as Yup from 'yup';
 import type { FormikValues } from 'formik';
 import { Form as FormikForm, Formik } from 'formik';
-import * as Yup from 'yup';
+
+import { TWidth } from 'public/styles/config/width';
 
 import { collectFormikProps } from './utils';
 
@@ -22,7 +23,8 @@ import { ErrorWrapper, FormContainer, FormWrapper, FieldWrapper } from './styled
 
 const Form = <FormValues extends FormikValues = FormikValues>({
   form,
-}: {
+  $width = 'auto',
+}: TWidth & {
   form: FormType<FormValues>;
 }) => {
   const { fields, onSubmit } = form;
@@ -30,7 +32,7 @@ const Form = <FormValues extends FormikValues = FormikValues>({
   const formValidationSchema = Yup.object().shape(validationSchema);
 
   return (
-    <FormWrapper data-testid="profile-update-form">
+    <FormWrapper data-testid="profile-update-form" $width={$width}>
       <Formik<FormValues>
         enableReinitialize
         onSubmit={onSubmit}

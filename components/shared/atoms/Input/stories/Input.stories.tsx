@@ -1,8 +1,8 @@
-import React from 'react';
 import * as Yup from 'yup';
 import withFormik from 'storybook-formik';
-import { REQUIRED_FIELD } from 'config/constants/errorsText';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+
+import { REQUIRED_FIELD } from 'config/constants/errorsText';
 
 import Icon from 'components/shared/atoms/Icon';
 

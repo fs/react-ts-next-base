@@ -1,4 +1,3 @@
-import React from 'react';
 import omit from 'lodash/omit';
 import { TToken, TExpires, TAppPage, ApolloPageContext } from 'lib/apollo/types';
 

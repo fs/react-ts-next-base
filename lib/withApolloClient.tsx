@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-import React from 'react';
 import App from 'next/app';
 import fetch from 'isomorphic-unfetch';
 import { HttpsProxyAgent } from 'https-proxy-agent';

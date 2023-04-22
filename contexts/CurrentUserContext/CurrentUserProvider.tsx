@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 
 import { useCurrentUserHook } from 'lib/apollo/hooks/state/currentUser';
 
 import CurrentUserContext from './CurrentUserContext';
 
-const CurrentUserProvider = ({ children }: { children: React.ReactNode }) => {
+const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
   const { user, loading, error, refetch, networkStatus } = useCurrentUserHook();
 
   const context: ReturnType<typeof useCurrentUserHook> = useMemo(

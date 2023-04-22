@@ -1,1 +1,1 @@
-export { useCurrentUserHook } from './currentUser';
+export * from './currentUser';

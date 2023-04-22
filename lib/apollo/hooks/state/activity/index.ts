@@ -1,1 +1,1 @@
-export { useActivities } from './activity';
+export * from './activity';

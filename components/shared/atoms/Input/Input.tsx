@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, InputHTMLAttributes, useState } from 'react';
 import { Field, ErrorMessage, useField, useFormikContext } from 'formik';
 
 import Icon from 'components/shared/atoms/Icon';
@@ -15,7 +15,7 @@ import {
 
 import { FieldWrapper, InputWrapper, ErrorWrapper, FieldLabel } from './styled';
 
-type TInputType = TInput & React.InputHTMLAttributes<HTMLInputElement>;
+type TInputType = TInput & InputHTMLAttributes<HTMLInputElement>;
 
 const Input: FC<TInputType> = ({
   variant = 'default',

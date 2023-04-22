@@ -1,33 +1,37 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const FormWrapper = styled.div`
-  max-width: 40rem;
+import { TWidth } from 'public/styles/config/width';
 
-  input,
-  textarea,
-  select,
-  button {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1rem;
-    border-radius: 0.3rem;
-    border: 1px solid ${({ theme }) => theme.colors.grey_500};
-  }
+export const FormWrapper = styled.div<TWidth>(
+  ({ $width }) => css`
+    width: ${$width};
 
-  [type='file'] {
-    border: none;
-    padding: 0;
-  }
+    input,
+    textarea,
+    select,
+    button {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      border-radius: 0.3rem;
+      border: 1px solid ${({ theme }) => theme.colors.grey_500};
+    }
 
-  input[type='checkbox'],
-  input[type='radio'] {
-    width: auto;
-  }
+    [type='file'] {
+      border: none;
+      padding: 0;
+    }
 
-  textarea {
-    resize: vertical;
-  }
-`;
+    input[type='checkbox'],
+    input[type='radio'] {
+      width: auto;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+  `,
+);
 
 export const FormContainer = styled.div`
   display: flex;

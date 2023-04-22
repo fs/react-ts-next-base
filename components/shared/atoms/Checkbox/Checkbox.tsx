@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 
 import { TCheckbox } from './types';
 import { Wrapper, Label, Input } from './styled';
@@ -12,7 +12,7 @@ const Checkbox: FC<TCheckbox> = ({
   onChange = () => {},
   readOnly = false,
 }) => {
-  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.checked);
   };
 
