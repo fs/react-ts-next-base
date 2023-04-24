@@ -5,6 +5,7 @@
   "scripts": {
     "build": "next build",
     "server": "node -r ts-node/register/transpile-only server.ts",
+    "start": "node -r ts-node/register/transpile-only server.ts",
     "test": "jest --watch",
     "test-debug": "node --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage",
     "lint": "yarn lint:js && yarn lint:css",
