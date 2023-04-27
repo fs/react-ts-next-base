@@ -33,6 +33,8 @@ jobs:
         touch .env
         echo API_URL=${{ secrets.API_URL }} >> .env
         yarn build
+      env:
+        API_URL: ${{ secrets.API_URL }}
 
     - name: Run Playwright tests
       run: yarn pw-run
