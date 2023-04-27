@@ -31,14 +31,19 @@ jobs:
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
 
-    - name: Create build
-      run: |
+    # - name: Create build
+    #   run: |
+    #     touch .env
+    #     echo API_URL=${{ secrets.API_URL }} >> .env
+    #     yarn build
+
+    # - name: Run Playwright tests
+    #   run: yarn pw-run
+    - name: Run Playwright tests
+      run:  |
         touch .env
         echo API_URL=${{ secrets.API_URL }} >> .env
-        yarn build
-
-    - name: Run Playwright tests
-      run: yarn pw-run
+        yarn ci:pw-run
 
     - uses: actions/upload-artifact@v3
       if: failure()
