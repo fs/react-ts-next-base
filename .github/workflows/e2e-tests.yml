@@ -29,6 +29,8 @@ jobs:
       run: yarn playwright install --with-deps
 
     - name: Run Playwright tests
+      env:
+        API_URL: ${{ secrets.API_URL }}
       run: yarn run ci:pw-run
 
     - uses: actions/upload-artifact@v3
