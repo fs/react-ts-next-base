@@ -35,12 +35,12 @@ jobs:
       run: yarn build
 
     - name: Run Playwright tests
-      run: yarn pw-run
+      run:  |
+        touch .env
+        echo API_URL=${{ secrets.API_URL }} >> .env
+        yarn pw-run
     # - name: Run Playwright tests
-    #   run:  |
-    #     touch .env
-    #     echo API_URL=${{ secrets.API_URL }} >> .env
-    #     yarn ci:pw-run
+    #   run: yarn ci:pw-run
 
     - uses: actions/upload-artifact@v3
       if: failure()
