@@ -1,7 +1,5 @@
 # react-ts-next-base
 
-[![Build Status](https://flatstack.semaphoreci.com/badges/react-ts-next-base/branches/master.svg?style=shields&key=96052622-7942-4693-8763-afb25b9ecc2b)](https://flatstack.semaphoreci.com/projects/react-ts-next-base)
-
 ### Install dependencies:
 
 Run `yarn`
