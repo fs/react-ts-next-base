@@ -35,9 +35,11 @@ jobs:
       run: yarn build
 
     - name: Run Playwright tests
-      run: yarn pw-run
-      env:
-        API_URL: ${{ secrets.API_URL }}
+      run: |
+        touch .env
+        echo API_URL=${{ secrets.API_URL }} >> .env
+        yarn pw-run
+
     # - name: Run Playwright tests
     #   run: yarn ci:pw-run
 

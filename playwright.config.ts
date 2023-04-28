@@ -1,13 +1,14 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
 import dotenv from 'dotenv';
+import path from 'path';
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
 // require('dotenv').config();
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -109,6 +110,7 @@ const config: PlaywrightTestConfig = {
     command: 'NODE_ENV=production yarn server',
     port: 8080,
     reuseExistingServer: !process.env.CI,
+    timeout: 120 * 1000,
   },
 };
 
