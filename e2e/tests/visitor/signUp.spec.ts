@@ -22,9 +22,9 @@ test.describe('Sign Up', () => {
       password,
       email: `${timestamp}@test.com`,
     };
-    await signup({ page, ...validCredentials });
+    await signup({ page, expectedPath: baseUrl, ...validCredentials });
 
-    await signOut({ page, expectedPath: baseUrl });
+    await signOut({ page });
   });
 
   test('Visitor sign-ups with existed email', async ({ page }) => {
