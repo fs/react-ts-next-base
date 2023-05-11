@@ -33,11 +33,6 @@ export const createErrorLink = () =>
     for (const err of graphQLErrors) {
       console.log('🚀 ~ file: apolloLinks.ts:34 ~ err:', err);
       if (err?.extensions?.code === 'unauthorized') {
-        console.log(
-          '🚀 ~ file: apolloLinks.ts:37 ~ operation.operationName:',
-          operation.operationName,
-        );
-
         if (operation.operationName !== 'signIn') {
           operation.setContext({ isUnauthorizedError: true });
         }
