@@ -1,7 +1,6 @@
 import * as Types from '../../types';
 
 import { gql } from '@apollo/client';
-import { CurrentUserFragmentDoc } from '../../fragments/__generated__/currentUserInfo.generated';
 import { ActivityFragmentDoc } from '../../fragments/__generated__/activityInfo.generated';
 import { PageInfoFragmentDoc } from '../../fragments/__generated__/pageInfo.generated';
 import * as Apollo from '@apollo/client';
@@ -16,14 +15,6 @@ export type ActivitiesQueryVariables = Types.Exact<{
 
 export type ActivitiesQuery = {
   __typename?: 'Query';
-  me?: {
-    __typename?: 'CurrentUser';
-    avatarUrl?: string | null;
-    id: string;
-    email: string;
-    firstName?: string | null;
-    lastName?: string | null;
-  } | null;
   activities?: {
     __typename?: 'ActivityConnection';
     edges?: Array<{
@@ -64,9 +55,6 @@ export const ActivitiesDocument = gql`
     $first: Int
     $after: String
   ) {
-    me {
-      ...CurrentUser
-    }
     activities(events: $events, last: $last, before: $before, first: $first, after: $after) {
       edges {
         cursor
@@ -79,7 +67,6 @@ export const ActivitiesDocument = gql`
       }
     }
   }
-  ${CurrentUserFragmentDoc}
   ${ActivityFragmentDoc}
   ${PageInfoFragmentDoc}
 `;

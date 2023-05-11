@@ -5,7 +5,7 @@ mutation updateToken {
     me {
       ...CurrentUser
     }
-   accessToken
-  refreshToken
+    accessToken
+    refreshToken
   }
 }

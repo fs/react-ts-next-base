@@ -36,6 +36,7 @@
     "@ebay/nice-modal-react": "^1.2.7",
     "@graphql-tools/jest-transform": "^1.2.1",
     "@next/bundle-analyzer": "^12.2.5",
+    "apollo-link-token-refresh": "^0.4.0",
     "ally.js": "^1.4.1",
     "body-parser": "^1.19.0",
     "core-js": "3",

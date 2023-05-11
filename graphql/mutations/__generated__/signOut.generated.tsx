@@ -13,7 +13,7 @@ export type SignOutMutation = {
 };
 
 export const SignOutDocument = gql`
-  mutation SignOut($input: SignOutInput!) {
+  mutation signOut($input: SignOutInput!) {
     signout(input: $input) {
       message
     }

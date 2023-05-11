@@ -9,9 +9,6 @@ query Activities(
   $first: Int
   $after: String
 ) {
-  me {
-    ...CurrentUser
-  }
   activities(events: $events, last: $last, before: $before, first: $first, after: $after) {
     edges {
       cursor

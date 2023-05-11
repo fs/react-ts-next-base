@@ -99,27 +99,18 @@ export const useSignUp = () => {
 
 export const useSignOut = () => {
   const { setError } = useNotifier();
-  const { pushRoute } = useRouter();
-
+  const { reload } = useRouter();
   const [mutation, mutationState] = useSignOutMutation({
-    update: store => {
-      store.writeQuery({
-        query: CurrentUser,
-        data: {
-          me: null,
-        },
-      });
-    },
     onCompleted: () => {
       window.localStorage.setItem(SIGN_OUT_EVENT, Date.now().toString());
-      pushRoute(SIGNIN);
+      reload();
     },
     onError: error => {
       setError(error);
     },
   });
 
-  const mutate = async ({ everywhere = false }: SignOutInput) => {
+  const mutate = async ({ everywhere = false }: SignOutInput = {}) => {
     const signOutInput = { everywhere };
 
     await mutation({ variables: { input: signOutInput } });

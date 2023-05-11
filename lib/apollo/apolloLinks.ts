@@ -1,8 +1,15 @@
 /* eslint-disable no-console */
-import { ApolloLink, fromPromise } from '@apollo/client';
+import Router from 'next/router';
+import { TokenRefreshLink } from 'apollo-link-token-refresh';
+import Cookie from 'universal-cookie';
+import { ApolloLink } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
+
 import isSSR from 'config/isSSR';
-import { TCreateAuthHeaderLink, TCreateUpdateTokenLink } from './types';
+import { REFRESH_TOKEN_KEY } from 'config/jwt';
+import { GRAPHQL_APP_URL, PORT } from 'config/vars';
+
+import { TCreateAuthHeaderLink, TCreateRefreshTokenLink } from './types';
 
 export const createConsoleLink = () =>
   new ApolloLink((operation, forward) => {
@@ -24,31 +31,28 @@ export const createErrorLink = () =>
     const { graphQLErrors = [], forward, operation } = error;
     // eslint-disable-next-line no-restricted-syntax
     for (const err of graphQLErrors) {
+      console.log('🚀 ~ file: apolloLinks.ts:34 ~ err:', err);
       if (err?.extensions?.code === 'unauthorized') {
-        if (operation.operationName !== 'updateToken') {
-          const delayOperation = new Promise((resolve: (value?: unknown) => void) =>
-            setTimeout(() => resolve(), 300),
-          );
-          return fromPromise(delayOperation).flatMap(() => {
-            return forward(operation);
-          });
+        console.log(
+          '🚀 ~ file: apolloLinks.ts:37 ~ operation.operationName:',
+          operation.operationName,
+        );
+
+        if (operation.operationName !== 'signIn') {
+          operation.setContext({ isUnauthorizedError: true });
         }
         return forward(operation);
       }
     }
   });
 
-export const createAuthHeaderLink = ({ getAccessToken, cookie }: TCreateAuthHeaderLink) =>
+export const createAuthHeaderLink = ({ cookie }: TCreateAuthHeaderLink) =>
   new ApolloLink((operation, forward) => {
-    const accessToken =
-      typeof getAccessToken === 'function' ? getAccessToken()?.accessToken : undefined;
-    const authHeader = accessToken ? { Authorization: `Bearer ${accessToken}` } : {};
     const cookieHeader = cookie ? { Cookie: cookie } : {};
 
     operation.setContext(({ headers }: { headers: object }) => {
       return {
         headers: {
-          ...authHeader,
           ...cookieHeader,
           ...headers,
         },
@@ -58,35 +62,81 @@ export const createAuthHeaderLink = ({ getAccessToken, cookie }: TCreateAuthHead
     return forward(operation);
   });
 
-export const createUpdateTokenLink = ({
-  setAccessToken,
-  deleteAccessToken,
-}: TCreateUpdateTokenLink) =>
-  new ApolloLink((operation, forward) => {
-    return forward(operation).map(data => {
-      const name = operation.operationName;
+const getServerUrl = (path: string) => {
+  const currentUrl = window.location.href;
+  const url = new URL(path, currentUrl);
+  return url.href;
+};
 
-      switch (name) {
-        case 'signIn':
-        case 'signUp':
-        case 'updatePassword':
-        case 'updateToken': {
-          if (!data?.data?.[name]) break;
+const getProxyUrl = ({ origin, port, path }: { origin: string; port: string; path: string }) => {
+  const proxyUrl = new URL(origin);
+  proxyUrl.port = port;
+  proxyUrl.pathname = path;
+  return proxyUrl;
+};
 
-          const { accessToken } = data.data[name];
+export const createRefreshTokenLink = ({ cookie }: TCreateRefreshTokenLink) => {
+  const refreshToken = new Cookie(cookie).get(REFRESH_TOKEN_KEY);
 
-          if (accessToken) setAccessToken(accessToken);
-
-          break;
+  const body = JSON.stringify({
+    operationName: 'updateToken',
+    query: `mutation updateToken {
+        updateToken {
+          accessToken
+          refreshToken
         }
-        case 'SignOut': {
-          deleteAccessToken();
-          break;
-        }
-        default:
-          break;
+      }`,
+    variables: {},
+  });
+
+  const url = isSSR
+    ? getProxyUrl({ origin: 'http://127.0.0.1', port: String(PORT), path: GRAPHQL_APP_URL })
+    : getServerUrl(GRAPHQL_APP_URL);
+
+  return new TokenRefreshLink({
+    accessTokenField: 'accessToken',
+    isTokenValidOrUndefined: operation => {
+      if (operation.getContext().isUnauthorizedError) {
+        return false;
+      }
+      return true;
+    },
+    fetchAccessToken: async () => {
+      const response = await fetch(url.toString(), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${refreshToken}`,
+        },
+        body,
+      });
+      return response.json();
+    },
+    handleFetch: () => {},
+    // @ts-ignore
+    handleResponse: () => response => {
+      if (response?.errors?.length >= 0) {
+        throw new Error(response?.errors[0].message);
+      }
+      return {
+        accessToken: response,
+      };
+    },
+    handleError: (err, operation) => {
+      console.error('Your refresh token is invalid. Try to re-login. err: ', err);
+      if (isSSR) {
+        console.log('isSSR handleError');
+        return;
       }
 
-      return data;
-    });
+      if (operation.getContext().isUnauthorizedError) {
+        const { cache } = operation.getContext();
+        console.log('Invalid credentials log out 👋');
+        cache.reset();
+        Router.reload();
+      } else {
+        console.log('ERROR DOING NOTHING log out 👋');
+      }
+    },
   });
+};
