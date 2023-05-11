@@ -31,7 +31,6 @@ export const createErrorLink = () =>
     const { graphQLErrors = [], forward, operation } = error;
     // eslint-disable-next-line no-restricted-syntax
     for (const err of graphQLErrors) {
-      console.log('🚀 ~ file: apolloLinks.ts:34 ~ err:', err);
       if (err?.extensions?.code === 'unauthorized') {
         if (operation.operationName !== 'signIn') {
           operation.setContext({ isUnauthorizedError: true });
