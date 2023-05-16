@@ -27,7 +27,7 @@ export const parseJWT = (token: TToken): { exp: number | null } => {
   }
 };
 
-export const setTokens = ({
+export const setTokensToCookies = ({
   refreshToken,
   accessToken,
   res,
@@ -56,6 +56,8 @@ export const setTokens = ({
     cookiesAttributes.push(refreshAttributes.join(';'));
   }
 
+  // save token to http-only cookies for secure
+
   const jwtAccess = parseJWT(accessToken);
   if (jwtAccess.exp) {
     const expiredAccess = new Date(jwtAccess.exp * 1000).toUTCString();
@@ -76,7 +78,7 @@ export const setTokens = ({
   res.setHeader('Set-Cookie', cookiesAttributes);
 };
 
-export const deleteTokens = ({ res }: { res: Response | NextApiResponse }) => {
+export const deleteTokensFromCookies = ({ res }: { res: Response | NextApiResponse }) => {
   res.setHeader('Set-Cookie', [
     `${REFRESH_TOKEN_KEY}=; max-age=0; path=/; httpOnly;`,
     `${ACCESS_TOKEN_KEY}=; max-age=0; path=/; httpOnly;`,

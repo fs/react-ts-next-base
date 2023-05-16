@@ -9,7 +9,7 @@ import CurrentUser from 'graphql/queries/currentUser.graphql';
 import { ACCESS_TOKEN_KEY, ACCESS_TOKEN_MINIMAL_LIFE_TIME, REFRESH_TOKEN_KEY } from 'config/jwt';
 import { ApolloPageContext, TApolloClient, TNextPage } from 'lib/apollo/types';
 
-import { parseJWT, setTokens } from './tokens';
+import { parseJWT, setTokensToCookies } from './tokens';
 
 const updateTokensMutation = (apolloClient: TApolloClient) =>
   apolloClient.mutate({
@@ -32,7 +32,7 @@ const updateTokensServerSide = async ({ req, res, apolloClient }: ApolloPageCont
       },
     });
 
-    if (!res.writableEnded) setTokens({ refreshToken, accessToken, req, res });
+    if (!res.writableEnded) setTokensToCookies({ refreshToken, accessToken, req, res });
   } catch (error) {
     console.error(error);
   }

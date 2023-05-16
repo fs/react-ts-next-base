@@ -32,8 +32,9 @@ export const createErrorLink = () =>
     // eslint-disable-next-line no-restricted-syntax
     for (const err of graphQLErrors) {
       if (err?.extensions?.code === 'unauthorized') {
+        // check difference between signIn error and token error (invalid credential)
         if (operation.operationName !== 'signIn') {
-          operation.setContext({ isUnauthorizedError: true });
+          operation.setContext({ isSignInError: true });
         }
         return forward(operation);
       }
@@ -69,20 +70,8 @@ const getProxyUrl = ({ origin, port, path }: { origin: string; port: string; pat
   return proxyUrl;
 };
 
+// check token and refresh if expired or non exist
 export const createRefreshTokenLink = ({ cookie }: TCreateRefreshTokenLink) => {
-  const refreshToken = new Cookie(cookie).get(REFRESH_TOKEN_KEY);
-
-  const body = JSON.stringify({
-    operationName: 'updateToken',
-    query: `mutation updateToken {
-        updateToken {
-          accessToken
-          refreshToken
-        }
-      }`,
-    variables: {},
-  });
-
   const url = isSSR
     ? getProxyUrl({ origin: 'http://127.0.0.1', port: String(PORT), path: GRAPHQL_APP_URL })
     : getServerUrl(GRAPHQL_APP_URL);
@@ -90,12 +79,25 @@ export const createRefreshTokenLink = ({ cookie }: TCreateRefreshTokenLink) => {
   return new TokenRefreshLink({
     accessTokenField: 'accessToken',
     isTokenValidOrUndefined: operation => {
-      if (operation.getContext().isUnauthorizedError) {
+      if (operation.getContext().isSignInError) {
         return false;
       }
       return true;
     },
     fetchAccessToken: async () => {
+      const refreshToken = new Cookie(cookie).get(REFRESH_TOKEN_KEY);
+
+      const body = JSON.stringify({
+        operationName: 'updateToken',
+        query: `mutation updateToken {
+            updateToken {
+              accessToken
+              refreshToken
+            }
+          }`,
+        variables: {},
+      });
+
       const response = await fetch(url.toString(), {
         method: 'POST',
         headers: {

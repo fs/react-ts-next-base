@@ -5,7 +5,7 @@ import zlib from 'zlib';
 
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '../../config/jwt';
 import { API_URL } from '../../config/vars';
-import { deleteTokens, setTokens } from '../../lib/auth/tokens';
+import { deleteTokensFromCookies, setTokensToCookies } from '../../lib/auth/tokens';
 
 // Working with refresh token
 const handleResponse = ({ req, res, body }: { req: Request; res: Response; body: Buffer }) => {
@@ -28,11 +28,11 @@ const handleResponse = ({ req, res, body }: { req: Request; res: Response; body:
     const authOperationName = Object.keys(data).find(key => authOperationNames.includes(key));
 
     if (authOperationName && ['signout', 'destroyAccount'].includes(authOperationName)) {
-      deleteTokens({ res });
+      deleteTokensFromCookies({ res });
     } else if (authOperationName && data[authOperationName]) {
       const { refreshToken, accessToken } = data[authOperationName];
 
-      setTokens({ refreshToken, accessToken, req, res });
+      setTokensToCookies({ refreshToken, accessToken, req, res });
     }
   } catch (error) {
     console.error('handleResponse: ', error);
