@@ -34,7 +34,7 @@ export const createErrorLink = () =>
       if (err?.extensions?.code === 'unauthorized') {
         // check difference between signIn error and token error (invalid credential)
         if (operation.operationName !== 'signIn') {
-          operation.setContext({ isSignInError: true });
+          operation.setContext({ isUnauthorizedError: true });
         }
         return forward(operation);
       }
@@ -79,7 +79,7 @@ export const createRefreshTokenLink = ({ cookie }: TCreateRefreshTokenLink) => {
   return new TokenRefreshLink({
     accessTokenField: 'accessToken',
     isTokenValidOrUndefined: operation => {
-      if (operation.getContext().isSignInError) {
+      if (operation.getContext().isUnauthorizedError) {
         return false;
       }
       return true;
