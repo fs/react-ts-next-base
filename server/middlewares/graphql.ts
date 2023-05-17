@@ -10,9 +10,9 @@ import { deleteTokensFromCookies, setTokensToCookies } from '../../lib/auth/toke
 // Working with refresh token
 const handleResponse = ({ req, res, body }: { req: Request; res: Response; body: Buffer }) => {
   const authOperationNames = [
-    'signin',
-    'signup',
-    'signout',
+    'signIn',
+    'signUp',
+    'signOut',
     'updateToken',
     'destroyAccount',
     'updateUserPassword',
@@ -27,7 +27,7 @@ const handleResponse = ({ req, res, body }: { req: Request; res: Response; body:
     }
     const authOperationName = Object.keys(data).find(key => authOperationNames.includes(key));
 
-    if (authOperationName && ['signout', 'destroyAccount'].includes(authOperationName)) {
+    if (authOperationName && ['signOut', 'destroyAccount'].includes(authOperationName)) {
       deleteTokensFromCookies({ res });
     } else if (authOperationName && data[authOperationName]) {
       const { refreshToken, accessToken } = data[authOperationName];

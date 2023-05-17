@@ -10,7 +10,7 @@ export type SignInMutationVariables = Types.Exact<{
 
 export type SignInMutation = {
   __typename?: 'Mutation';
-  signin?: {
+  signIn?: {
     __typename?: 'SignInPayload';
     accessToken: string;
     refreshToken: string;
@@ -27,7 +27,7 @@ export type SignInMutation = {
 
 export const SignInDocument = gql`
   mutation signIn($input: SignInInput!) {
-    signin(input: $input) {
+    signIn(input: $input) {
       me {
         ...CurrentUser
       }

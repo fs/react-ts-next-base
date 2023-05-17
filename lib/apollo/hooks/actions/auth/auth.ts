@@ -31,7 +31,7 @@ export const useSignIn = () => {
         query: CurrentUser,
         data: {
           me: {
-            ...data?.signin?.me,
+            ...data?.signIn?.me,
           },
         },
       });
@@ -72,7 +72,7 @@ export const useSignUp = () => {
         query: CurrentUser,
         data: {
           me: {
-            ...data?.signup?.me,
+            ...data?.signUp?.me,
           },
         },
       });

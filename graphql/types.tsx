@@ -97,9 +97,9 @@ export type Mutation = {
   omniauthSigninOrSignup?: Maybe<SignInPayload>;
   presignData?: Maybe<PresignDataPayload>;
   requestPasswordRecovery?: Maybe<RequestPasswordRecoveryPayload>;
-  signin?: Maybe<SignInPayload>;
-  signout?: Maybe<SignOutPayload>;
-  signup?: Maybe<SignUpPayload>;
+  signIn?: Maybe<SignInPayload>;
+  signOut?: Maybe<SignOutPayload>;
+  signUp?: Maybe<SignUpPayload>;
   updatePassword?: Maybe<UpdatePasswordPayload>;
   updateToken?: Maybe<UpdateTokenPayload>;
   updateUser?: Maybe<UpdateUserPayload>;
