@@ -1,5 +1,4 @@
 /* eslint-disable global-require */
-import React from 'react';
 import App from 'next/app';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 import fetch from 'isomorphic-unfetch';
@@ -31,14 +30,12 @@ const createApolloClient = (apolloState = {}, ctx: ApolloPageContext | null) => 
       fetchOptions.agent = new HttpsProxyAgent(process.env.https_proxy);
     }
   }
+
   const consoleLink = createConsoleLink();
   const errorLink = createErrorLink();
-
-  const authHeaderLink = createAuthHeaderLink({
-    cookie,
-  });
-
+  const authHeaderLink = createAuthHeaderLink({ cookie });
   const refreshTokenLink = createRefreshTokenLink({ cookie });
+
   // create an HttpLink
   const httpLink = new HttpLink({
     uri: GRAPHQL_URI, // Server URL (must be absolute)
@@ -46,6 +43,7 @@ const createApolloClient = (apolloState = {}, ctx: ApolloPageContext | null) => 
     fetch,
     fetchOptions,
   });
+
   // Combined Link
   const link = ApolloLink.from([
     ...(process.env.PRINT_HTTP_REQUEST_LOGS === 'true' ? [consoleLink] : []),

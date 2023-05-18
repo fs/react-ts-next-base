@@ -45,7 +45,7 @@ describe('Auth actions', () => {
             },
           },
           result: {
-            data: { signin: expectedValue },
+            data: { signIn: expectedValue },
           },
         },
       ];
@@ -60,7 +60,7 @@ describe('Auth actions', () => {
 
       // Assert
       await waitFor(() => {
-        expect(result?.current[1]?.data?.signin).toEqual(expectedValue);
+        expect(result?.current[1]?.data?.signIn).toEqual(expectedValue);
       });
       expect(localStorage.setItem).toHaveBeenCalledTimes(1);
     });
@@ -87,7 +87,7 @@ describe('Auth actions', () => {
             },
           },
           result: {
-            data: { signup: expectedValue },
+            data: { signUp: expectedValue },
           },
         },
       ];
@@ -102,7 +102,7 @@ describe('Auth actions', () => {
 
       // Assert
       await waitFor(() => {
-        expect(result?.current[1]?.data?.signup).toEqual(expectedValue);
+        expect(result?.current[1]?.data?.signUp).toEqual(expectedValue);
       });
       expect(localStorage.setItem).toHaveBeenCalledTimes(1);
     });
@@ -125,7 +125,7 @@ describe('Auth actions', () => {
             },
           },
           result: {
-            data: { signout: mockResponse },
+            data: { signOut: mockResponse },
           },
         },
       ];
@@ -140,7 +140,7 @@ describe('Auth actions', () => {
 
       // Assert
       await waitFor(() => {
-        expect(result?.current[1]?.data?.signout).toEqual(mockResponse);
+        expect(result?.current[1]?.data?.signOut).toEqual(mockResponse);
       });
 
       expect(localStorage.setItem).toHaveBeenCalledTimes(1);

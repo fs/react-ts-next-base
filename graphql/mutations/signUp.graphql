@@ -1,7 +1,7 @@
 #import "../fragments/currentUserInfo.graphql"
 
 mutation signUp($input: SignUpInput!) {
-  signup(input: $input) {
+  signUp(input: $input) {
     me {
       ...CurrentUser
     }
