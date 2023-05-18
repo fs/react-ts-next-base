@@ -1,4 +1,3 @@
-import React from 'react';
 import { differenceInMilliseconds } from 'date-fns';
 import omit from 'lodash/omit';
 import Cookie from 'universal-cookie';
