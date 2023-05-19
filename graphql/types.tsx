@@ -242,11 +242,42 @@ export type PresignField = {
   value: Scalars['String'];
 };
 
+/** Data type for Public Activity */
+export type PublicActivity = {
+  __typename?: 'PublicActivity';
+  /** Body */
+  body: Scalars['String'];
+  /** ID */
+  id: Scalars['ID'];
+  /** Title */
+  title: Scalars['String'];
+};
+
+/** The connection type for PublicActivity. */
+export type PublicActivityConnection = {
+  __typename?: 'PublicActivityConnection';
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<PublicActivityEdge>>>;
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<PublicActivity>>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type PublicActivityEdge = {
+  __typename?: 'PublicActivityEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node?: Maybe<PublicActivity>;
+};
+
 /** Base query */
 export type Query = {
   __typename?: 'Query';
   /** Activities */
-  activities?: Maybe<ActivityConnection>;
+  activities?: Maybe<PublicActivityConnection>;
   /** Current User */
   me?: Maybe<CurrentUser>;
 };
@@ -255,7 +286,6 @@ export type Query = {
 export type QueryActivitiesArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
-  events?: InputMaybe<Array<ActivityEvent>>;
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };

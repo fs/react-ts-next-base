@@ -1,12 +1,11 @@
 import * as Types from '../../types';
 
 import { gql } from '@apollo/client';
-import { ActivityFragmentDoc } from '../../fragments/__generated__/activityInfo.generated';
+import { PublicActivityFragmentDoc } from '../../fragments/__generated__/publicActivityInfo.generated';
 import { PageInfoFragmentDoc } from '../../fragments/__generated__/pageInfo.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type ActivitiesQueryVariables = Types.Exact<{
-  events?: Types.InputMaybe<Array<Types.ActivityEvent> | Types.ActivityEvent>;
   last?: Types.InputMaybe<Types.Scalars['Int']>;
   before?: Types.InputMaybe<Types.Scalars['String']>;
   first?: Types.InputMaybe<Types.Scalars['Int']>;
@@ -16,26 +15,11 @@ export type ActivitiesQueryVariables = Types.Exact<{
 export type ActivitiesQuery = {
   __typename?: 'Query';
   activities?: {
-    __typename?: 'ActivityConnection';
+    __typename?: 'PublicActivityConnection';
     edges?: Array<{
-      __typename?: 'ActivityEdge';
+      __typename?: 'PublicActivityEdge';
       cursor: string;
-      node?: {
-        __typename?: 'Activity';
-        body: string;
-        createdAt: string;
-        event: Types.ActivityEvent;
-        id: string;
-        title: string;
-        user: {
-          __typename?: 'User';
-          avatarUrl?: string | null;
-          email: string;
-          firstName?: string | null;
-          id: string;
-          lastName?: string | null;
-        };
-      } | null;
+      node?: { __typename?: 'PublicActivity'; body: string; id: string; title: string } | null;
     } | null> | null;
     pageInfo: {
       __typename?: 'PageInfo';
@@ -48,18 +32,12 @@ export type ActivitiesQuery = {
 };
 
 export const ActivitiesDocument = gql`
-  query Activities(
-    $events: [ActivityEvent!]
-    $last: Int
-    $before: String
-    $first: Int
-    $after: String
-  ) {
-    activities(events: $events, last: $last, before: $before, first: $first, after: $after) {
+  query Activities($last: Int, $before: String, $first: Int, $after: String) {
+    activities(last: $last, before: $before, first: $first, after: $after) {
       edges {
         cursor
         node {
-          ...Activity
+          ...PublicActivity
         }
       }
       pageInfo {
@@ -67,7 +45,7 @@ export const ActivitiesDocument = gql`
       }
     }
   }
-  ${ActivityFragmentDoc}
+  ${PublicActivityFragmentDoc}
   ${PageInfoFragmentDoc}
 `;
 
@@ -83,7 +61,6 @@ export const ActivitiesDocument = gql`
  * @example
  * const { data, loading, error } = useActivitiesQuery({
  *   variables: {
- *      events: // value for 'events'
  *      last: // value for 'last'
  *      before: // value for 'before'
  *      first: // value for 'first'
