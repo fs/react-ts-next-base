@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import isSSR from 'config/isSSR';
+import isServerSide from 'config/isServerSide';
 
 const useCalculateVh = () => {
   const calculateVh = () => {
@@ -8,7 +8,7 @@ const useCalculateVh = () => {
   };
 
   useEffect(() => {
-    if (!isSSR) {
+    if (!isServerSide()) {
       calculateVh();
       window.addEventListener('resize', calculateVh);
       window.addEventListener('orientationchange', calculateVh);

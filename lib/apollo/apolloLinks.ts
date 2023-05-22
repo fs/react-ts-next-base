@@ -5,7 +5,7 @@ import Cookie from 'universal-cookie';
 import { ApolloLink } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
 
-import isSSR from 'config/isSSR';
+import isServerSide from 'config/isServerSide';
 import { REFRESH_TOKEN_KEY } from 'config/jwt';
 import { GRAPHQL_APP_URL, PORT } from 'config/vars';
 
@@ -14,10 +14,11 @@ import { TCreateAuthHeaderLink, TCreateRefreshTokenLink } from './types';
 export const createConsoleLink = () =>
   new ApolloLink((operation, forward) => {
     const timestamp = new Date().getTime();
-    if (isSSR) console.log(`starting request for ${operation.operationName} at ${timestamp}`);
+    if (isServerSide())
+      console.log(`starting request for ${operation.operationName} at ${timestamp}`);
 
     return forward(operation).map(data => {
-      if (isSSR) {
+      if (isServerSide()) {
         console.log(`ending request for ${operation.operationName} at ${timestamp}`);
         console.log(JSON.stringify(data));
       }
@@ -72,7 +73,7 @@ const getProxyUrl = ({ origin, port, path }: { origin: string; port: string; pat
 
 // check token and refresh if expired or non exist
 export const createRefreshTokenLink = ({ cookie }: TCreateRefreshTokenLink) => {
-  const url = isSSR
+  const url = isServerSide()
     ? getProxyUrl({ origin: 'http://127.0.0.1', port: String(PORT), path: GRAPHQL_APP_URL })
     : getServerUrl(GRAPHQL_APP_URL);
 
@@ -120,8 +121,8 @@ export const createRefreshTokenLink = ({ cookie }: TCreateRefreshTokenLink) => {
     },
     handleError: (err, operation) => {
       console.error('Your refresh token is invalid. Try to re-login. err: ', err);
-      if (isSSR) {
-        console.log('isSSR handleError');
+      if (isServerSide()) {
+        console.log('isServerSide handleError');
         return;
       }
 
