@@ -4,7 +4,6 @@ import { ParsedUrlQuery } from 'querystring';
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 
 export type TToken = string | null;
-export type TExpires = number | null;
 
 export type PageInfo = {
   endCursor?: string | null | undefined;
