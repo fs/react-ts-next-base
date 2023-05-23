@@ -146,7 +146,7 @@ export const useUpdatePassword = () => {
 
   const [mutation, mutationState] = useUpdatePasswordMutation({
     onCompleted: () => {
-      setSuccess('Пароль успешно изменен');
+      setSuccess('Password updated successfully');
       setTimeout(() => pushRoute(SIGNIN), 1000);
     },
     onError: error => {

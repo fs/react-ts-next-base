@@ -82,7 +82,6 @@ const ProfileFormContent: FC<TProfileFormContent> = ({
       type: FormFieldType.submit,
       name: 'Update',
       testId: 'submit-button',
-      label: 'Update',
     },
   ];
 
