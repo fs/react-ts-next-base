@@ -9,7 +9,7 @@ type TSignup = {
   expectedPath?: string;
 };
 
-export const signup = async ({
+export const signUp = async ({
   page,
   email,
   password,

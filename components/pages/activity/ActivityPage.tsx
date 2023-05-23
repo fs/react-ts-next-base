@@ -31,7 +31,6 @@ export const ActivityPage: TNextPage = () => {
   const { activities, pageInfo, loading, error } = useActivities({
     before: beforeCursor,
     after: afterCursor,
-    event: activityEvent,
     pageSize,
   });
 

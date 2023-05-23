@@ -2,7 +2,7 @@ import next from 'next';
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import graphqlProxyMidlleware from './server/middlewares/graphql';
+import graphqlProxyMiddleware from './server/middlewares/graphql';
 
 import { DEV, PORT, GRAPHQL_APP_URL } from './config/vars';
 
@@ -19,7 +19,7 @@ app
   .then(() => {
     express()
       // use proxy middleware to send graphql requests to api server
-      .use(GRAPHQL_APP_URL, bodyParserJSON, graphqlProxyMidlleware)
+      .use(GRAPHQL_APP_URL, bodyParserJSON, graphqlProxyMiddleware)
       .use((req, res, cb) => {
         const schema = req.headers['x-forwarded-proto'];
         if (req.headers.host && req.headers.host.indexOf('localhost') < 0 && schema !== 'https') {

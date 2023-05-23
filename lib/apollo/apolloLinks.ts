@@ -1,16 +1,17 @@
 /* eslint-disable no-console */
 import { ApolloLink, fromPromise } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
-import isSSR from 'config/isSSR';
+import isServerSide from 'config/isServerSide';
 import { TCreateAuthHeaderLink, TCreateUpdateTokenLink } from './types';
 
 export const createConsoleLink = () =>
   new ApolloLink((operation, forward) => {
     const timestamp = new Date().getTime();
-    if (isSSR) console.log(`starting request for ${operation.operationName} at ${timestamp}`);
+    if (isServerSide())
+      console.log(`starting request for ${operation.operationName} at ${timestamp}`);
 
     return forward(operation).map(data => {
-      if (isSSR) {
+      if (isServerSide()) {
         console.log(`ending request for ${operation.operationName} at ${timestamp}`);
         console.log(JSON.stringify(data));
       }

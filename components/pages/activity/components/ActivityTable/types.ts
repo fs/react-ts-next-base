@@ -1,5 +1,5 @@
-import { ActivityFragment } from 'graphql/fragments/__generated__/activityInfo.generated';
+import { PublicActivity } from 'graphql/types';
 
 export type TActivityTable = {
-  activities: ActivityFragment[];
+  activities: PublicActivity[];
 };

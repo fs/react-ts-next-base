@@ -9,12 +9,12 @@ export type SignOutMutationVariables = Types.Exact<{
 
 export type SignOutMutation = {
   __typename?: 'Mutation';
-  signout?: { __typename?: 'SignOutPayload'; message: string } | null;
+  signOut?: { __typename?: 'SignOutPayload'; message: string } | null;
 };
 
 export const SignOutDocument = gql`
-  mutation SignOut($input: SignOutInput!) {
-    signout(input: $input) {
+  mutation signOut($input: SignOutInput!) {
+    signOut(input: $input) {
       message
     }
   }

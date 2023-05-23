@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 
 import { users } from 'e2e/fixtures/users';
-import { signup } from 'e2e/helperActions/signUp';
+import { signUp } from 'e2e/helperActions/signUp';
 import { signOut } from 'e2e/helperActions/signOut';
 import { closeNotification } from 'e2e/helperActions/notification';
 
@@ -22,7 +22,7 @@ test.describe('Sign Up', () => {
       password,
       email: `${timestamp}@test.com`,
     };
-    await signup({ page, expectedPath: baseUrl, ...validCredentials });
+    await signUp({ page, expectedPath: baseUrl, ...validCredentials });
 
     await signOut({ page });
   });
@@ -38,7 +38,7 @@ test.describe('Sign Up', () => {
       expectedPath: '/signup',
     };
 
-    await signup({ page, ...invalidCredentials });
+    await signUp({ page, ...invalidCredentials });
     await closeNotification({ page, text: 'Record invalid' });
   });
 });
