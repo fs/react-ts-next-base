@@ -56,6 +56,6 @@ export default class ErrorDecorator extends Error {
     if (error && typeof error === 'string') {
       return [new Error(error)];
     }
-    return [new Error('Что-то пошло не так')];
+    return [new Error('Something went wrong')];
   }
 }

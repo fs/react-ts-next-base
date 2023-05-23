@@ -4,12 +4,12 @@ import Select from '../Select';
 
 const inputName = 'input_name';
 const initialOptions = [
-  { value: '1', label: 'Первый' },
-  { value: '2', label: 'Второй' },
-  { value: '3', label: 'Третий' },
-  { value: '4', label: 'Четвертый' },
-  { value: '5', label: 'Пятый' },
-  { value: '6', label: 'Шестой' },
+  { value: '1', label: 'First' },
+  { value: '2', label: 'Second' },
+  { value: '3', label: 'Third' },
+  { value: '4', label: 'Fourth' },
+  { value: '5', label: 'Fifth' },
+  { value: '6', label: 'Sixth' },
 ];
 
 export default {
@@ -37,8 +37,8 @@ export default {
     isClearable: true,
     disabled: false,
     height: '11rem',
-    title: 'Заголовок',
-    placeholder: 'Плейсхолдер',
+    title: 'Title',
+    placeholder: 'Placeholder',
     options: initialOptions,
     name: inputName,
     $mb: 20,
