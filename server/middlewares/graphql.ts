@@ -35,7 +35,7 @@ const handleResponse = ({ req, res, body }: { req: Request; res: Response; body:
   res.end(body);
 };
 
-const graphqlProxyMidlleware = createProxyMiddleware({
+const graphqlProxyMiddleware = createProxyMiddleware({
   target: API_URL,
   changeOrigin: true,
   headers: {
@@ -98,4 +98,4 @@ const graphqlProxyMidlleware = createProxyMiddleware({
   },
 });
 
-export default graphqlProxyMidlleware;
+export default graphqlProxyMiddleware;

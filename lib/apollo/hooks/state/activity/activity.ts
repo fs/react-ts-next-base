@@ -1,13 +1,11 @@
-import { ActivityEvent } from 'graphql/types';
 import { filterAvailableNodes } from 'helpers';
 import { useActivitiesQuery } from 'graphql/queries/__generated__/activities.generated';
-import { ActivityFragment } from 'graphql/fragments/__generated__/activityInfo.generated';
+import { PublicActivity } from 'graphql/types';
 import { TActivity } from './types';
 
-export const useActivities = ({ before, after, event, pageSize = 5 }: TActivity) => {
+export const useActivities = ({ before, after, pageSize = 5 }: TActivity) => {
   const { loading, error, data } = useActivitiesQuery({
     variables: {
-      events: event ? [event] : Object.values(ActivityEvent),
       last: before ? pageSize : undefined,
       before,
       first: after || (!after && !before) ? pageSize : undefined,
@@ -16,7 +14,7 @@ export const useActivities = ({ before, after, event, pageSize = 5 }: TActivity)
   });
 
   return {
-    activities: filterAvailableNodes<ActivityFragment>(
+    activities: filterAvailableNodes<PublicActivity>(
       data?.activities?.edges?.map(edge => edge?.node),
     ),
     pageInfo: data?.activities?.pageInfo || { hasNextPage: false, hasPreviousPage: false },

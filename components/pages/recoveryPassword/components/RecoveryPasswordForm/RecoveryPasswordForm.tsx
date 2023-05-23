@@ -31,9 +31,7 @@ const RecoveryPasswordForm = () => {
       },
       {
         type: FormFieldType.submit,
-        name: 'submit',
-        title: 'First Name',
-        placeholder: 'First Name',
+        name: 'Submit',
         testId: 'submit-button',
       },
     ],

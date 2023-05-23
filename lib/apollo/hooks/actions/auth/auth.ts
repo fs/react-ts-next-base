@@ -31,7 +31,7 @@ export const useSignIn = () => {
         query: CurrentUser,
         data: {
           me: {
-            ...data?.signin?.me,
+            ...data?.signIn?.me,
           },
         },
       });
@@ -72,7 +72,7 @@ export const useSignUp = () => {
         query: CurrentUser,
         data: {
           me: {
-            ...data?.signup?.me,
+            ...data?.signUp?.me,
           },
         },
       });
@@ -119,7 +119,7 @@ export const useSignOut = () => {
     },
   });
 
-  const mutate = async ({ everywhere = false }: SignOutInput) => {
+  const mutate = async ({ everywhere = false }: SignOutInput = {}) => {
     const signOutInput = { everywhere };
 
     await mutation({ variables: { input: signOutInput } });
@@ -155,7 +155,7 @@ export const useUpdatePassword = () => {
 
   const [mutation, mutationState] = useUpdatePasswordMutation({
     onCompleted: () => {
-      setSuccess('Пароль успешно изменен');
+      setSuccess('Password updated successfully');
       setTimeout(() => pushRoute(SIGNIN), 1000);
     },
     onError: error => {

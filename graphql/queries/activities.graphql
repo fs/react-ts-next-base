@@ -1,22 +1,13 @@
 #import "../fragments/currentUserInfo.graphql"
-#import "../fragments/activityInfo.graphql"
+#import "../fragments/publicActivityInfo.graphql"
 #import "../fragments/pageInfo.graphql"
 
-query Activities(
-  $events: [ActivityEvent!]
-  $last: Int
-  $before: String
-  $first: Int
-  $after: String
-) {
-  me {
-    ...CurrentUser
-  }
-  activities(events: $events, last: $last, before: $before, first: $first, after: $after) {
+query Activities($last: Int, $before: String, $first: Int, $after: String) {
+  activities(last: $last, before: $before, first: $first, after: $after) {
     edges {
       cursor
       node {
-        ...Activity
+        ...PublicActivity
       }
     }
     pageInfo {

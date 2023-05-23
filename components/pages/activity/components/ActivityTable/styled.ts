@@ -19,23 +19,11 @@ export const StyledTable = styled.table(
     `,
 );
 
-export const ColorLabel = styled.td(
-  ({ color }) => css`
-    min-width: 5px;
-    background-color: ${color};
-  `,
-);
-
 export const HeaderCell = styled.th(
   ({ theme }) => css`
     ${baseCellStyles(theme)}
   `,
 );
-
-export const UserInfo = styled.span`
-  width: calc(100% - 1.85rem);
-  margin-left: 0.5rem;
-`;
 
 export const EmptyList = styled.div`
   margin: 3rem 0;
