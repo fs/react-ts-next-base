@@ -9,6 +9,8 @@ import isServerSide from 'config/isServerSide';
 import { REFRESH_TOKEN_KEY } from 'config/jwt';
 import { GRAPHQL_APP_URL, PORT } from 'config/vars';
 
+import isNull from 'lodash/isNull';
+import { GraphQLError } from 'graphql';
 import { TCreateAuthHeaderLink, TCreateRefreshTokenLink } from './types';
 
 export const createConsoleLink = () =>
@@ -40,6 +42,21 @@ export const createErrorLink = () =>
         return forward(operation);
       }
     }
+  });
+
+export const createCheckResponseLink = () =>
+  new ApolloLink((operation, forward) => {
+    return forward(operation).map(response => {
+      if (isNull(response.data?.me)) {
+        const graphqlError = new GraphQLError('Response me = null ', {
+          extensions: {
+            code: 'unauthorized',
+          },
+        });
+        response.errors = [graphqlError];
+      }
+      return response;
+    });
   });
 
 export const createAuthHeaderLink = ({ cookie }: TCreateAuthHeaderLink) =>

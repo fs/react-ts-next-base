@@ -6,6 +6,7 @@ import { ApolloClient, ApolloLink, ApolloProvider, HttpLink, InMemoryCache } fro
 
 import {
   createAuthHeaderLink,
+  createCheckResponseLink,
   createConsoleLink,
   createErrorLink,
   createRefreshTokenLink,
@@ -35,6 +36,7 @@ const createApolloClient = (apolloState = {}, ctx: ApolloPageContext | null) => 
   const errorLink = createErrorLink();
   const authHeaderLink = createAuthHeaderLink({ cookie });
   const refreshTokenLink = createRefreshTokenLink({ cookie });
+  const checkResponseLink = createCheckResponseLink();
 
   // create an HttpLink
   const httpLink = new HttpLink({
@@ -49,6 +51,7 @@ const createApolloClient = (apolloState = {}, ctx: ApolloPageContext | null) => 
     ...(process.env.PRINT_HTTP_REQUEST_LOGS === 'true' ? [consoleLink] : []),
     errorLink,
     authHeaderLink,
+    checkResponseLink,
     refreshTokenLink,
     httpLink,
   ]);
