@@ -1,0 +1,16 @@
+#import "../fragments/currentUserInfo.graphql"
+
+fragment Activity on Activity {
+  id
+  body
+  title
+  user {
+    avatarUrl
+    id
+    email
+    firstName
+    lastName
+  }
+  createdAt
+  event
+}

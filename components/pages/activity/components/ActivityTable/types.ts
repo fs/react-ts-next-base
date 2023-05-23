@@ -1,5 +1,5 @@
-import { PublicActivity } from 'graphql/types';
+import { Activity } from 'graphql/types';
 
 export type TActivityTable = {
-  activities: PublicActivity[];
+  activities: Activity[];
 };
