@@ -17,6 +17,7 @@ export type MeActivitiesQuery = {
   __typename?: 'Query';
   me?: {
     __typename?: 'CurrentUser';
+    id: string;
     activities?: {
       __typename?: 'ActivityConnection';
       edges?: Array<{
@@ -59,6 +60,7 @@ export const MeActivitiesDocument = gql`
     $after: String
   ) {
     me {
+      id
       activities(events: $events, last: $last, before: $before, first: $first, after: $after) {
         edges {
           cursor

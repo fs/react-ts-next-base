@@ -10,6 +10,7 @@ query MeActivities(
   $after: String
 ) {
   me {
+    id
     activities(events: $events, last: $last, before: $before, first: $first, after: $after) {
       edges {
         cursor
