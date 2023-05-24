@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
 
 import { TPageProps } from 'lib/apollo/types';
