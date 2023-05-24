@@ -28,13 +28,15 @@ export const createConsoleLink = () =>
     });
   });
 
+const CODE_UNAUTHORIZED = 'unauthorized';
+
 export const createErrorLink = () =>
   // eslint-disable-next-line consistent-return
   onError(error => {
     const { graphQLErrors = [], forward, operation } = error;
     // eslint-disable-next-line no-restricted-syntax
     for (const err of graphQLErrors) {
-      if (err?.extensions?.code === 'unauthorized') {
+      if (err?.extensions?.code === CODE_UNAUTHORIZED) {
         // check difference between signIn error and token error (invalid credential)
         if (operation.operationName !== 'signIn') {
           operation.setContext({ isUnauthorizedError: true });
@@ -50,7 +52,7 @@ export const createCheckResponseLink = () =>
       if (isNull(response.data?.me)) {
         const graphqlError = new GraphQLError('Response me = null ', {
           extensions: {
-            code: 'unauthorized',
+            code: CODE_UNAUTHORIZED,
           },
         });
         response.errors = [graphqlError];
