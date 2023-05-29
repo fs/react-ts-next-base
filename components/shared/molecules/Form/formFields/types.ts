@@ -1,4 +1,5 @@
 import { ChangeEvent } from 'react';
+
 import { BaseFormFieldConfig } from '../types';
 
 export type CheckboxFormFieldConfig = BaseFormFieldConfig;

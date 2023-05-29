@@ -1,13 +1,14 @@
 import { FC } from 'react';
-import { PROFILE, ACTIVITY, SIGNIN, SIGNUP } from 'config/routes';
 
-import Logo from 'components/shared/atoms/Logo';
+import { ACTIVITY, PROFILE, SIGNIN, SIGNUP } from 'config/routes';
+
 import ActionLink from 'components/shared/atoms/ActionLink';
+import Logo from 'components/shared/atoms/Logo';
 
 import UserNavigation from './UserNavigation';
 
-import { ActionsConfig, THeader } from './types';
 import { HeaderWrapper, Links } from './styled';
+import { ActionsConfig, THeader } from './types';
 
 const Header: FC<THeader> = ({ user, signOut }) => {
   const links = [

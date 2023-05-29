@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
+import { LoaderWrapper, Spinner } from './styled';
 import { TLoader } from './types';
 import { sizeConfig } from './config';
-import { LoaderWrapper, Spinner } from './styled';
 
 const Loader: FC<TLoader> = ({
   variant = 'default',

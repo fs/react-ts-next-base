@@ -10,10 +10,11 @@
     "test-debug": "node --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint --fix --ext .js,.jsx,.ts,.tsx ./",
+    "lint:css": "stylelint './**/*styled.{js,ts}' --fix",
     "lint:css:in:js": "stylelint './**/*.js'",
     "lint:css:in:ts": "stylelint './**/*.tsx'",
-    "lint:css": "yarn lint:css:in:js && yarn lint:css:in:ts",
     "ci:lint-js": "eslint --ext .js,.jsx,.ts,.tsx ./",
+    "ci:lint-css": "stylelint './**/*styled.{js,ts}'",
     "ci:jest": "jest --ci",
     "ci:pw-run": "yarn build && yarn pw-run",
     "print-env": "print-env",
@@ -37,6 +38,7 @@
     "@graphql-tools/jest-transform": "^1.2.1",
     "@next/bundle-analyzer": "^12.2.5",
     "ally.js": "^1.4.1",
+    "apollo-link-token-refresh": "^0.4.0",
     "body-parser": "^1.19.0",
     "core-js": "3",
     "csstype": "^3.1.0",
@@ -63,7 +65,6 @@
     "storybook-formik": "^2.4.2",
     "styled-components": "^5.3.5",
     "ts-node": "^10.9.1",
-    "typescript": "^4.8.2",
     "universal-cookie": "^4.0.3",
     "yup": "^0.32.11"
   },
@@ -100,8 +101,8 @@
     "@types/react-dom": "^18.0.6",
     "@types/react-modal": "^3.13.1",
     "@types/styled-components": "^5.1.26",
-    "@typescript-eslint/eslint-plugin": "^5.25.0",
-    "@typescript-eslint/parser": "^5.25.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
     "eslint": "8.22.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-import": "^0.13.0",
@@ -113,6 +114,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^2.4.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-testing-library": "^5.5.0",
     "eslint-plugin-typescript": "^0.14.0",
     "husky": "^4.2.3",
@@ -125,15 +127,18 @@
     "jest-styled-components": "^7.1.1",
     "lint-staged": "^13.0.3",
     "path-browserify": "^1.0.1",
+    "postcss": "8",
+    "postcss-styled-syntax": "^0.4.0",
     "prettier": "^2.7.1",
     "react-select-event": "^5.5.1",
     "storybook-addon-apollo-client": "^4.0.13",
     "storybook-addon-swc": "^1.1.9",
-    "stylelint": "^13.2.0",
-    "stylelint-config-recommended": "^3.0.0",
-    "stylelint-config-standard": "^20.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.10.0",
+    "stylelint": "^15.6.0",
+    "stylelint-config-recess-order": "^4.0.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.7.0",
+    "stylelint-order": "^6.0.3",
+    "typescript": "^5.0.4",
     "webpack": "^5.75.0"
   },
   "husky": {
@@ -143,7 +148,7 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "eslint --fix"
+      "eslint --fix", "stylelint --fix"
     ]
   }
 }

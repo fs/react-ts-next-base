@@ -1,6 +1,8 @@
-import { filterAvailableNodes } from 'helpers';
 import { useActivitiesQuery } from 'graphql/queries/__generated__/activities.generated';
+
 import { PublicActivity } from 'graphql/types';
+import { filterAvailableNodes } from 'helpers';
+
 import { TActivity } from './types';
 
 export const useActivities = ({ before, after, pageSize = 5 }: TActivity) => {

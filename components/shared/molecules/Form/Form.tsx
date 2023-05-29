@@ -1,25 +1,24 @@
-import * as Yup from 'yup';
 import type { FormikValues } from 'formik';
 import { Form as FormikForm, Formik } from 'formik';
+import * as Yup from 'yup';
 
 import { TWidth } from 'public/styles/config/width';
 
-import { collectFormikProps } from './utils';
-
-import {
-  SelectFormField,
-  CheckboxFormField,
-  TextFormField,
-  PasswordFormField,
-  TextareaFormField,
-  FileFormField,
-  SubmitButton,
-  EmailFormField,
-} from './formFields';
 import DefaultFieldWrapper from './DefaultFieldWrapper';
+import {
+  CheckboxFormField,
+  EmailFormField,
+  FileFormField,
+  PasswordFormField,
+  SelectFormField,
+  SubmitButton,
+  TextareaFormField,
+  TextFormField,
+} from './formFields';
 
+import { ErrorWrapper, FieldWrapper, FormContainer, FormWrapper } from './styled';
 import { FormFieldConfig, FormFieldType, FormType } from './types';
-import { ErrorWrapper, FormContainer, FormWrapper, FieldWrapper } from './styled';
+import { collectFormikProps } from './utils';
 
 const Form = <FormValues extends FormikValues = FormikValues>({
   form,

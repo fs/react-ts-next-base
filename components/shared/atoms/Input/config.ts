@@ -1,6 +1,6 @@
 import theme from 'public/styles/theme';
 
-import { TVariantConfig, TBorderConfig, TMarginConfig } from './types';
+import { TBorderConfig, TMarginConfig, TVariantConfig } from './types';
 
 export const borderConfig: TBorderConfig = {
   default: {

@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 
-import Form, { FormFieldType, PasswordAutocomplete } from 'components/shared/molecules/Form';
-
 import { REQUIRED_FIELD } from 'config/constants/errorsText';
+
+import Form, { FormFieldType, PasswordAutocomplete } from 'components/shared/molecules/Form';
 
 const form = {
   fields: [

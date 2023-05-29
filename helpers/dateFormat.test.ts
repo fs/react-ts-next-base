@@ -1,4 +1,4 @@
-import { dateFormat, dateAndTimeFormat, timeFormat } from './dateFormat';
+import { dateAndTimeFormat, dateFormat, timeFormat } from './dateFormat';
 
 describe('dateFormat', () => {
   test('should return date in dd.mm.yyyy format', () => {

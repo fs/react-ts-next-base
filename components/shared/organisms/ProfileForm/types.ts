@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
 import { FormikHelpers } from 'formik';
+
 import { CurrentUserFragment } from 'graphql/fragments/__generated__/currentUserInfo.generated';
 
 export type TProfileForm = {

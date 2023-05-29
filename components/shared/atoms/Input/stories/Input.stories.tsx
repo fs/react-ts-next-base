@@ -1,5 +1,5 @@
-import * as Yup from 'yup';
 import withFormik from 'storybook-formik';
+import * as Yup from 'yup';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { REQUIRED_FIELD } from 'config/constants/errorsText';

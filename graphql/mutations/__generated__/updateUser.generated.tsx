@@ -14,8 +14,8 @@ export type UpdateUserMutation = {
     __typename?: 'UpdateUserPayload';
     me: {
       __typename?: 'CurrentUser';
-      avatarUrl?: string | null;
       id: string;
+      avatarUrl?: string | null;
       email: string;
       firstName?: string | null;
       lastName?: string | null;

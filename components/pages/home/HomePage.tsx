@@ -6,7 +6,7 @@ import { TNextPage } from 'lib/apollo/types';
 
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 
-import { Title, PageContent } from './styled';
+import { PageContent, Title } from './styled';
 
 export const HomePage: TNextPage = () => {
   return (

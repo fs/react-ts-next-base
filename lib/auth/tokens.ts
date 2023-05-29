@@ -1,14 +1,17 @@
-import { Request, Response } from 'express';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { Request, Response } from 'express';
+
 import { TToken } from 'lib/apollo/types';
 
-import jwtKeys from '../../config/jwt.json';
-
-const { REFRESH_TOKEN_KEY } = jwtKeys;
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '../../config/jwt';
 
 export const parseJWT = (token: TToken): { exp: number | null } => {
   try {
-    if (!token) throw new Error('no exist token');
+    if (!token) {
+      return {
+        exp: null,
+      };
+    }
     // Get payload from JSON Web Token. Learn about: (https://jwt.io/introduction/)
     const payload = token.split('.')[1];
 
@@ -24,34 +27,60 @@ export const parseJWT = (token: TToken): { exp: number | null } => {
   }
 };
 
-export const setRefreshToken = ({
+export const setTokensToCookies = ({
   refreshToken,
+  accessToken,
   res,
   req,
 }: {
   refreshToken: string;
+  accessToken: string;
   res: Response | NextApiResponse;
   req: Request | NextApiRequest;
 }) => {
-  const jwt = parseJWT(refreshToken);
-  if (!jwt.exp) {
-    return;
+  const jwtRefresh = parseJWT(refreshToken);
+  const cookiesAttributes = [];
+  if (jwtRefresh.exp) {
+    const expiredRefresh = new Date(jwtRefresh.exp * 1000).toUTCString();
+
+    const refreshAttributes = [
+      `${REFRESH_TOKEN_KEY}=${refreshToken}`,
+      `expires=${expiredRefresh}`,
+      'path=/',
+      'httpOnly',
+      'SameSite=Lax',
+    ];
+
+    if (req && 'secure' in req) refreshAttributes.push('Secure');
+
+    cookiesAttributes.push(refreshAttributes.join(';'));
   }
-  const expires = new Date(jwt.exp * 1000).toUTCString();
 
-  const attributes = [
-    `${REFRESH_TOKEN_KEY}=${refreshToken}`,
-    `expires=${expires}`,
-    'path=/',
-    'httpOnly',
-    'SameSite=Lax',
-  ];
+  // save token to http-only cookies for secure
 
-  if (req && 'secure' in req) attributes.push('Secure');
+  const jwtAccess = parseJWT(accessToken);
+  if (jwtAccess.exp) {
+    const expiredAccess = new Date(jwtAccess.exp * 1000).toUTCString();
 
-  res.setHeader('Set-Cookie', attributes.join(';'));
+    const accessAttributes = [
+      `${ACCESS_TOKEN_KEY}=${accessToken}`,
+      `expires=${expiredAccess}`,
+      'path=/',
+      'httpOnly',
+      'SameSite=Lax',
+    ];
+
+    if (req && 'secure' in req) accessAttributes.push('Secure');
+
+    cookiesAttributes.push(accessAttributes.join(';'));
+  }
+
+  res.setHeader('Set-Cookie', cookiesAttributes);
 };
 
-export const deleteRefreshToken = ({ res }: { res: Response | NextApiResponse }) => {
-  res.setHeader('Set-Cookie', [`${REFRESH_TOKEN_KEY}=; max-age=0; path=/; httpOnly;`]);
+export const deleteTokensFromCookies = ({ res }: { res: Response | NextApiResponse }) => {
+  res.setHeader('Set-Cookie', [
+    `${REFRESH_TOKEN_KEY}=; max-age=0; path=/; httpOnly;`,
+    `${ACCESS_TOKEN_KEY}=; max-age=0; path=/; httpOnly;`,
+  ]);
 };

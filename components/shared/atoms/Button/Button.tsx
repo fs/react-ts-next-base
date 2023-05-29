@@ -3,17 +3,17 @@ import Link from 'next/link';
 
 import Loader from 'components/shared/atoms/Loader';
 
+import { SpinnerWrapper, StyledButton } from './styled';
 import { TButton } from './types';
-import { StyledButton, SpinnerWrapper } from './styled';
 import {
   backgroundConfig,
+  borderConfig,
+  borderRadiusConfig,
   colorConfig,
   iconConfig,
+  shadowConfig,
   sizeConfig,
   textDecorationConfig,
-  borderRadiusConfig,
-  borderConfig,
-  shadowConfig,
 } from './config';
 
 type TButtonType = TButton & ButtonHTMLAttributes<HTMLButtonElement>;

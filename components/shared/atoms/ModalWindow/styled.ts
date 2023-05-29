@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Title = styled.h3`
   margin: 0 0 0.75rem;
+
   font-size: 1.25rem;
 `;
 
@@ -33,11 +34,13 @@ export const ModalCloseButton = styled.div`
 `;
 
 export const ModalWrapper = styled.div`
-  background-color: white;
   position: relative;
+
   min-width: 18rem;
   max-width: 90vw;
   height: fit-content;
   max-height: calc(var(--vh) * 90);
   overflow-y: auto;
+
+  background-color: white;
 `;

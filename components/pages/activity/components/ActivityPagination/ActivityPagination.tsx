@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
-import Icon from 'components/shared/atoms/Icon';
 import Button from 'components/shared/atoms/Button';
+import Icon from 'components/shared/atoms/Icon';
 
+import { PageNumber, Wrapper } from './styled';
 import { TActivityPagination } from './types';
-import { Wrapper, PageNumber } from './styled';
 
 const ActivityPagination: FC<TActivityPagination> = ({
   pageInfo,

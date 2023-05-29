@@ -1,28 +1,28 @@
+/* eslint-disable global-require */
 import App from 'next/app';
-import fetch from 'isomorphic-unfetch';
 import { HttpsProxyAgent } from 'https-proxy-agent';
-import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, ApolloProvider } from '@apollo/client';
-
-import { withAccessTokenManager } from 'lib/auth/withAccessTokenManager';
+import fetch from 'isomorphic-unfetch';
+import { ApolloClient, ApolloLink, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
 
 import {
-  createConsoleLink,
   createAuthHeaderLink,
-  createUpdateTokenLink,
+  createCheckResponseLink,
+  createConsoleLink,
   createErrorLink,
+  createRefreshTokenLink,
 } from 'lib/apollo/apolloLinks';
 import { apolloPolicies } from 'lib/apollo/apolloPolicies';
-import { ApolloPageContext, TApolloClient, TAppPage } from 'lib/apollo/types';
 
-import { PORT, GRAPHQL_APP_URL } from 'config/vars';
+import { GRAPHQL_APP_URL, PORT } from 'config/vars';
+import { ApolloPageContext, TApolloClient, TAppPage } from 'lib/apollo/types';
 
 const GRAPHQL_URI =
   typeof window === 'undefined' ? `http://127.0.0.1:${PORT}${GRAPHQL_APP_URL}` : GRAPHQL_APP_URL;
 
 // Creates and configures the ApolloClient
-const createApolloClient = (apolloState = {}, ctx?: Partial<ApolloPageContext>) => {
+const createApolloClient = (apolloState = {}, ctx: ApolloPageContext | null) => {
   const fetchOptions: { agent: HttpsProxyAgent | null } = { agent: null };
-  const cookie = ctx && 'req' in ctx ? ctx.req?.headers.cookie : undefined;
+  const cookie = ctx?.req.headers.cookie;
 
   // If you are using a https_proxy, add fetchOptions with 'https-proxy-agent' agent instance
   // 'https-proxy-agent' is required here because it's a sever-side only module
@@ -31,20 +31,12 @@ const createApolloClient = (apolloState = {}, ctx?: Partial<ApolloPageContext>) 
       fetchOptions.agent = new HttpsProxyAgent(process.env.https_proxy);
     }
   }
+
   const consoleLink = createConsoleLink();
   const errorLink = createErrorLink();
-
-  const authHeaderLink = createAuthHeaderLink({
-    // passing a function to get accessToken value from memory
-    getAccessToken: () => ctx?.accessTokenManager?.get?.(),
-    cookie,
-  });
-
-  const updateTokenLink = createUpdateTokenLink({
-    // passing a function to set accessToken to memory
-    setAccessToken: (token: string) => ctx?.accessTokenManager?.set?.(token),
-    deleteAccessToken: () => ctx?.accessTokenManager?.delete?.(),
-  });
+  const authHeaderLink = createAuthHeaderLink({ cookie });
+  const refreshTokenLink = createRefreshTokenLink({ cookie });
+  const checkResponseLink = createCheckResponseLink();
 
   // create an HttpLink
   const httpLink = new HttpLink({
@@ -53,12 +45,14 @@ const createApolloClient = (apolloState = {}, ctx?: Partial<ApolloPageContext>) 
     fetch,
     fetchOptions,
   });
+
   // Combined Link
   const link = ApolloLink.from([
     ...(process.env.PRINT_HTTP_REQUEST_LOGS === 'true' ? [consoleLink] : []),
     errorLink,
     authHeaderLink,
-    updateTokenLink,
+    checkResponseLink,
+    refreshTokenLink,
     httpLink,
   ]);
 
@@ -81,7 +75,7 @@ let apolloClientGlobal: TApolloClient | null = null;
  * Always creates a new apollo client on the server
  * Creates or reuses apollo client in the browser.
  */
-const initApolloClient = (apolloState = {}, ctx: Partial<ApolloPageContext>) => {
+const initApolloClient = (apolloState = {}, ctx: ApolloPageContext | null) => {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (typeof window === 'undefined') {
@@ -99,7 +93,7 @@ const initApolloClient = (apolloState = {}, ctx: Partial<ApolloPageContext>) => 
 const initOnContext = (ctx: ApolloPageContext) => {
   // Initialize ApolloClient if not already done
   // eslint-disable-next-line @typescript-eslint/no-shadow
-  const apolloClient = ctx.apolloClient || initApolloClient(ctx.apolloState || {}, ctx);
+  const apolloClient = ctx.apolloClient || initApolloClient(ctx.apolloState, ctx);
 
   // We send the Apollo Client as a prop to the component to avoid calling initApollo() twice in the server.
   // Otherwise, the component would have to call initApollo() again but this
@@ -115,10 +109,10 @@ const initOnContext = (ctx: ApolloPageContext) => {
   return ctx;
 };
 
-const withApollo = (PageComponent: TAppPage) => {
+export const withApolloClient = (PageComponent: TAppPage) => {
   const WithApolloClient: TAppPage = pageProps => {
-    const { apolloClient, apolloState, accessTokenManager } = pageProps;
-    const client = apolloClient || initApolloClient(apolloState, { accessTokenManager });
+    const { apolloClient, apolloState } = pageProps;
+    const client = apolloClient || initApolloClient(apolloState, null);
 
     return (
       <ApolloProvider client={client}>
@@ -128,14 +122,13 @@ const withApollo = (PageComponent: TAppPage) => {
   };
 
   WithApolloClient.getInitialProps = async context => {
-    const { apolloClient, accessTokenManager } = initOnContext(context.ctx);
+    const { apolloClient } = initOnContext(context.ctx);
 
     // Run wrapped getInitialProps methods
     const pageProps = await App.getInitialProps(context);
 
     return {
       ...pageProps,
-      accessTokenManager,
       apolloState: apolloClient.cache.extract(),
       apolloClient,
     };
@@ -143,5 +136,3 @@ const withApollo = (PageComponent: TAppPage) => {
 
   return WithApolloClient;
 };
-
-export const withApolloClient = (Page: TAppPage) => withAccessTokenManager(withApollo(Page));

@@ -1,4 +1,5 @@
 import { MultiValue, SingleValue } from 'react-select';
+
 import { ActivityEvent } from 'graphql/types';
 
 export type TActivityOption = {
@@ -6,7 +7,7 @@ export type TActivityOption = {
   label: string;
 };
 
-export type TAvtivitySizeOption = {
+export type TActivitySizeOption = {
   value: number;
   label: string;
 };
@@ -15,5 +16,5 @@ export type TEventChange = (
   value: MultiValue<TActivityOption> | SingleValue<TActivityOption> | null,
 ) => void;
 export type TSizeChange = (
-  value: MultiValue<TAvtivitySizeOption> | SingleValue<TAvtivitySizeOption> | null,
+  value: MultiValue<TActivitySizeOption> | SingleValue<TActivitySizeOption> | null,
 ) => void;

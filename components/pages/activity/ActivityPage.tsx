@@ -4,22 +4,23 @@ import withAuth from 'lib/auth/withAuth';
 import withAuthSecurity from 'lib/auth/withAuthSecurity';
 import withGetDataFromTree from 'lib/apollo/withGetDataFromTree';
 
-import { useActivities } from 'lib/apollo/hooks/state/activity';
+import { useMeActivities } from 'lib/apollo/hooks/state/meActivity';
+
+import { ActivityEvent } from 'graphql/types';
+import { TNextPage } from 'lib/apollo/types';
 
 import Loader from 'components/shared/atoms/Loader';
 import Select from 'components/shared/atoms/Select';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import ErrorPage from 'pages/_error';
 
-import { TNextPage } from 'lib/apollo/types';
-import { ActivityEvent } from 'graphql/types';
-
-import ActivityTable from './components/ActivityTable';
 import ActivityPagination from './components/ActivityPagination';
+import ActivityTable from './components/ActivityTable';
+
+import { ACTIVITY_EVENTS, ACTIVITY_PAGE_SIZE_OPTIONS, ACTIVITY_PAGE_SIZES } from './constants';
 
 import { Wrapper } from './styled';
 import { TEventChange, TSizeChange } from './types';
-import { ACTIVITY_EVENTS, ACTIVITY_PAGE_SIZES, ACTIVITY_PAGE_SIZE_OPTIONS } from './constants';
 
 export const ActivityPage: TNextPage = () => {
   const [beforeCursor, setBeforeCursor] = useState<undefined | string>();
@@ -28,9 +29,10 @@ export const ActivityPage: TNextPage = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(ACTIVITY_PAGE_SIZES[0]);
 
-  const { activities, pageInfo, loading, error } = useActivities({
+  const { activities, pageInfo, loading, error } = useMeActivities({
     before: beforeCursor,
     after: afterCursor,
+    event: activityEvent,
     pageSize,
   });
 

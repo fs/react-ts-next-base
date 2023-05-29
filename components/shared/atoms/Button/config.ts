@@ -1,5 +1,6 @@
 import theme from 'public/styles/theme';
-import { TVariantConfig, TSizeConfig, TIconConfig, TShapeConfig } from './types';
+
+import { TIconConfig, TShapeConfig, TSizeConfig, TVariantConfig } from './types';
 
 export const backgroundConfig: TVariantConfig = {
   primary: {

@@ -1,9 +1,8 @@
-import { test, expect } from '@playwright/test';
-
 import { users } from 'e2e/fixtures/users';
+import { closeNotification } from 'e2e/helperActions/notification';
 import { signIn } from 'e2e/helperActions/signIn';
 import { signOut } from 'e2e/helperActions/signOut';
-import { closeNotification } from 'e2e/helperActions/notification';
+import { expect, test } from '@playwright/test';
 
 test.describe('signIn', () => {
   const {
@@ -28,7 +27,7 @@ test.describe('signIn', () => {
     await closeNotification({ page, text: 'Invalid credentials' });
   });
 
-  test.skip('Authorized user visits auth page', async ({ page }) => {
+  test('Authorized user visits auth page', async ({ page }) => {
     await signIn({ page, email, password });
 
     page.goto('/signin');

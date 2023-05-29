@@ -1,5 +1,6 @@
-import '@testing-library/jest-dom';
 import failOnConsole from 'jest-fail-on-console';
+
+import '@testing-library/jest-dom';
 
 jest.setTimeout(30000);
 

@@ -1,9 +1,8 @@
-import { test } from '@playwright/test';
-
 import { users } from 'e2e/fixtures/users';
-import { signUp } from 'e2e/helperActions/signUp';
-import { signOut } from 'e2e/helperActions/signOut';
 import { closeNotification } from 'e2e/helperActions/notification';
+import { signOut } from 'e2e/helperActions/signOut';
+import { signUp } from 'e2e/helperActions/signUp';
+import { test } from '@playwright/test';
 
 test.describe('Sign Up', () => {
   const {

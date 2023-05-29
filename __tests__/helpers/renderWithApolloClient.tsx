@@ -1,14 +1,7 @@
 import { ReactElement } from 'react';
-import { TPageProps } from 'lib/apollo/types';
-import { ApolloClient, HttpLink, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
 
-const mockAccessTokenManager = {
-  accessToken: '',
-  expires: 0,
-  get: () => ({ accessToken: '', expires: 0 }),
-  delete: () => {},
-  set: () => {},
-};
+import { TPageProps } from 'lib/apollo/types';
 
 function renderWithApolloClient(
   children: ReactElement | ((props: TPageProps) => ReactElement),
@@ -23,7 +16,6 @@ function renderWithApolloClient(
     apolloClient: mockClient,
     query: {},
     pathname: '',
-    accessTokenManager: mockAccessTokenManager,
   };
 
   const component = typeof children === 'function' ? children(pageProps) : children;

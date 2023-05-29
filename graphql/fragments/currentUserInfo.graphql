@@ -1,6 +1,6 @@
 fragment CurrentUser on CurrentUser {
-  avatarUrl
   id
+  avatarUrl
   email
   firstName
   lastName

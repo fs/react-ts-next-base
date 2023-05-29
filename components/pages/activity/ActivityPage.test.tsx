@@ -1,25 +1,26 @@
+import { ApolloError } from '@apollo/client';
 import { render, screen } from '@testing-library/react';
 
-import renderWithTheme from '__tests__/helpers/renderWithTheme';
 import renderWithApolloClient from '__tests__/helpers/renderWithApolloClient';
+import renderWithTheme from '__tests__/helpers/renderWithTheme';
 
-import { useActivities } from 'lib/apollo/hooks/state/activity';
-
-import { TPageProps } from 'lib/apollo/types';
 import { mockUseActivitiesData } from '__tests__/mocks/mockActivities';
 
-import { ApolloError } from '@apollo/client';
+import { useMeActivities } from 'lib/apollo/hooks/state/meActivity';
+
+import { TPageProps } from 'lib/apollo/types';
+
 import { ActivityPage } from './ActivityPage';
 
-jest.mock('lib/apollo/hooks/state/activity');
+jest.mock('lib/apollo/hooks/state/meActivity');
 
-const mockedUseActivities = useActivities as jest.MockedFunction<typeof useActivities>;
+const mockedUseMeActivities = useMeActivities as jest.MockedFunction<typeof useMeActivities>;
 
 describe('Activity page', () => {
   test('should render correctly', () => {
     // Arrange
-    const mockUseActivity = jest.fn(() => mockUseActivitiesData);
-    mockedUseActivities.mockImplementation(mockUseActivity);
+    const mockUseMeActivity = jest.fn(() => mockUseActivitiesData);
+    mockedUseMeActivities.mockImplementation(mockUseMeActivity);
 
     // Act
     render(
@@ -35,8 +36,8 @@ describe('Activity page', () => {
 
   test('should show loader while loading', () => {
     // Arrange
-    const mockUseActivity = jest.fn(() => ({ ...mockUseActivitiesData, loading: true }));
-    mockedUseActivities.mockImplementation(mockUseActivity);
+    const mockUseMeActivity = jest.fn(() => ({ ...mockUseActivitiesData, loading: true }));
+    mockedUseMeActivities.mockImplementation(mockUseMeActivity);
 
     // Act
     render(
@@ -53,8 +54,8 @@ describe('Activity page', () => {
   test('should show error on error', async () => {
     // Arrange
     const error = new ApolloError({});
-    const mockUseActivity = jest.fn(() => ({ ...mockUseActivitiesData, error }));
-    mockedUseActivities.mockImplementation(mockUseActivity);
+    const mockUseMeActivity = jest.fn(() => ({ ...mockUseActivitiesData, error }));
+    mockedUseMeActivities.mockImplementation(mockUseMeActivity);
 
     // Act
     render(

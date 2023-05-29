@@ -1,18 +1,14 @@
-import { useEffect, useReducer } from 'react';
-import Cookie from 'universal-cookie';
+import { differenceInMilliseconds } from 'date-fns';
 import omit from 'lodash/omit';
+import Cookie from 'universal-cookie';
 
 import UpdateToken from 'graphql/mutations/updateToken.graphql';
 import CurrentUser from 'graphql/queries/currentUser.graphql';
 
-import jwt from 'config/jwt.json';
-
-import { getCurrentUser } from 'lib/apollo/cache/getCurrentUser';
+import { ACCESS_TOKEN_KEY, ACCESS_TOKEN_MINIMAL_LIFE_TIME, REFRESH_TOKEN_KEY } from 'config/jwt';
 import { ApolloPageContext, TApolloClient, TNextPage } from 'lib/apollo/types';
 
-import { setRefreshToken } from './tokens';
-
-const { REFRESH_TOKEN_KEY, ACCESS_TOKEN_CHECK_INTERVAL, ACCESS_TOKEN_MINIMAL_LIFE_TIME } = jwt;
+import { parseJWT, setTokensToCookies } from './tokens';
 
 const updateTokensMutation = (apolloClient: TApolloClient) =>
   apolloClient.mutate({
@@ -24,7 +20,7 @@ const updateTokensServerSide = async ({ req, res, apolloClient }: ApolloPageCont
   try {
     const {
       data: {
-        updateToken: { me, refreshToken },
+        updateToken: { me, refreshToken, accessToken },
       },
     } = await updateTokensMutation(apolloClient);
 
@@ -35,7 +31,30 @@ const updateTokensServerSide = async ({ req, res, apolloClient }: ApolloPageCont
       },
     });
 
-    if (!res.writableEnded) setRefreshToken({ refreshToken, req, res });
+    if (!res.writableEnded) setTokensToCookies({ refreshToken, accessToken, req, res });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const getCurrentUserQuery = (apolloClient: TApolloClient) =>
+  apolloClient.query({
+    query: CurrentUser,
+    fetchPolicy: 'no-cache', // to not leak tokens data in apolloState $ROOT_MUTATION
+  });
+
+const updateCurrentUserServerSide = async ({ apolloClient }: ApolloPageContext) => {
+  try {
+    const {
+      data: { me },
+    } = await getCurrentUserQuery(apolloClient);
+
+    apolloClient.writeQuery({
+      query: CurrentUser,
+      data: {
+        me,
+      },
+    });
   } catch (error) {
     console.error(error);
   }
@@ -43,46 +62,6 @@ const updateTokensServerSide = async ({ req, res, apolloClient }: ApolloPageCont
 
 const withTokensUpdate = (Page: TNextPage): TNextPage => {
   const WithTokensUpdate: TNextPage = ({ ...pageProps }) => {
-    const [_, forceUpdate] = useReducer((x: number) => x + 1, 0);
-
-    const { apolloClient, accessTokenManager } = pageProps;
-
-    const tick = async () => {
-      const user = getCurrentUser({ apolloClient });
-      if (!user) return;
-      const { accessToken, expires } = accessTokenManager?.get() || {};
-      if (!accessToken || !expires || expires - Date.now() <= ACCESS_TOKEN_MINIMAL_LIFE_TIME) {
-        try {
-          await updateTokensMutation(apolloClient);
-          // update page data after mutate accessTokenManager
-          forceUpdate();
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    };
-
-    useEffect(() => {
-      tick();
-      let timeoutId: NodeJS.Timeout;
-      let timeoutId2: NodeJS.Timeout;
-      (async function poll() {
-        await new Promise(resolve => {
-          timeoutId2 = setTimeout(async () => {
-            await tick();
-            resolve(null);
-          }, ACCESS_TOKEN_CHECK_INTERVAL);
-        });
-
-        timeoutId = setTimeout(poll, ACCESS_TOKEN_CHECK_INTERVAL);
-      })();
-
-      return () => {
-        clearTimeout(timeoutId);
-        clearTimeout(timeoutId2);
-      };
-    }, []);
-
     return <Page {...pageProps} />;
   };
 
@@ -91,9 +70,19 @@ const withTokensUpdate = (Page: TNextPage): TNextPage => {
     const ctx = omit(context, ['req', 'res']);
     if (!!req && !!res) {
       const cookie = new Cookie(req.headers.cookie);
-      const refreshToken = cookie.get(REFRESH_TOKEN_KEY);
+      const accessToken = cookie.get(ACCESS_TOKEN_KEY);
+      const jwtAccess = parseJWT(accessToken);
 
-      if (refreshToken) await updateTokensServerSide(context);
+      if (
+        !accessToken ||
+        !jwtAccess.exp ||
+        differenceInMilliseconds(jwtAccess.exp * 1000, Date.now()) <= ACCESS_TOKEN_MINIMAL_LIFE_TIME
+      ) {
+        const refreshToken = cookie.get(REFRESH_TOKEN_KEY);
+        if (refreshToken) await updateTokensServerSide(context);
+      } else {
+        await updateCurrentUserServerSide(context);
+      }
     }
 
     return Page.getInitialProps ? Page.getInitialProps(context) : ctx;

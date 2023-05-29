@@ -1,11 +1,12 @@
-import Link from 'next/link';
 import { NextPage } from 'next';
+import Link from 'next/link';
+
 import useRouter from 'hooks/useRouter';
 
 import { HOME } from 'config/routes';
 
-import { TInitialProps, TErrorPage } from './types';
-import { TitleWrapper, Description, StyledLink } from './styled';
+import { Description, StyledLink, TitleWrapper } from './styled';
+import { TErrorPage, TInitialProps } from './types';
 
 const ErrorPage: NextPage<TErrorPage> = ({ statusCode }) => {
   const is404 = statusCode === 404;

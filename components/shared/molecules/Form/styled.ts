@@ -12,14 +12,17 @@ export const FormWrapper = styled.div<TWidth>(
     button {
       width: 100%;
       padding: 1rem;
+
       font-size: 1rem;
-      border-radius: 0.3rem;
+
       border: 1px solid ${({ theme }) => theme.colors.grey_500};
+      border-radius: 0.3rem;
     }
 
     [type='file'] {
-      border: none;
       padding: 0;
+
+      border: none;
     }
 
     input[type='checkbox'],
@@ -40,6 +43,7 @@ export const FormContainer = styled.div`
 
 export const FieldWrapper = styled.div`
   position: relative;
+
   padding-top: 1.5rem;
   margin-bottom: 1rem;
 `;
@@ -51,7 +55,8 @@ export const FieldLabel = styled.label`
 `;
 
 export const ErrorWrapper = styled.div`
+  padding: 0.5rem 0 0 1rem;
+
   font-size: 0.9rem;
   color: red;
-  padding: 0.5rem 0 0 1rem;
 `;

@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import Modal from 'react-modal';
 
-import Icon from 'components/shared/atoms/Icon';
 import Button from 'components/shared/atoms/Button';
+import Icon from 'components/shared/atoms/Icon';
 
+import { ModalCloseButton, modalStyles, ModalWrapper, Title } from './styled';
 import { TModalWindow } from './types';
-import { modalStyles, Title, ModalWrapper, ModalCloseButton } from './styled';
 
 const ModalWindow: FC<TModalWindow> = ({
   isOpen,

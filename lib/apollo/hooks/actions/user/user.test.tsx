@@ -1,10 +1,10 @@
-import { renderHook, waitFor } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
-
-import { UpdateUserDocument } from 'graphql/mutations/__generated__/updateUser.generated';
+import { renderHook, waitFor } from '@testing-library/react';
 
 import mockCurrentUser from '__tests__/mocks/mockCurrentUser';
 import { mockUploadFile } from '__tests__/mocks/mockUploadFile';
+
+import { UpdateUserDocument } from 'graphql/mutations/__generated__/updateUser.generated';
 
 import { useUpdateUser } from './index';
 

@@ -1,17 +1,20 @@
-import { ParsedUrlQuery } from 'querystring';
-import { AppContext, AppProps } from 'next/app';
-import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { NextApiRequest, NextApiResponse, NextComponentType, NextPageContext } from 'next';
-
-import { AccessTokenManager } from 'lib/auth/withAccessTokenManager';
+import { AppContext, AppProps } from 'next/app';
+import { ParsedUrlQuery } from 'querystring';
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 
 export type TToken = string | null;
-export type TExpires = number | null;
 
 export type PageInfo = {
   endCursor?: string | null | undefined;
   hasNextPage: boolean;
   hasPreviousPage: boolean;
+};
+
+export type THistory = {
+  pathname: string;
+  query: ParsedUrlQuery;
+  asPath: string;
 };
 
 export type TApolloClient = ApolloClient<NormalizedCacheObject>;
@@ -20,22 +23,22 @@ export type TPageProps = {
   query: ParsedUrlQuery;
   apolloClient: TApolloClient;
   pathname: string;
+  history?: THistory[];
+  canVisit?: boolean;
   apolloState?: NormalizedCacheObject;
-  accessTokenManager: AccessTokenManager;
 };
 
 export type ApolloPageContext<C = NormalizedCacheObject> = NextPageContext & {
   // Custom prop added by withApollo
   apolloClient: ApolloClient<C>;
   apolloState: C;
-  accessTokenManager: AccessTokenManager;
+  canVisit?: boolean;
   res: NextApiResponse;
   req: NextApiRequest;
 };
 
 export type TAppProps = {
   apolloClient: TApolloClient;
-  accessTokenManager: AccessTokenManager;
   apolloState?: NormalizedCacheObject;
 };
 
@@ -43,20 +46,17 @@ export type ApolloAppContext<C = NormalizedCacheObject> = AppContext & {
   ctx: ApolloPageContext<C>;
   apolloClient: ApolloClient<C>;
   apolloState: C;
-  accessTokenManager: AccessTokenManager;
   pageProps: TPageProps;
   res: NextApiResponse;
   req: NextApiRequest;
 };
 
 export type TCreateAuthHeaderLink = {
-  getAccessToken: () => { accessToken: TToken; expires: TExpires } | undefined;
   cookie?: string;
 };
 
-export type TCreateUpdateTokenLink = {
-  setAccessToken: (token: string) => void;
-  deleteAccessToken: () => void;
+export type TCreateRefreshTokenLink = {
+  cookie?: string;
 };
 
 type ApolloNextPage<P = object, IP = P> = NextComponentType<ApolloPageContext, IP, P>;

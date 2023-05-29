@@ -1,9 +1,10 @@
 import { ActivityEvent } from 'graphql/types';
-import { TActivityOption, TAvtivitySizeOption } from './types';
 
-export const ACTIVITY_PAGE_SIZES = [5, 10, 25, 50];
+import { TActivityOption, TActivitySizeOption } from './types';
 
-export const ACTIVITY_PAGE_SIZE_OPTIONS: TAvtivitySizeOption[] = ACTIVITY_PAGE_SIZES.map(item => ({
+export const ACTIVITY_PAGE_SIZES = [3, 6, 9, 12];
+
+export const ACTIVITY_PAGE_SIZE_OPTIONS: TActivitySizeOption[] = ACTIVITY_PAGE_SIZES.map(item => ({
   value: item,
   label: String(item),
 }));

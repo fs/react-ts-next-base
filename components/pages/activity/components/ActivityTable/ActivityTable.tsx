@@ -1,12 +1,15 @@
 import { FC } from 'react';
 
+import ProfileImage from 'components/shared/atoms/ProfileImage';
+
+import { ACTIVITY_EVENTS_COLORS } from './constants';
 import DataCell from './DataCell';
 
+import { ColorLabel, EmptyList, HeaderCell, StyledTable, UserInfo } from './styled';
 import { TActivityTable } from './types';
-import { StyledTable, HeaderCell, EmptyList } from './styled';
 
 const ActivityTable: FC<TActivityTable> = ({ activities }) => {
-  const columnNames = ['Title', 'Description'];
+  const columnNames = ['Title', 'Description', 'Date', 'User'];
 
   return (
     <>
@@ -14,17 +17,29 @@ const ActivityTable: FC<TActivityTable> = ({ activities }) => {
         <StyledTable data-testid="activity-table">
           <thead>
             <tr>
-              {columnNames.map(name => (
-                <HeaderCell key={name}>{name}</HeaderCell>
+              {columnNames.map((name, id) => (
+                <HeaderCell key={name} colSpan={!id ? 2 : 1}>
+                  {name}
+                </HeaderCell>
               ))}
             </tr>
           </thead>
           <tbody>
-            {activities.map(({ id, title, body }) => {
+            {activities.map(({ id, title, body, createdAt, event, user }) => {
+              const name = `${user?.firstName} ${user?.lastName}`;
+
               return (
                 <tr key={id} data-testid="activity-row">
+                  <ColorLabel color={ACTIVITY_EVENTS_COLORS[event]} />
                   <DataCell>{title}</DataCell>
                   <DataCell>{body}</DataCell>
+                  <DataCell>{new Date(createdAt).toLocaleString()}</DataCell>
+                  <DataCell>
+                    <ProfileImage avatar={user?.avatarUrl} />
+                    <UserInfo>
+                      {name} ({user.email})
+                    </UserInfo>
+                  </DataCell>
                 </tr>
               );
             })}
@@ -36,5 +51,4 @@ const ActivityTable: FC<TActivityTable> = ({ activities }) => {
     </>
   );
 };
-
 export default ActivityTable;

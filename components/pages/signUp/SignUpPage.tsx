@@ -1,6 +1,6 @@
 import withAuth from 'lib/auth/withAuth';
-import withGetDataFromTree from 'lib/apollo/withGetDataFromTree';
 import withNotAuthSecurity from 'lib/auth/withNotAuthSecurity';
+import withGetDataFromTree from 'lib/apollo/withGetDataFromTree';
 
 import { TNextPage } from 'lib/apollo/types';
 
