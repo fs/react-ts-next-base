@@ -126,7 +126,7 @@
               // Mocks
               ["^__tests__/"],
               // HOK's
-              ["^lib/auth", "^lib/apollo", "^lib/roles"],
+              ["^lib/auth", "^lib/apollo"],
               // Mutations and Queries
               ["^lib/apollo/hooks/actions","^lib/apollo/hooks/state", "^hooks/"],
               // Graphql
