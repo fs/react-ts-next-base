@@ -16,7 +16,7 @@ export const colorShades = [
   'pink',
   'rose',
 ] as const;
-export type ColorShades = typeof colorShades[number];
+export type ColorShades = (typeof colorShades)[number];
 
 export const colorIntensities = [
   '900',
@@ -30,7 +30,7 @@ export const colorIntensities = [
   '100',
   '50',
 ] as const;
-export type ColorIntensity = typeof colorIntensities[number];
+export type ColorIntensity = (typeof colorIntensities)[number];
 
 type RegularColors = `${ColorShades}_${ColorIntensity}`;
 

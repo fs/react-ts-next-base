@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import Router from 'next/router';
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
+import { GraphQLError } from 'graphql';
+import isNull from 'lodash/isNull';
 import Cookie from 'universal-cookie';
 import { ApolloLink } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
@@ -9,8 +11,6 @@ import isServerSide from 'config/isServerSide';
 import { REFRESH_TOKEN_KEY } from 'config/jwt';
 import { GRAPHQL_APP_URL, PORT } from 'config/vars';
 
-import isNull from 'lodash/isNull';
-import { GraphQLError } from 'graphql';
 import { TCreateAuthHeaderLink, TCreateRefreshTokenLink } from './types';
 
 export const createConsoleLink = () =>

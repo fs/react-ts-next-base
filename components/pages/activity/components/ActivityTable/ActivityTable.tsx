@@ -1,11 +1,12 @@
 import { FC } from 'react';
+
 import ProfileImage from 'components/shared/atoms/ProfileImage';
 
+import { ACTIVITY_EVENTS_COLORS } from './constants';
 import DataCell from './DataCell';
 
+import { ColorLabel, EmptyList, HeaderCell, StyledTable, UserInfo } from './styled';
 import { TActivityTable } from './types';
-import { ACTIVITY_EVENTS_COLORS } from './constants';
-import { StyledTable, ColorLabel, HeaderCell, UserInfo, EmptyList } from './styled';
 
 const ActivityTable: FC<TActivityTable> = ({ activities }) => {
   const columnNames = ['Title', 'Description', 'Date', 'User'];

@@ -1,4 +1,5 @@
 import { ActivityEvent } from 'graphql/types';
+
 import { mockPageInfo } from './mockPageInfo';
 
 export const mockActivities = [
