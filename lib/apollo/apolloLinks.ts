@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 import { ApolloLink, fromPromise } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
+
 import isServerSide from 'config/isServerSide';
+
 import { TCreateAuthHeaderLink, TCreateUpdateTokenLink } from './types';
 
 export const createConsoleLink = () =>

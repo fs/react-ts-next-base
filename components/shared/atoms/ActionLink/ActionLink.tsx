@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
+import { StyledLink, StyledNextLink } from './styled';
 import { TActionLink } from './types';
-import { StyledNextLink, StyledLink } from './styled';
 
 const ActionLink: FC<TActionLink> = ({
   onClick,

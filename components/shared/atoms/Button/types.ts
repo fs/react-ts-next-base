@@ -1,8 +1,9 @@
 import { HTMLAttributeAnchorTarget, HTMLAttributeReferrerPolicy, ReactNode } from 'react';
 import { UrlObject } from 'url';
+
 import { TMargin } from 'public/styles/config/margin';
-import { TWidth } from 'public/styles/config/width';
 import { ESize } from 'public/styles/config/size';
+import { TWidth } from 'public/styles/config/width';
 
 export enum EVariant {
   PRIMARY = 'primary',

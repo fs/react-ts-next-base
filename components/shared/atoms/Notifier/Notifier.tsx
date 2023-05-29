@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+
 import useNotifier from 'hooks/useNotifier';
 
 import { ToastWrapper } from './styled';

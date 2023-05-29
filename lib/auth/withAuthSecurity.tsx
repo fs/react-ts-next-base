@@ -1,9 +1,9 @@
-import omit from 'lodash/omit';
 import Router from 'next/router';
-
-import { SIGNIN } from 'config/routes';
+import omit from 'lodash/omit';
 
 import { getCurrentUser } from 'lib/apollo/cache/getCurrentUser';
+
+import { SIGNIN } from 'config/routes';
 import { TNextPage } from 'lib/apollo/types';
 
 const withAuthSecurity = (Page: TNextPage): TNextPage => {

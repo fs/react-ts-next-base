@@ -1,9 +1,8 @@
 import { FC } from 'react';
 import { ErrorMessage } from 'formik';
 
-import { TDefaultFieldWrapper } from './types';
-
 import { ErrorWrapper, FieldLabel, FieldWrapper } from './styled';
+import { TDefaultFieldWrapper } from './types';
 
 const DefaultFieldWrapper: FC<TDefaultFieldWrapper> = ({ name, title, children }) => {
   return (

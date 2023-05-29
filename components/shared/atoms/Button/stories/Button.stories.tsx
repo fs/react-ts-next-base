@@ -1,14 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
+import { ESize } from 'public/styles/config/size';
+
 import Icon from 'components/shared/atoms/Icon';
 import { configIcons, IconKeys } from 'components/shared/atoms/Icon/config';
-
-import { ESize } from 'public/styles/config/size';
 
 import Button from '../index';
 import { EIconType, EShape, TButton } from '../types';
 
-import { Row, ItemWrapper } from './styled';
+import { ItemWrapper, Row } from './styled';
 
 type TButtonStory = TButton & {
   bgColor?: string;

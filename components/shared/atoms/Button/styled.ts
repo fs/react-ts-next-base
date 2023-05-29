@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
-import theme from 'public/styles/theme';
+
 import { getMarginStyles } from 'public/styles/config/margin';
+import theme from 'public/styles/theme';
 
 import { TButtonProps, TSpinnerButtonProps } from './types';
 

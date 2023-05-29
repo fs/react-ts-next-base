@@ -2,12 +2,14 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import renderWithTheme from '__tests__/helpers/renderWithTheme';
-import { useUpdateUser } from 'lib/apollo/hooks/actions/user';
+
+import mockCurrentUser from '__tests__/mocks/mockCurrentUser';
+
 import { usePresignFile } from 'lib/apollo/hooks/actions/presignFile';
+import { useUpdateUser } from 'lib/apollo/hooks/actions/user';
 import { useFileUpload } from 'hooks/useFileUpload';
 import useNotifier from 'hooks/useNotifier';
 
-import mockCurrentUser from '__tests__/mocks/mockCurrentUser';
 import ProfileForm from './ProfileForm';
 
 jest.mock('lib/apollo/hooks/actions/user');

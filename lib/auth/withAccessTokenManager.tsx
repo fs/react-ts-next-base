@@ -1,5 +1,6 @@
 import omit from 'lodash/omit';
-import { TToken, TExpires, TAppPage, ApolloPageContext } from 'lib/apollo/types';
+
+import { ApolloPageContext, TAppPage, TExpires, TToken } from 'lib/apollo/types';
 
 import { parseJWT } from './tokens';
 

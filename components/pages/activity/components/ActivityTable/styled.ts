@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+
 import baseCellStyles from './baseCellStyles';
 
 export const StyledTable = styled.table(

@@ -1,20 +1,19 @@
 import App from 'next/app';
-import fetch from 'isomorphic-unfetch';
 import { HttpsProxyAgent } from 'https-proxy-agent';
-import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, ApolloProvider } from '@apollo/client';
+import fetch from 'isomorphic-unfetch';
+import { ApolloClient, ApolloLink, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
 
 import { withAccessTokenManager } from 'lib/auth/withAccessTokenManager';
-
 import {
-  createConsoleLink,
   createAuthHeaderLink,
-  createUpdateTokenLink,
+  createConsoleLink,
   createErrorLink,
+  createUpdateTokenLink,
 } from 'lib/apollo/apolloLinks';
 import { apolloPolicies } from 'lib/apollo/apolloPolicies';
-import { ApolloPageContext, TApolloClient, TAppPage } from 'lib/apollo/types';
 
-import { PORT, GRAPHQL_APP_URL } from 'config/vars';
+import { GRAPHQL_APP_URL, PORT } from 'config/vars';
+import { ApolloPageContext, TApolloClient, TAppPage } from 'lib/apollo/types';
 
 const GRAPHQL_URI =
   typeof window === 'undefined' ? `http://127.0.0.1:${PORT}${GRAPHQL_APP_URL}` : GRAPHQL_APP_URL;

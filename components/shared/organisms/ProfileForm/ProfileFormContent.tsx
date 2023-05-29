@@ -3,8 +3,8 @@ import * as Yup from 'yup';
 
 import Form, { FormFieldType, PasswordAutocomplete } from 'components/shared/molecules/Form';
 
+import { AvatarImg, AvatarWrapper, FormWrapper, StyledTitle } from './styled';
 import { TProfileFormContent } from './types';
-import { FormWrapper, StyledTitle, AvatarWrapper, AvatarImg } from './styled';
 
 const ProfileFormContent: FC<TProfileFormContent> = ({
   temporaryUrl,

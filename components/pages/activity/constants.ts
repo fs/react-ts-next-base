@@ -1,4 +1,5 @@
 import { ActivityEvent } from 'graphql/types';
+
 import { TActivityOption, TAvtivitySizeOption } from './types';
 
 export const ACTIVITY_PAGE_SIZES = [5, 10, 25, 50];

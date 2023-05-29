@@ -1,5 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+
 import ProfileImage from '../index';
+
 import { ImageWrapper } from './styled';
 
 export default {

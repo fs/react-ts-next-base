@@ -1,12 +1,11 @@
-import zlib from 'zlib';
-import Cookie from 'universal-cookie';
 import { Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
+import Cookie from 'universal-cookie';
+import zlib from 'zlib';
 
-import { API_URL } from '../../config/vars';
 import jwt from '../../config/jwt.json';
-
-import { setRefreshToken, deleteRefreshToken } from '../../lib/auth/tokens';
+import { API_URL } from '../../config/vars';
+import { deleteRefreshToken, setRefreshToken } from '../../lib/auth/tokens';
 
 const { REFRESH_TOKEN_KEY } = jwt;
 

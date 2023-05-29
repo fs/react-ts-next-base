@@ -1,5 +1,6 @@
-import { CurrentUserFragment } from 'graphql/fragments/__generated__/currentUserInfo.generated';
 import type { useSignOut } from 'lib/apollo/hooks/actions/auth';
+
+import { CurrentUserFragment } from 'graphql/fragments/__generated__/currentUserInfo.generated';
 
 export type THeader = {
   user?: CurrentUserFragment | null;

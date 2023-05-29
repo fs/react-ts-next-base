@@ -1,4 +1,5 @@
 import { TNextPage } from 'lib/apollo/types';
+
 import withAuthSyncEvents from './withAuthSyncEvents';
 import withTokensUpdate from './withTokensUpdate';
 
