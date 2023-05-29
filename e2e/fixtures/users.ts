@@ -2,8 +2,8 @@ export const users = {
   validUser: {
     email: 'test@test.com',
     password: 'Test123',
-    lastName: 'Bulgakov',
-    firstName: 'Michael',
+    lastName: 'Булгаков',
+    firstName: 'Михаил',
   },
   invalidUser: {
     email: 'test@test.com',
