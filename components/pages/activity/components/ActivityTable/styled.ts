@@ -5,15 +5,20 @@ export const StyledTable = styled.table(
   ({ theme: { colors, up, breakpoints } }) =>
     css`
       position: relative;
-      border-spacing: 0;
+
       display: block;
-      overflow-x: auto;
-      text-align: left;
+
       width: 100%;
+      overflow-x: auto;
+
       color: ${colors.grey_800};
+      text-align: left;
+
+      border-spacing: 0;
 
       ${up(breakpoints.lg)} {
         display: table;
+
         overflow-x: initial;
       }
     `,
@@ -27,8 +32,9 @@ export const HeaderCell = styled.th(
 
 export const EmptyList = styled.div`
   margin: 3rem 0;
-  text-align: center;
+
   font-style: italic;
+  text-align: center;
 `;
 
 export const StyledCell = styled.td(

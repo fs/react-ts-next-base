@@ -6,10 +6,10 @@ import { configColors } from 'public/styles/config/colors';
 import { TStyledLinkProps } from './types';
 
 const linkStyles = ({ $size, $color, $bold, ...props }: TStyledLinkProps) => css`
-  text-decoration: none;
   font-size: ${$size}px;
-  color: ${configColors[$color]};
   font-weight: ${$bold ? 'bold' : 'normal'};
+  color: ${configColors[$color]};
+  text-decoration: none;
 
   &:hover {
     text-decoration: underline;
