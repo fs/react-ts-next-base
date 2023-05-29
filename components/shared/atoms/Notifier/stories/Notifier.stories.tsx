@@ -16,12 +16,9 @@ export const Demo: ComponentStory<typeof Notifier> = () => {
 
   return (
     <div style={{ display: 'flex', gap: 16 }}>
-      <Button
-        label="setSuccess"
-        onClick={() => setSuccess('сообщение об успешном выполнении операции')}
-      />
-      <Button label="setError" onClick={() => setError('сообщение об ошибке')} />
-      <Button label="setInfo" onClick={() => setInfo('информация')} />
+      <Button label="setSuccess" onClick={() => setSuccess('success message')} />
+      <Button label="setError" onClick={() => setError('error message')} />
+      <Button label="setInfo" onClick={() => setInfo('info')} />
     </div>
   );
 };

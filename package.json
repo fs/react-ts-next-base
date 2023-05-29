@@ -26,6 +26,7 @@
     "sb-build": "build-storybook",
     "types:check": "tsc --noEmit --pretty",
     "scan": "yarn lint && yarn types:check && yarn ci:jest",
+    "scan:full": "yarn scan && yarn ci:pw-run",
     "analyze": "ANALYZE=true next build",
     "gen:types": "graphql-codegen --config codegen.yml"
   },

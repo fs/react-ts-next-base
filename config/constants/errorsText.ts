@@ -1,15 +1,15 @@
-export const REQUIRED_FIELD = 'Это обязательное поле';
-export const REQUIRED_FIELDS = 'Поля обязательны к заполнению';
-export const INVALID_FORMAT = 'Поле заполнено неверно';
+export const REQUIRED_FIELD = 'This is a required field';
+export const REQUIRED_FIELDS = 'Fields are required';
+export const INVALID_FORMAT = 'The field is filled incorrectly';
 
-export const EMAIL_INVALID = 'Email введен неверно';
-export const EMAIL_MATCH = 'Email не совпадает';
-export const PHONE_INVALID = 'Номер телефона введен неверно';
-export const PASSWORD_MATCH = 'Пароль не совпадает';
-export const PASSWORD_INVALID_LENGTH = 'Минимальная длина пароля - 6 символов';
+export const EMAIL_INVALID = 'Email entered incorrectly';
+export const EMAIL_MATCH = 'Email does not match';
+export const PHONE_INVALID = 'Phone entered incorrectly';
+export const PASSWORD_MATCH = 'Password does not match';
+export const PASSWORD_INVALID_LENGTH = 'Minimum password length - 6 characters';
 export const PASSWORD_INVALID_FORMAT =
-  'Пароль должен содержать символы в верхнем и нижнем регистре и цифры';
+  'Password must contain upper and lower case characters and numbers';
 
-export const INVALID_LENGTH = (maxLength: number) => `Максимальная длина ${maxLength} символов`;
+export const INVALID_LENGTH = (maxLength: number) => `Maximum length ${maxLength} characters`;
 export const INVALID_COMMENT_LENGTH = (maxLength: number, currentLength: number) =>
-  `Максимальная длина комментария ${maxLength} символов  (${currentLength}/${maxLength})`;
+  `Maximum comment length ${maxLength} characters (${currentLength}/${maxLength})`;
