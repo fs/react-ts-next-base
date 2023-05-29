@@ -27,7 +27,7 @@ test.describe('signIn', () => {
     await closeNotification({ page, text: 'Invalid credentials' });
   });
 
-  test.skip('Authorized user visits auth page', async ({ page }) => {
+  test('Authorized user visits auth page', async ({ page }) => {
     await signIn({ page, email, password });
 
     page.goto('/signin');

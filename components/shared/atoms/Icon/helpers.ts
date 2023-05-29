@@ -13,10 +13,10 @@ export const getSizeStyles = ({ $size }: TIconBase) => {
   if ($size) {
     return css`
       &&& {
-        height: ${$size}px;
         width: ${$size}px;
-        min-height: ${$size}px;
         min-width: ${$size}px;
+        height: ${$size}px;
+        min-height: ${$size}px;
       }
     `;
   }
@@ -26,8 +26,9 @@ export const getSizeStyles = ({ $size }: TIconBase) => {
 export const getFillStyles = ({ $color = 'black' }: TIconBase) => {
   return css`
     & path {
-      transition: fill 0.5s;
       fill: ${configColors[$color]};
+
+      transition: fill 0.5s;
     }
   `;
 };

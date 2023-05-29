@@ -17,7 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // Custom styles
 import 'public/styles/custom.css';
 
-const MyApp: TAppPage = ({ Component, pageProps, router, accessTokenManager, apolloClient }) => {
+const MyApp: TAppPage = ({ Component, pageProps, router, apolloClient }) => {
   const { query } = router;
   useCalculateVh();
 
@@ -30,12 +30,7 @@ const MyApp: TAppPage = ({ Component, pageProps, router, accessTokenManager, apo
         <ThemeProvider theme={theme}>
           <GlobalStyles />
           <NiceModal.Provider>
-            <Component
-              {...pageProps}
-              query={query}
-              accessTokenManager={accessTokenManager}
-              apolloClient={apolloClient}
-            />
+            <Component {...pageProps} query={query} apolloClient={apolloClient} />
           </NiceModal.Provider>
         </ThemeProvider>
         <Notifier />

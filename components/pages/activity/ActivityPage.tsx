@@ -4,7 +4,7 @@ import withAuth from 'lib/auth/withAuth';
 import withAuthSecurity from 'lib/auth/withAuthSecurity';
 import withGetDataFromTree from 'lib/apollo/withGetDataFromTree';
 
-import { useActivities } from 'lib/apollo/hooks/state/activity';
+import { useMeActivities } from 'lib/apollo/hooks/state/meActivity';
 
 import { ActivityEvent } from 'graphql/types';
 import { TNextPage } from 'lib/apollo/types';
@@ -29,9 +29,10 @@ export const ActivityPage: TNextPage = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(ACTIVITY_PAGE_SIZES[0]);
 
-  const { activities, pageInfo, loading, error } = useActivities({
+  const { activities, pageInfo, loading, error } = useMeActivities({
     before: beforeCursor,
     after: afterCursor,
+    event: activityEvent,
     pageSize,
   });
 
