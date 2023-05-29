@@ -1,10 +1,10 @@
 import next from 'next';
-import express from 'express';
 import bodyParser from 'body-parser';
+import express from 'express';
 
 import graphqlProxyMiddleware from './server/middlewares/graphql';
 
-import { DEV, PORT, GRAPHQL_APP_URL } from './config/vars';
+import { DEV, GRAPHQL_APP_URL, PORT } from './config/vars';
 
 // Create body-parser json middleware
 const bodyParserJSON = bodyParser.json();

@@ -3,9 +3,9 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { REQUIRED_FIELD } from 'config/constants/errorsText';
 
+import { PasswordAutocomplete } from '../formFields/types';
 import Form from '../index';
 import { FormFieldType } from '../types';
-import { PasswordAutocomplete } from '../formFields/types';
 
 export default {
   title: 'molecules/Form',

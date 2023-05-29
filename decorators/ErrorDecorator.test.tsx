@@ -1,5 +1,6 @@
 import { GraphQLError } from 'graphql';
 import { ApolloError } from '@apollo/client';
+
 import ErrorDecorator from './ErrorDecorator';
 
 describe('Error Decorator', () => {

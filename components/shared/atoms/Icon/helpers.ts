@@ -1,5 +1,7 @@
 import { css } from 'styled-components';
+
 import { configColors } from 'public/styles/config/colors';
+
 import { TIconBase } from './types';
 
 export const getSizeStyles = ({ $size }: TIconBase) => {

@@ -1,10 +1,10 @@
 import { ChangeEvent, FC, useMemo, useState } from 'react';
 import type { FormikHelpers } from 'formik';
 
-import useNotifier from 'hooks/useNotifier';
-import { useFileUpload } from 'hooks/useFileUpload';
-import { useUpdateUser } from 'lib/apollo/hooks/actions/user';
 import { usePresignFile } from 'lib/apollo/hooks/actions/presignFile';
+import { useUpdateUser } from 'lib/apollo/hooks/actions/user';
+import { useFileUpload } from 'hooks/useFileUpload';
+import useNotifier from 'hooks/useNotifier';
 
 import { ImageUploader } from 'graphql/types';
 

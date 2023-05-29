@@ -1,5 +1,6 @@
-import { Request, Response } from 'express';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { Request, Response } from 'express';
+
 import { TToken } from 'lib/apollo/types';
 
 import jwtKeys from '../../config/jwt.json';

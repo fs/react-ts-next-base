@@ -8,8 +8,8 @@ import {
   PASSWORD_INVALID_LENGTH,
   REQUIRED_FIELD,
 } from 'config/constants/errorsText';
-import { RECOVERY_PASSWORD } from 'config/routes';
 import { PASSWORD_REGULAR_EXP } from 'config/constants/regularExpressions';
+import { RECOVERY_PASSWORD } from 'config/routes';
 
 import ActionLink from 'components/shared/atoms/ActionLink';
 import Form, { FormFieldType } from 'components/shared/molecules/Form';

@@ -2,8 +2,8 @@ import { FC } from 'react';
 
 import DataCell from './DataCell';
 
+import { EmptyList, HeaderCell, StyledTable } from './styled';
 import { TActivityTable } from './types';
-import { StyledTable, HeaderCell, EmptyList } from './styled';
 
 const ActivityTable: FC<TActivityTable> = ({ activities }) => {
   const columnNames = ['Title', 'Description'];

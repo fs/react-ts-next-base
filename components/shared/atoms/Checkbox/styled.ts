@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
+
 import theme from 'public/styles/theme';
-import { TPositionProps, EPosition, TSizeProps } from './types';
+
+import { EPosition, TPositionProps, TSizeProps } from './types';
 
 type TLabelProps = {
   // eslint-disable-next-line prettier/prettier

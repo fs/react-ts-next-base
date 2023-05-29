@@ -1,8 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { configColors } from 'public/styles/config/colors';
-import { configIcons, IconKeys } from '../config';
 
+import { configIcons, IconKeys } from '../config';
 import Icon from '../index';
 
 import { Container, IconDescription, IconItem } from './styled';

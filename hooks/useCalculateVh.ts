@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import isServerSide from 'config/isServerSide';
 
 const useCalculateVh = () => {

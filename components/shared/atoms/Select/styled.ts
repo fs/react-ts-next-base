@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
-import { StylesConfig } from 'react-select';
 import { transparentize } from 'polished';
+import { StylesConfig } from 'react-select';
 
-import theme from 'public/styles/theme';
 import { getMarginStyles } from 'public/styles/config/margin';
+import theme from 'public/styles/theme';
 
-import { TReactSelectProps, TFieldWrapperProps, TOption } from './types';
+import { TFieldWrapperProps, TOption, TReactSelectProps } from './types';
 
 export const FieldWrapper = styled.div(
   ({ isMulti, ...props }: TFieldWrapperProps) => css`

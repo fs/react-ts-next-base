@@ -1,5 +1,5 @@
-import { renderHook, waitFor } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
+import { renderHook, waitFor } from '@testing-library/react';
 
 import mockCurrentUser from '__tests__/mocks/mockCurrentUser';
 import { mockUseRouterData } from '__tests__/mocks/mockUseRouterData';
@@ -7,13 +7,13 @@ import { mockUseRouterData } from '__tests__/mocks/mockUseRouterData';
 import useNotifier from 'hooks/useNotifier';
 import useRouter from 'hooks/useRouter';
 
-import { SignInDocument } from 'graphql/mutations/__generated__/signIn.generated';
-import { SignUpDocument } from 'graphql/mutations/__generated__/signUp.generated';
-import { SignOutDocument } from 'graphql/mutations/__generated__/signOut.generated';
-import { UpdatePasswordDocument } from 'graphql/mutations/__generated__/updatePassword.generated';
 import { RequestPasswordRecoveryDocument } from 'graphql/mutations/__generated__/requestPasswordRecovery.generated';
+import { SignInDocument } from 'graphql/mutations/__generated__/signIn.generated';
+import { SignOutDocument } from 'graphql/mutations/__generated__/signOut.generated';
+import { SignUpDocument } from 'graphql/mutations/__generated__/signUp.generated';
+import { UpdatePasswordDocument } from 'graphql/mutations/__generated__/updatePassword.generated';
 
-import { useSignIn, useSignUp, useSignOut, usePasswordRecovery, useUpdatePassword } from './auth';
+import { usePasswordRecovery, useSignIn, useSignOut, useSignUp, useUpdatePassword } from './auth';
 
 jest.mock('hooks/useNotifier');
 jest.mock('hooks/useRouter');

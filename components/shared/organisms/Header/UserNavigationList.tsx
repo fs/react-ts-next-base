@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import Link from 'next/link';
 
-import { TUserNavigationList } from './types';
 import { StyledUserMenu, UserMenuItem } from './styled';
+import { TUserNavigationList } from './types';
 
 const UserNavigationList: FC<TUserNavigationList> = ({ links = [], actions = [] }) => (
   <StyledUserMenu>

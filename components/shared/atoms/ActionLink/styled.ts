@@ -1,8 +1,9 @@
-import styled, { css } from 'styled-components';
 import Link from 'next/link';
+import styled, { css } from 'styled-components';
 
-import { getMarginStyles } from 'public/styles/config/margin';
 import { configColors } from 'public/styles/config/colors';
+import { getMarginStyles } from 'public/styles/config/margin';
+
 import { TStyledLinkProps } from './types';
 
 const linkStyles = ({ $size, $color, $bold, ...props }: TStyledLinkProps) => css`

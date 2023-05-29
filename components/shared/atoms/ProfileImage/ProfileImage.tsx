@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
+import { Image, ImageWrapper } from './styled';
 import { TProfileImage } from './types';
-import { ImageWrapper, Image } from './styled';
 
 const ProfileImage: FC<TProfileImage> = ({ avatar, alt = 'Avatar' }) => {
   const defaultAvatar = `${process.env.ASSET_HOST}/images/avatar-placeholder.png`;

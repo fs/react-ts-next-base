@@ -1,13 +1,13 @@
 import { useEffect, useReducer } from 'react';
-import Cookie from 'universal-cookie';
 import omit from 'lodash/omit';
+import Cookie from 'universal-cookie';
+
+import { getCurrentUser } from 'lib/apollo/cache/getCurrentUser';
 
 import UpdateToken from 'graphql/mutations/updateToken.graphql';
 import CurrentUser from 'graphql/queries/currentUser.graphql';
 
 import jwt from 'config/jwt.json';
-
-import { getCurrentUser } from 'lib/apollo/cache/getCurrentUser';
 import { ApolloPageContext, TApolloClient, TNextPage } from 'lib/apollo/types';
 
 import { setRefreshToken } from './tokens';

@@ -1,7 +1,7 @@
-import { ParsedUrlQuery } from 'querystring';
-import { AppContext, AppProps } from 'next/app';
-import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { NextApiRequest, NextApiResponse, NextComponentType, NextPageContext } from 'next';
+import { AppContext, AppProps } from 'next/app';
+import { ParsedUrlQuery } from 'querystring';
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 
 import { AccessTokenManager } from 'lib/auth/withAccessTokenManager';
 

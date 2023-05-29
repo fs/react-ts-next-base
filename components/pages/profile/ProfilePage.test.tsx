@@ -1,17 +1,18 @@
 import { ApolloError } from '@apollo/client';
 import { render, screen } from '@testing-library/react';
 
-import renderWithTheme from '__tests__/helpers/renderWithTheme';
 import renderWithApolloClient from '__tests__/helpers/renderWithApolloClient';
+import renderWithTheme from '__tests__/helpers/renderWithTheme';
 
-import useRouter from 'hooks/useRouter';
-import useNotifier from 'hooks/useNotifier';
-import useCurrentUser from 'hooks/useCurrentUser';
-import { useSignOut } from 'lib/apollo/hooks/actions/auth';
-
-import { TPageProps } from 'lib/apollo/types';
 import { mockCurrentUserData } from '__tests__/mocks/mockCurrentUser';
 import { mockUseRouterData } from '__tests__/mocks/mockUseRouterData';
+
+import { useSignOut } from 'lib/apollo/hooks/actions/auth';
+import useCurrentUser from 'hooks/useCurrentUser';
+import useNotifier from 'hooks/useNotifier';
+import useRouter from 'hooks/useRouter';
+
+import { TPageProps } from 'lib/apollo/types';
 
 import { ProfilePage } from './ProfilePage';
 
