@@ -1,6 +1,7 @@
-import { TApolloClient } from 'lib/apollo/types';
-import CurrentUser from 'graphql/queries/currentUser.graphql';
 import { CurrentUserQuery } from 'graphql/queries/__generated__/currentUser.generated';
+import CurrentUser from 'graphql/queries/currentUser.graphql';
+
+import { TApolloClient } from 'lib/apollo/types';
 
 export const getCurrentUser = ({ apolloClient }: { apolloClient: TApolloClient }) => {
   try {

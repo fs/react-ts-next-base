@@ -3,11 +3,12 @@ import { render, screen } from '@testing-library/react';
 import renderWithApolloClient from '__tests__/helpers/renderWithApolloClient';
 import renderWithTheme from '__tests__/helpers/renderWithTheme';
 
-import useCurrentUser from 'hooks/useCurrentUser';
-
 import { mockCurrentUserData } from '__tests__/mocks/mockCurrentUser';
 
+import useCurrentUser from 'hooks/useCurrentUser';
+
 import { TPageProps } from 'lib/apollo/types';
+
 import { HomePage } from './HomePage';
 
 jest.mock('hooks/useCurrentUser');

@@ -1,7 +1,8 @@
-import { UpdateUserInput } from 'graphql/types';
+import useNotifier from 'hooks/useNotifier';
+
 import { useUpdateUserMutation } from 'graphql/mutations/__generated__/updateUser.generated';
 
-import useNotifier from 'hooks/useNotifier';
+import { UpdateUserInput } from 'graphql/types';
 
 export const useUpdateUser = ({ onSubmit = () => {} }) => {
   const { setError } = useNotifier();

@@ -1,4 +1,4 @@
-import { findAvailableValue, findAvailableValues, filterAvailableNodes } from './types';
+import { filterAvailableNodes, findAvailableValue, findAvailableValues } from './types';
 
 describe('types', () => {
   const target = ['apple', 'pen', 'orange'];

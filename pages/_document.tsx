@@ -1,4 +1,4 @@
-import Document, { Head, Main, NextScript, Html, DocumentContext } from 'next/document';
+import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 const MyDocument = () => {

@@ -1,11 +1,11 @@
-import { renderHook, waitFor } from '@testing-library/react';
+import { InMemoryCache } from '@apollo/client';
 import { MockedProvider } from '@apollo/client/testing';
+import { renderHook, waitFor } from '@testing-library/react';
 
 import mockCurrentUser from '__tests__/mocks/mockCurrentUser';
 
 import { CurrentUserDocument } from 'graphql/queries/__generated__/currentUser.generated';
 
-import { InMemoryCache } from '@apollo/client';
 import { useCurrentUserHook } from './currentUser';
 
 describe('useCurrentUser', () => {

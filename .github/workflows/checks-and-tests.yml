@@ -60,7 +60,7 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - run: yarn run lint:css
+      - run: yarn run ci:lint-css
 
   lintTypes:
     name: Lint Types

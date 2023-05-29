@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import Loader from '../index';
 import { sizeConfig } from '../config';
+import Loader from '../index';
 
 export default {
   title: 'atoms/Loader',

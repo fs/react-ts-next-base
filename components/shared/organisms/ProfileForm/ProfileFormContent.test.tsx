@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 import renderWithTheme from '__tests__/helpers/renderWithTheme';
+
 import mockCurrentUser from '__tests__/mocks/mockCurrentUser';
 
 import ProfileFormContent from './ProfileFormContent';

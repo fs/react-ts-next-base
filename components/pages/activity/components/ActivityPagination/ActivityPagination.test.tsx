@@ -1,9 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import 'jest-styled-components';
 
 import renderWithTheme from '__tests__/helpers/renderWithTheme';
+
 import { mockPageInfo } from '__tests__/mocks/mockPageInfo';
+
 import ActivityPagination from 'components/pages/activity/components/ActivityPagination';
+
+import 'jest-styled-components';
 
 describe('ActivityPagination', () => {
   const mockTestId = 'activity-pagination';

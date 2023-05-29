@@ -1,14 +1,15 @@
+import { ApolloError } from '@apollo/client';
 import { render, screen } from '@testing-library/react';
 
-import renderWithTheme from '__tests__/helpers/renderWithTheme';
 import renderWithApolloClient from '__tests__/helpers/renderWithApolloClient';
+import renderWithTheme from '__tests__/helpers/renderWithTheme';
+
+import { mockUseActivitiesData } from '__tests__/mocks/mockActivities';
 
 import { useMeActivities } from 'lib/apollo/hooks/state/meActivity';
 
 import { TPageProps } from 'lib/apollo/types';
-import { mockUseActivitiesData } from '__tests__/mocks/mockActivities';
 
-import { ApolloError } from '@apollo/client';
 import { ActivityPage } from './ActivityPage';
 
 jest.mock('lib/apollo/hooks/state/meActivity');

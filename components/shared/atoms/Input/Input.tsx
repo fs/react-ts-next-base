@@ -1,19 +1,18 @@
 import { FC, InputHTMLAttributes, useState } from 'react';
-import { Field, ErrorMessage, useField, useFormikContext } from 'formik';
+import { ErrorMessage, Field, useField, useFormikContext } from 'formik';
 
-import Icon from 'components/shared/atoms/Icon';
 import Button from 'components/shared/atoms/Button';
+import Icon from 'components/shared/atoms/Icon';
 
+import { ErrorWrapper, FieldLabel, FieldWrapper, InputWrapper } from './styled';
 import { TInput } from './types';
 import {
-  borderConfig,
   backgroundColorConfig,
-  marginConfig,
-  heightConfig,
+  borderConfig,
   colorConfig,
+  heightConfig,
+  marginConfig,
 } from './config';
-
-import { FieldWrapper, InputWrapper, ErrorWrapper, FieldLabel } from './styled';
 
 type TInputType = TInput & InputHTMLAttributes<HTMLInputElement>;
 

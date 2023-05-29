@@ -1,7 +1,7 @@
 import { ChangeEvent, FC } from 'react';
 
+import { Input, Label, Wrapper } from './styled';
 import { TCheckbox } from './types';
-import { Wrapper, Label, Input } from './styled';
 import { positionConfig, sizeConfig } from './config';
 
 const Checkbox: FC<TCheckbox> = ({

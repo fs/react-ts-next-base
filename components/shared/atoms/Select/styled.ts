@@ -1,15 +1,16 @@
 import styled, { css } from 'styled-components';
-import { StylesConfig } from 'react-select';
 import { transparentize } from 'polished';
+import { StylesConfig } from 'react-select';
 
-import theme from 'public/styles/theme';
 import { getMarginStyles } from 'public/styles/config/margin';
+import theme from 'public/styles/theme';
 
-import { TReactSelectProps, TFieldWrapperProps, TOption } from './types';
+import { TFieldWrapperProps, TOption, TReactSelectProps } from './types';
 
 export const FieldWrapper = styled.div(
   ({ isMulti, ...props }: TFieldWrapperProps) => css`
     position: relative;
+
     width: 100%;
     height: ${isMulti ? 'auto' : '2.5rem'};
 
@@ -22,13 +23,16 @@ export const FieldLabel = styled.label(
     position: absolute;
     top: 0;
     left: 0.35rem;
+    z-index: 1;
+
     height: 1px;
+    padding: 0 0.35rem;
+
     font-size: 0.7rem;
     line-height: 0;
-    background-color: ${colors.white};
     color: ${colors.grey_500};
-    padding: 0 0.35rem;
-    z-index: 1;
+
+    background-color: ${colors.white};
   `,
 );
 
@@ -143,10 +147,12 @@ export const reactSelectStyles = <T>({
 export const ErrorWrapper = styled.div(
   ({ theme: { colors } }) => css`
     position: absolute;
+
     width: 100%;
+    padding: 0.15rem 0 0 0.5rem;
+
     font-size: 0.68rem;
     color: ${colors.red_500};
-    padding: 0.15rem 0 0 0.5rem;
   `,
 );
 
@@ -158,19 +164,20 @@ export const OptionWrapper = styled.div`
 
 export const CheckboxWrapper = styled.div`
   position: relative;
+
   width: 100%;
   height: 100%;
 
   div {
-    line-height: 1.7rem;
     font-size: 0.875rem;
+    line-height: 1.7rem;
   }
 
   input {
     width: 100%;
     height: 100%;
-    margin: 0;
     padding: 0 0.5rem;
+    margin: 0;
   }
 
   label {

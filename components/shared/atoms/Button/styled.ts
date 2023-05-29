@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
-import theme from 'public/styles/theme';
+
 import { getMarginStyles } from 'public/styles/config/margin';
+import theme from 'public/styles/theme';
 
 import { TButtonProps, TSpinnerButtonProps } from './types';
 
@@ -19,49 +20,56 @@ export const StyledButton = styled.button(
     $isLoading,
     ...props
   }: TButtonProps) => css`
-    transition: 0.2s all;
     position: relative;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    font-size: 0.875rem;
-    cursor: pointer;
-    font-family: 'Gilroy', sans-serif;
-    font-weight: 600;
 
     width: ${$width};
     height: ${$size.height};
     padding: ${$size.padding};
-    border-radius: ${$borderRadius};
     overflow: hidden;
 
-    background-color: ${$backgroundColor.default};
+    font-family: Gilroy, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
     color: ${$isLoading ? theme.colors.transparent : $textColor.default};
+    text-align: center;
     text-decoration: ${$textDecoration.default};
+
+    cursor: pointer;
+
+    background-color: ${$backgroundColor.default};
     border: ${$border.default};
+    border-radius: ${$borderRadius};
     box-shadow: ${$boxShadow.default};
+
+    transition: 0.2s all;
     ${getMarginStyles(props)}
 
-    &:hover:not(:disabled) {
-      background-color: ${$backgroundColor.hover};
-      color: ${$textColor.hover};
-      text-decoration: ${$textDecoration.hover};
-      border: ${$border.hover};
-      box-shadow: ${$boxShadow.hover};
-    }
-
     &:focus {
-      background-color: ${$backgroundColor.focused};
       color: ${$textColor.focused};
       text-decoration: ${$textDecoration.focused};
+
+      background-color: ${$backgroundColor.focused};
       border: ${$border.focused};
       box-shadow: ${$boxShadow.focused};
     }
 
     &:disabled {
-      opacity: 0.5;
       cursor: not-allowed;
+
+      opacity: 0.5;
+    }
+
+    &:hover:not(:disabled) {
+      color: ${$textColor.hover};
+      text-decoration: ${$textDecoration.hover};
+
+      background-color: ${$backgroundColor.hover};
+      border: ${$border.hover};
+      box-shadow: ${$boxShadow.hover};
     }
 
     ${$iconType !== 'none' &&
@@ -95,14 +103,17 @@ export const StyledButton = styled.button(
 
 export const SpinnerWrapper = styled.div(
   ({ backgroundColor }: TSpinnerButtonProps) => css`
-    width: 100%;
-    height: 100%;
-    background-color: ${backgroundColor.default};
     position: absolute;
     top: 0;
     right: 0;
+
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: ${backgroundColor.default};
   `,
 );

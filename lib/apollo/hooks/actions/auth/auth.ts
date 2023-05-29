@@ -1,16 +1,15 @@
-import useRouter from 'hooks/useRouter';
 import useNotifier from 'hooks/useNotifier';
+import useRouter from 'hooks/useRouter';
 
-import { HOME, SIGNIN } from 'config/routes';
-import globalEvents from 'config/globalEvents.json';
+import { useRequestPasswordRecoveryMutation } from 'graphql/mutations/__generated__/requestPasswordRecovery.generated';
+import { useSignInMutation } from 'graphql/mutations/__generated__/signIn.generated';
+import { useSignOutMutation } from 'graphql/mutations/__generated__/signOut.generated';
+import { useSignUpMutation } from 'graphql/mutations/__generated__/signUp.generated';
+import { useUpdatePasswordMutation } from 'graphql/mutations/__generated__/updatePassword.generated';
 import CurrentUser from 'graphql/queries/currentUser.graphql';
 
-import { useSignInMutation } from 'graphql/mutations/__generated__/signIn.generated';
-import { useSignUpMutation } from 'graphql/mutations/__generated__/signUp.generated';
-import { useSignOutMutation } from 'graphql/mutations/__generated__/signOut.generated';
-import { useUpdatePasswordMutation } from 'graphql/mutations/__generated__/updatePassword.generated';
-import { useRequestPasswordRecoveryMutation } from 'graphql/mutations/__generated__/requestPasswordRecovery.generated';
-
+import globalEvents from 'config/globalEvents.json';
+import { HOME, SIGNIN } from 'config/routes';
 import {
   RequestPasswordRecoveryInput,
   SignInInput,

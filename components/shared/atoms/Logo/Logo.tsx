@@ -1,8 +1,7 @@
 import { FC } from 'react';
 
-import { HOME } from 'config/routes';
-
 import LogoIcon from 'public/images/logo.svg';
+import { HOME } from 'config/routes';
 
 import { LogoWrapper } from './styled';
 

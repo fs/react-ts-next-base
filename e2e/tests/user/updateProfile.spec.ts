@@ -1,9 +1,8 @@
-import { test, expect } from '@playwright/test';
-
 import { users } from 'e2e/fixtures/users';
-import { signIn } from 'e2e/helperActions/signIn';
 // import { chooseFile } from 'e2e/helperActions/fileChooser';
 import { closeNotification } from 'e2e/helperActions/notification';
+import { signIn } from 'e2e/helperActions/signIn';
+import { expect, test } from '@playwright/test';
 
 test.describe('Update Profile', () => {
   const timestamp = +new Date();

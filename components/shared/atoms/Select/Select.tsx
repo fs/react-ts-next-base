@@ -1,10 +1,9 @@
 import { useId } from 'react';
-
 import ReactSelect, { MultiValue, SingleValue } from 'react-select';
 
-import { MultiOption } from './helpers';
+import { ErrorWrapper, FieldLabel, FieldWrapper, reactSelectStyles } from './styled';
 import { TOption, TSelect } from './types';
-import { FieldWrapper, FieldLabel, reactSelectStyles, ErrorWrapper } from './styled';
+import { MultiOption } from './helpers';
 
 const Select = <T,>({
   name,

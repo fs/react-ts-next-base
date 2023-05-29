@@ -1,13 +1,13 @@
-import { useCallback, FC } from 'react';
-
-import ProfileImage from 'components/shared/atoms/ProfileImage';
+import { FC, useCallback } from 'react';
 
 import useCloseOnOutsideClick from 'hooks/useCloseOnOutsideClick';
 
+import ProfileImage from 'components/shared/atoms/ProfileImage';
+
 import UserNavigationList from './UserNavigationList';
 
+import { ImageWrapper, UserName, UserNameWrapper, UserNavigationWrapper } from './styled';
 import { TUserNavigation } from './types';
-import { UserName, UserNavigationWrapper, UserNameWrapper, ImageWrapper } from './styled';
 
 const UserNavigation: FC<TUserNavigation> = ({ user, links, actions }) => {
   const [isOpen, setIsOpen, wrapperRef, togglerRef] = useCloseOnOutsideClick();

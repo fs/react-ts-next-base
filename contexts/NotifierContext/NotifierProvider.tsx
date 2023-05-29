@@ -1,8 +1,9 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import ErrorDecorator from 'decorators/ErrorDecorator';
 import { TypeOptions } from 'react-toastify';
 
-import ErrorDecorator from 'decorators/ErrorDecorator';
 import NotifierContext from './NotifierContext';
+
 import { TNotifierProvider } from './types';
 
 const NotifierProvider = ({ children }: TNotifierProvider) => {

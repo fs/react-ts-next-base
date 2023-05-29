@@ -1,4 +1,5 @@
 import { MultiValue, SingleValue } from 'react-select';
+
 import { ActivityEvent } from 'graphql/types';
 
 export type TActivityOption = {

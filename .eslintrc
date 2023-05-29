@@ -25,9 +25,12 @@
     "react-hooks",
     "testing-library",
     "jest-dom",
-    "prettier"
+    "prettier",
+    "simple-import-sort"
   ],
   "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
     "react/jsx-filename-extension": [
       1,
       {
@@ -107,6 +110,48 @@
       "files": ["e2e/**/*.ts"],
       "rules": {
         "playwright/missing-playwright-await": ["error"]
+      }
+    },
+    {
+      "files": ["**/*.js", "**/*.ts", "**/*.tsx"],
+      "rules": {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              // `react` first, `next` second, then packages starting with a character
+              ["^react$", "^next", "^formik", "^styled-components", "^[a-z]", "^@"],
+              // unit test helpers
+              ["^__tests__/helpers/"],
+              // Mocks
+              ["^__tests__/"],
+              // HOK's
+              ["^lib/auth", "^lib/apollo"],
+              // Mutations and Queries
+              ["^lib/apollo/hooks/actions","^lib/apollo/hooks/state", "^hooks/"],
+              // Graphql
+              ["^graphql/"],
+              // Constants
+              ["^public/","^config/", "^graphql/types", "^helpers", "^lib/apollo/types"],
+              // Shared components
+              [
+                "^components/shared/atoms/",
+                "^components/shared/molecules/",
+                "^components/shared/organisms/",
+                "^components/shared/templates/",
+                "^pages/"
+              ],
+              ["^components/pages/"],
+              // Imports starting with `../`
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+              // Page components
+              ["^./components"],
+              // Imports starting with `./`
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+              ["^./styled", "^./types", "^./config", "./helpers", "./utils"]
+            ]
+          }
+        ]
       }
     }
   ],

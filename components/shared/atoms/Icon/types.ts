@@ -1,5 +1,6 @@
 import { ColorKeys } from 'public/styles/config/colors';
 import { TMargin } from 'public/styles/config/margin';
+
 import { IconKeys } from './config';
 
 export type TIconBase = TMargin & {
